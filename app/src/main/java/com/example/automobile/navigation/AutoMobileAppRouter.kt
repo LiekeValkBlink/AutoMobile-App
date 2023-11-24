@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.automobile.screens.LoginScreen
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.StartScreen
+import com.example.automobile.screens.HomeScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -23,6 +24,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(route = "login_screen") {
             LoginScreen(navController = navController)
+        }
+        composable(route = "home_screen") {
+            HomeScreen(navController = navController)
         }
     }
 }
