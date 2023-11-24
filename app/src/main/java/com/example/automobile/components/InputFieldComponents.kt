@@ -29,6 +29,7 @@ import com.example.automobile.R
 import com.example.automobile.ui.theme.InputColor
 import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.PrimaryColor
+import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,9 +55,8 @@ fun TextInputFieldComponent(labelValue: String) {
         colors = TextFieldDefaults.textFieldColors(
             containerColor = InputColor,
             focusedIndicatorColor = PrimaryColor,
-            textColor = Color.White,
-            focusedLabelColor = Color.Black,
-            cursorColor = Color.White,
+            textColor = White,
+            cursorColor = White,
             unfocusedIndicatorColor = InputColor
         ),
         textStyle = TextStyle (
@@ -98,9 +98,8 @@ fun PasswordInputFieldComponent(labelValue: String) {
         colors = TextFieldDefaults.textFieldColors(
             containerColor = InputColor,
             focusedIndicatorColor = PrimaryColor,
-            textColor = Color.White,
-            focusedLabelColor = Color.Black,
-            cursorColor = Color.White,
+            textColor = White,
+            cursorColor = White,
             unfocusedIndicatorColor = InputColor
         ),
         textStyle = TextStyle (
@@ -126,7 +125,7 @@ fun PasswordInputFieldComponent(labelValue: String) {
             }
 
             IconButton(onClick = { passwordVisible.value = !passwordVisible.value}) {
-                Icon(imageVector = iconImage, contentDescription = description, tint = Color.White,)
+                Icon(imageVector = iconImage, contentDescription = description, tint = White,)
             }
         },
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else

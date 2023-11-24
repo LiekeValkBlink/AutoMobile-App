@@ -18,13 +18,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.PrimaryColor
+import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
 fun LogoComponent() {
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(
-            Color.White,
+            color = White,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Bold,
             fontSize = 26.sp
@@ -58,7 +59,7 @@ fun HeadingTextComponent(value: String) {
             fontFamily = fontFamily,
             fontWeight = FontWeight.Bold,
             lineHeight = 48.sp,
-            color = Color.White,
+            color = White,
         )
     )
 }

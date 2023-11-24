@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.PrimaryColor
+import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
-
 
 @Composable
 fun PrimaryButtonComponent(value: String, route: () -> Unit) {
@@ -30,7 +30,7 @@ fun PrimaryButtonComponent(value: String, route: () -> Unit) {
             .height(height = 60.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = PrimaryColor,
-            contentColor = Color.White),
+            contentColor = White),
 
     ) {
         Text(

@@ -28,6 +28,7 @@ import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
@@ -52,14 +53,14 @@ fun LoginScreen(navController: NavController) {
             Column {
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.login_screen_btn),
-                    route = { navController.navigate(route = "login_screen") },
+                    route = { navController.navigate(route = "home_screen") },
                 )
                 Spacer(modifier = Modifier.size(20.dp))
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "Forgot your password?",
                     textAlign = TextAlign.Center,
-                    color = Color.White,
+                    color = White,
                     fontFamily = fontFamily,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium

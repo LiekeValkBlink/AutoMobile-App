@@ -1,6 +1,7 @@
 package com.example.automobile.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +34,7 @@ import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 
@@ -50,7 +54,7 @@ fun SignUpScreen(navController: NavHostController) {
                 LogoComponent()
 
                 HeadingTextComponent(
-                    value = stringResource(id = R.string.account_header)
+                    value = stringResource(id = R.string.sign_up_header)
                 )
             }
 
@@ -60,14 +64,10 @@ fun SignUpScreen(navController: NavHostController) {
                     route = { navController.navigate(route = "sign_up_screen") }
                 )
                 Spacer(modifier = Modifier.size(20.dp))
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Already an account? Login.",
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    fontFamily = fontFamily,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium
+                ClickableText(
+                    text = AnnotatedString(stringResource(id = R.string.sign_up_login)),
+                    onClick = { navController.navigate(route = "login_screen") }
+
                 )
             }
         }
