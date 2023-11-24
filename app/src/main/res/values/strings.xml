@@ -1,22 +1,29 @@
 <resources>
     <string name="app_name">AutoMobile</string>
 
+    //InputFieldTextComponents
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+
+    //StartScreen
+    <string name="start_screen_primary_btn">Get started</string>
+    <string name="start_screen_secondary_btn">Login</string>
+
     //SignUpScreen
-    <string name="account_header">Create your account</string>
+    <string name="sign_up_header">Create your account</string>
     <string name="sign_up_username">What will be your username?</string>
     <string name="sign_up_email">Enter your e-mail</string>
     <string name="sign_up_password">Enter your password</string>
     <string name="sign_up_password_repeat">Repeat your password</string>
-    <string name="hide_password">Hide password</string>
-    <string name="show_password">Show password</string>
-    <string name="terms_and_conditions">By continuing you accept our Privacy Policy and Term of use</string>
     <string name="register_button">Create account</string>
-    <string name="start_screen_primary_btn">Get started</string>
-    <string name="start_screen_secondary_btn">Login</string>
+    <string name="sign_up_login">Already have an account? Login.</string>
 
     // LoginScreen
     <string name="login_screen_heading">Nice to see\nyou again!</string>
     <string name="login_screen_email">Enter your e-mail</string>
     <string name="login_screen_password">Enter your password</string>
     <string name="login_screen_btn">Login</string>
+
+    //HomeScreen
+
 </resources>
