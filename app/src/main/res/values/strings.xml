@@ -23,6 +23,8 @@
     <string name="login_screen_email">Enter your e-mail</string>
     <string name="login_screen_password">Enter your password</string>
     <string name="login_screen_btn">Login</string>
+    <string name="home_screen_location">Search for location...</string>
+    <string name="home_screen_search">Search</string>
 
     //HomeScreen
 

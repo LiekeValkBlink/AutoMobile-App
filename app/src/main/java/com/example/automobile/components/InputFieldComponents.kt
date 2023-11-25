@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -26,7 +27,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.automobile.R
-import com.example.automobile.ui.theme.InputColor
+import com.example.automobile.ui.theme.InputBackgroundColor
 import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
@@ -34,8 +35,11 @@ import com.example.automobile.ui.theme.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInputFieldComponent(labelValue: String) {
-
+fun TextInputFieldComponent(
+    labelValue: String,
+    leadingIcon: (@Composable() () -> Unit)? = null,
+    trailingIcon: (@Composable() () -> Unit)? = null
+) {
     val textValue = remember {
         mutableStateOf("")
     }
@@ -53,11 +57,11 @@ fun TextInputFieldComponent(labelValue: String) {
             .fillMaxWidth()
             .height(height = 55.dp),
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = InputColor,
+            containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
             textColor = White,
             cursorColor = White,
-            unfocusedIndicatorColor = InputColor
+            unfocusedIndicatorColor = InputBackgroundColor,
         ),
         textStyle = TextStyle (
           fontFamily = fontFamily,
@@ -67,6 +71,9 @@ fun TextInputFieldComponent(labelValue: String) {
 
         keyboardOptions = KeyboardOptions.Default,
         maxLines = 1,
+
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon
 
     )
 }
@@ -96,11 +103,11 @@ fun PasswordInputFieldComponent(labelValue: String) {
             .fillMaxWidth()
             .height(height = 55.dp),
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = InputColor,
+            containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
             textColor = White,
             cursorColor = White,
-            unfocusedIndicatorColor = InputColor
+            unfocusedIndicatorColor = InputBackgroundColor
         ),
         textStyle = TextStyle (
             fontFamily = fontFamily,
@@ -130,5 +137,37 @@ fun PasswordInputFieldComponent(labelValue: String) {
         },
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else
             PasswordVisualTransformation()
+    )
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun dateTimeInputFieldComponent (value: String) {
+    val dateTime = remember {
+        mutableStateOf("")
+    }
+
+    TextField(
+        value = dateTime.value,
+        onValueChange = {
+            dateTime.value = it
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(height = 55.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = InputBackgroundColor,
+            focusedIndicatorColor = PrimaryColor,
+            textColor = White,
+            cursorColor = White,
+            unfocusedIndicatorColor = InputBackgroundColor
+        ),
+        textStyle = TextStyle (
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp,
+        ),
+
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        maxLines = 1,
     )
 }
