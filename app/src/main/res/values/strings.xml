@@ -16,7 +16,8 @@
     <string name="sign_up_password">Enter your password</string>
     <string name="sign_up_password_repeat">Repeat your password</string>
     <string name="register_button">Create account</string>
-    <string name="sign_up_login">Already have an account? Login.</string>
+    <string name="sign_up_already_an_account">Already an account? </string>
+    <string name="sign_up_login">Login.</string>
 
     // LoginScreen
     <string name="login_screen_heading">Nice to see\nyou again!</string>
@@ -25,6 +26,11 @@
     <string name="login_screen_btn">Login</string>
     <string name="home_screen_location">Search for location...</string>
     <string name="home_screen_search">Search</string>
+    <string name="home_screen_available_cars">Available cars near you</string>
+    <string name="login_forgot_password">Forgot your password?</string>
+    <string name="login_reset_password">Reset.</string>
+    <string name="start_screen_slogan">Fast. Reliable. Durable.</string>
+
 
     //HomeScreen
 

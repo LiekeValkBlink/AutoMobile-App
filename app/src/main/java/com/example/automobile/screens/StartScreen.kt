@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,6 +24,7 @@ import com.example.automobile.R
 import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
+import com.example.automobile.components.topNav
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.fontFamily
 
@@ -30,35 +32,42 @@ import com.example.automobile.ui.theme.fontFamily
 fun StartScreen(navController: NavController) {
 
     Surface (modifier = Modifier
-        .background(color = BackgroundColor)
         .fillMaxSize()
-        .padding(30.dp, 30.dp, 30.dp, 40.dp)
     ){
         Column (modifier = Modifier
-            .background(color = BackgroundColor),
-            verticalArrangement = Arrangement.SpaceBetween,
+            .background(BackgroundColor)
+            .padding(30.dp)
         ) {
             Column {
-                LogoComponent()
-                Text(
-                    text = "Fast. Reliable. Durable.",
-                    color = Color.White,
-                    lineHeight = 60.sp,
-                    fontFamily = fontFamily,
-                    fontSize = 52.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                topNav(navController)
             }
-            Column {
-                PrimaryButtonComponent(
-                    value = stringResource(id = R.string.start_screen_primary_btn),
-                    route = { navController.navigate(route = "sign_up_screen") },
-                )
-                Spacer(modifier = Modifier.size(16.dp))
-                SecondaryButtonComponent(
-                    value = stringResource(id = R.string.start_screen_secondary_btn),
-                    route = { navController.navigate(route = "login_screen") },
-                )
+
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text(
+                        text = stringResource(id = R.string.start_screen_slogan),
+                        color = Color.White,
+                        lineHeight = 60.sp,
+                        fontFamily = fontFamily,
+                        fontSize = 52.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                Column {
+                    PrimaryButtonComponent(
+                        value = stringResource(id = R.string.start_screen_primary_btn),
+                        route = { navController.navigate(route = "sign_up_screen") },
+                    )
+                    Spacer(modifier = Modifier.size(16.dp))
+                    SecondaryButtonComponent(
+                        value = stringResource(id = R.string.start_screen_secondary_btn),
+                        route = { navController.navigate(route = "login_screen") },
+                    )
+                }
             }
         }
     }
