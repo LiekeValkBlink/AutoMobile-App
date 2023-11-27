@@ -21,10 +21,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
-import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
-import com.example.automobile.components.topNav
+import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.fontFamily
 
@@ -39,7 +38,7 @@ fun StartScreen(navController: NavController) {
             .padding(30.dp)
         ) {
             Column {
-                topNav(navController)
+                TopNavigationBar(navController)
             }
 
             Column(

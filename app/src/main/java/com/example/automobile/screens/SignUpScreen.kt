@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -22,11 +20,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.H1TextComponent
 import com.example.automobile.components.TextInputFieldComponent
-import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.topNav
 import com.example.automobile.components.AnnotatedString
+import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 
@@ -44,7 +41,7 @@ fun SignUpScreen(navController: NavHostController) {
         ) {
 
             Column {
-                topNav(navController)
+                TopNavigationBar(navController)
             }
 
             Column(

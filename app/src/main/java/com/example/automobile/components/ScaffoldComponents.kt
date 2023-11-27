@@ -1,20 +1,34 @@
 package com.example.automobile.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Map
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -24,44 +38,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 
 @Composable
-fun topNav(navController: NavController) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-    ){
-        Box {
-            IconButton(
-                onClick = {
-                    navController.navigateUp()
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "Go back",
-                    modifier = Modifier.offset(y=(-4).dp, x=(-12).dp),
-                    tint = White
-                )
-        }
-
-        Column (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            LogoComponent()
-        }
-        }
-    }
-
-    Spacer(modifier = Modifier.size(20.dp))
-}
-
-@Composable
-fun LogoComponent() {
+fun TopNavigationBar(navController: NavController) {
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(
             color = White,
@@ -82,8 +67,104 @@ fun LogoComponent() {
             append("Mobile")
         }
     }
-    Text(
-        text = annotatedString,
-        textAlign = TextAlign.Center
-    )
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(BackgroundColor)
+            .height(70.dp)
+            .padding(30.dp, 10.dp, 30.dp, 0.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Box {
+            IconButton(
+                onClick = {
+                    navController.navigateUp()
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.ArrowBack,
+                    contentDescription = "Go back",
+                    modifier = Modifier.offset(y=(-4).dp, x=(-12).dp),
+                    tint = White
+                )
+        }
+
+        Column (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text(
+                text = annotatedString,
+                textAlign = TextAlign.Center
+            )
+        }
+        }
+    }
+
+    Spacer(modifier = Modifier.size(20.dp))
+}
+
+
+@Composable
+fun BottomNavigationBar(navController: NavController) {
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .background(BackgroundColor, shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp))
+        .padding(20.dp, 0.dp)
+        .height(60.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(
+            onClick = { navController.navigate(route = "home_screen") }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Home,
+                modifier = Modifier.size(28.dp),
+                contentDescription = "Home",
+                tint = Color.LightGray
+            )
+        }
+        IconButton(
+            onClick = { navController.navigate(route = "favorites_screen") }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.FavoriteBorder,
+                modifier = Modifier.size(26.dp),
+                contentDescription = "Favorites",
+                tint = Color.LightGray
+            )
+        }
+        IconButton(
+            onClick = { navController.navigate(route = "map_screen") }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Map,
+                modifier = Modifier.size(26.dp),
+                contentDescription = "Map",
+                tint = LightGrey
+            )
+        }
+        IconButton(
+            onClick = { navController.navigate(route = "notifications_screen") }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Notifications,
+                modifier = Modifier.size(26.dp),
+                contentDescription = "Notifications",
+                tint = LightGrey
+            )
+        }
+        IconButton(
+            onClick = { navController.navigate(route = "profile_screen") }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.AccountCircle,
+                modifier = Modifier.size(26.dp),
+                contentDescription = "Profile",
+                tint = LightGrey
+            )
+        }
+    }
 }

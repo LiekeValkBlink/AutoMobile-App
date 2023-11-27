@@ -1,11 +1,11 @@
 package com.example.automobile.screens
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
@@ -20,11 +20,9 @@ import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.FilterAlt
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,13 +30,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
+import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
-import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TextLeadingIconInputFieldComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
-import com.example.automobile.components.topNav
+import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
 
@@ -55,10 +53,6 @@ fun HomeScreen(navController: NavController) {
                 .background(BackgroundColor)
                 .padding(30.dp, 30.dp, 30.dp, 40.dp)
         ){
-
-            Column {
-                topNav(navController)
-            }
 
             Column (
 
@@ -159,6 +153,13 @@ fun HomeScreen(navController: NavController) {
                     )
                 }
             }
+        }
+        Column(
+            modifier = Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            TopNavigationBar(navController)
+            BottomNavigationBar(navController)
         }
     }
 }
