@@ -72,8 +72,8 @@ fun TopNavigationBar(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .background(BackgroundColor)
-            .height(70.dp)
-            .padding(30.dp, 10.dp, 30.dp, 0.dp),
+            .height(80.dp)
+            .padding(20.dp, 10.dp, 20.dp, 0.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
         Box {
@@ -85,7 +85,7 @@ fun TopNavigationBar(navController: NavController) {
                 Icon(
                     imageVector = Icons.Outlined.ArrowBack,
                     contentDescription = "Go back",
-                    modifier = Modifier.offset(y=(-4).dp, x=(-12).dp),
+                    modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
                     tint = White
                 )
         }
@@ -101,8 +101,6 @@ fun TopNavigationBar(navController: NavController) {
         }
         }
     }
-
-    Spacer(modifier = Modifier.size(20.dp))
 }
 
 
@@ -110,7 +108,7 @@ fun TopNavigationBar(navController: NavController) {
 fun BottomNavigationBar(navController: NavController) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .background(BackgroundColor, shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp))
+        .background(BackgroundColor, shape = RoundedCornerShape(8.dp, 8.dp, 0.dp, 0.dp))
         .padding(20.dp, 0.dp)
         .height(60.dp),
         horizontalArrangement = Arrangement.SpaceBetween,

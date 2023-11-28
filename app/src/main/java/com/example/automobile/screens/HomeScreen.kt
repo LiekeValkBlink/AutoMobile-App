@@ -48,15 +48,20 @@ fun HomeScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Column (
+        Column(
             modifier = Modifier
-                .background(BackgroundColor)
-                .padding(30.dp, 30.dp, 30.dp, 40.dp)
-        ){
+                .fillMaxHeight()
+                .background(BackgroundColor),
+            verticalArrangement = Arrangement.Top
+        ) {
+            TopNavigationBar(navController)
 
-            Column (
-
-            ){
+            //BodyContent
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(30.dp, 0.dp),
+            ) {
                 Column {
                     TextLeadingIconInputFieldComponent(
                         labelValue = stringResource(id = R.string.home_screen_location),
@@ -114,56 +119,55 @@ fun HomeScreen(navController: NavController) {
                         route = { TODO() }
                     )
                 }
-            }
 
-            Spacer(modifier = Modifier.size(40.dp))
+                Spacer(modifier = Modifier.size(40.dp))
 
-            Column (
-                modifier = Modifier.verticalScroll(rememberScrollState())
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                Column(
+                    modifier = Modifier.verticalScroll(rememberScrollState())
                 ) {
-                    H2TextComponent(value = stringResource(id = R.string.home_screen_available_cars))
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            imageVector = Icons.Outlined.FilterAlt,
-                            modifier = Modifier.offset(y = (-9).dp),
-                            contentDescription = "Filter",
-                            tint = LightGrey
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        H2TextComponent(value = stringResource(id = R.string.home_screen_available_cars))
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                imageVector = Icons.Outlined.FilterAlt,
+                                modifier = Modifier.offset(y = (-9).dp),
+                                contentDescription = "Filter",
+                                tint = LightGrey
 
+                            )
+                        }
+                    }
+
+                    Column {
+                        CarComponent(
+                            carBrand = "Kia Rio 2019",
+                            price = 4.75,
+                            image = painterResource(id = R.drawable.car_placeholder),
+                            imageDescription = "description"
+                        )
+
+                        CarComponent(
+                            carBrand = "Kia Rio 2019",
+                            price = 4.75,
+                            image = painterResource(id = R.drawable.car_placeholder),
+                            imageDescription = "description"
                         )
                     }
                 }
-
-                Column {
-                    CarComponent(
-                        carBrand = "Kia Rio 2019",
-                        price = 4.75,
-                        image = painterResource(id = R.drawable.car_placeholder),
-                        imageDescription = "description"
-                    )
-
-                    CarComponent(
-                        carBrand = "Kia Rio 2019",
-                        price = 4.75,
-                        image = painterResource(id = R.drawable.car_placeholder),
-                        imageDescription = "description"
-                    )
-                }
             }
         }
+
         Column(
             modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.Bottom
         ) {
-            TopNavigationBar(navController)
             BottomNavigationBar(navController)
         }
     }
 }
-
 
 
 @Preview

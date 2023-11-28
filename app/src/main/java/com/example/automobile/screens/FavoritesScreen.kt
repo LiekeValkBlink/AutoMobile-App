@@ -10,14 +10,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.components.BottomNavigationBar
-import com.example.automobile.components.H1TextComponent
+import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
-import com.example.automobile.ui.theme.InputBackgroundColor
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun FavoritesScreen(navController: NavController) {
@@ -26,17 +25,26 @@ fun FavoritesScreen(navController: NavController) {
     ){
         Column (
             modifier = Modifier
-                .background(InputBackgroundColor)
-                .padding(30.dp)
-        ){
-            H1TextComponent(value = "Favorites Screen")
-        }
-
-        Column(
-            modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
+                .fillMaxHeight()
+                .background(BackgroundColor),
+            verticalArrangement = Arrangement.Top
         ) {
             TopNavigationBar(navController)
+
+            //BodyContent
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(30.dp, 0.dp),
+                ) {
+                H2TextComponent(value = "Favorites Screen")
+            }
+        }
+
+        Column (
+            modifier = Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.Bottom
+        ) {
             BottomNavigationBar(navController)
         }
     }
