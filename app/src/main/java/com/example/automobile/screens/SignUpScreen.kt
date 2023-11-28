@@ -9,49 +9,52 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.H1TextComponent
 import com.example.automobile.components.TextInputFieldComponent
-import com.example.automobile.components.LogoComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.topNav
 import com.example.automobile.components.AnnotatedString
+import com.example.automobile.components.SecondaryButtonComponent
+import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.fontFamily
 
 
 @Composable
 fun SignUpScreen(navController: NavHostController) {
 
-    Surface(modifier = Modifier
-        .fillMaxSize()
-        ) {
-
-        Column (
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Column(
             modifier = Modifier
-                .background(BackgroundColor)
-                .padding(30.dp),
+                .fillMaxHeight()
+                .background(BackgroundColor),
+            verticalArrangement = Arrangement.Top
         ) {
+            TopNavigationBar(navController)
 
-            Column {
-                topNav(navController)
-            }
-
+            //BodyContent
             Column(
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(30.dp, 20.dp, 30.dp, 40.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-
                 Column {
                     H1TextComponent(
                         value = stringResource(id = R.string.sign_up_header)
@@ -84,7 +87,7 @@ fun SignUpScreen(navController: NavHostController) {
         ) {
 
             TextInputFieldComponent(
-               labelValue = stringResource(id = R.string.sign_up_username)
+                labelValue = stringResource(id = R.string.sign_up_username)
             )
 
             Spacer(modifier = Modifier.size(8.dp))

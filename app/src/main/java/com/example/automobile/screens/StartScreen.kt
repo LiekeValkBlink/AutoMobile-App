@@ -21,29 +21,35 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
-import com.example.automobile.components.LogoComponent
+import com.example.automobile.components.BottomNavigationBar
+import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
-import com.example.automobile.components.topNav
+import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
+
+
 fun StartScreen(navController: NavController) {
-
-    Surface (modifier = Modifier
-        .fillMaxSize()
-    ){
-        Column (modifier = Modifier
-            .background(BackgroundColor)
-            .padding(30.dp)
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .background(BackgroundColor),
+            verticalArrangement = Arrangement.Top
         ) {
-            Column {
-                topNav(navController)
-            }
+            TopNavigationBar(navController)
 
+            //BodyContent
             Column(
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(30.dp, 20.dp, 30.dp, 40.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {

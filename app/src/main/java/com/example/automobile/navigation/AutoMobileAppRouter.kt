@@ -4,11 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.automobile.screens.LoginScreen
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.StartScreen
 import com.example.automobile.screens.HomeScreen
+import com.example.automobile.screens.FavoritesScreen
+import com.example.automobile.screens.MapScreen
+import com.example.automobile.screens.NotificationsScreen
+import com.example.automobile.screens.ProfileScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -28,5 +31,18 @@ fun Navigation(navController: NavHostController) {
         composable(route = "home_screen") {
             HomeScreen(navController = navController)
         }
+        composable(route = "favorites_screen") {
+            FavoritesScreen(navController = navController)
+        }
+        composable(route = "map_screen") {
+            MapScreen(navController = navController)
+        }
+        composable(route = "notifications_screen") {
+            NotificationsScreen(navController = navController)
+        }
+        composable(route = "profile_screen") {
+            ProfileScreen(navController = navController)
+        }
+
     }
 }
