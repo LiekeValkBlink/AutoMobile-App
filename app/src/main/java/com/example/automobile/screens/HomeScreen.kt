@@ -36,6 +36,7 @@ import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TextLeadingIconInputFieldComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
+import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
@@ -63,8 +64,8 @@ fun HomeScreen(navController: NavController) {
                     .padding(30.dp, 0.dp),
             ) {
                 Column {
-                    TextLeadingIconInputFieldComponent(
-                        labelValue = stringResource(id = R.string.home_screen_location),
+                    InputTextFieldWithIconComponent(
+                        placeholder = "Search for location...",
                         leadingIcon = Icons.Filled.Search
                     )
 
@@ -73,7 +74,7 @@ fun HomeScreen(navController: NavController) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
-                                value = "00-00-0000",
+                                placeholder = "00-00-0000",
                                 labelValue = "Pick-up date",
                                 leadingIcon = Icons.Outlined.DateRange
                             )
@@ -83,7 +84,7 @@ fun HomeScreen(navController: NavController) {
 
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
-                                value = "00:00",
+                                placeholder = "00:00",
                                 labelValue = "Pick-up Time",
                                 leadingIcon = Icons.Outlined.AccessTime
                             )
@@ -95,7 +96,7 @@ fun HomeScreen(navController: NavController) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
-                                value = "00-00-0000",
+                                placeholder = "00-00-0000",
                                 labelValue = "Pick-up date",
                                 leadingIcon = Icons.Outlined.DateRange
                             )
@@ -105,7 +106,7 @@ fun HomeScreen(navController: NavController) {
 
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
-                                value = "00:00",
+                                placeholder = "00:00",
                                 labelValue = "Pick-up Time",
                                 leadingIcon = Icons.Outlined.AccessTime
                             )
