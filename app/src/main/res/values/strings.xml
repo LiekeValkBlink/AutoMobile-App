@@ -11,14 +11,15 @@
     <string name="start_screen_secondary_btn">Login</string>
 
     //SignUpScreen
-    <string name="sign_up_header">Create your account</string>
-    <string name="sign_up_username">What will be your username?</string>
-    <string name="sign_up_email">Enter your e-mail</string>
-    <string name="sign_up_password">Enter your password</string>
-    <string name="sign_up_password_repeat">Repeat your password</string>
+    <string name="signUp_header">Create your account</string>
+    <string name="signUp_username">What will be your username?</string>
+    <string name="signUp_email">Enter your e-mail</string>
+    <string name="signUp_password">Enter your password</string>
+    <string name="signUp_password_repeat">Repeat your password</string>
+    <string name="signUp_already_an_account">Already an account? </string>
+    <string name="signUp_login">Login.</string>
+
     <string name="register_button">Create account</string>
-    <string name="sign_up_already_an_account">Already an account? </string>
-    <string name="sign_up_login">Login.</string>
 
     // LoginScreen
     <string name="login_screen_heading">Nice to see\nyou again!</string>
