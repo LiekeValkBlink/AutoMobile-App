@@ -46,6 +46,31 @@ fun PrimaryButtonComponent(value: String, route: () -> Unit) {
 }
 
 @Composable
+fun SmallPrimaryButtonComponent(value: String, route: () -> Unit) {
+    Button(
+        onClick = route,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(BackgroundColor)
+            .height(height = 60.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = PrimaryColor,
+            contentColor = White),
+
+        ) {
+        Text(
+            text = value,
+            textAlign = TextAlign.Center,
+            fontFamily = fontFamily,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 6.dp)
+        )
+    }
+}
+
+@Composable
 fun SecondaryButtonComponent(value: String, route: () -> Unit) {
     Button(
         onClick = route,

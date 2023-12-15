@@ -50,40 +50,64 @@ import com.example.automobile.ui.theme.fontFamily
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextInputFieldComponent(
-    labelValue: String, ) {
+    labelValue: String, placeholderValue: String = "") {
 
-    val textValue = remember {
+    val text = remember {
         mutableStateOf("")
     }
 
-    TextField(
-        value = textValue.value,
-        onValueChange = {
-            textValue.value = it
-        },
-        placeholder = {
-            Text(text = labelValue, color = LightGrey)
-        },
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(height = 55.dp),
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = InputBackgroundColor,
-            focusedIndicatorColor = PrimaryColor,
-            textColor = White,
-            cursorColor = White,
-            unfocusedIndicatorColor = InputBackgroundColor,
-        ),
-        textStyle = TextStyle (
-          fontFamily = fontFamily,
+    Text(
+        text = labelValue,
+        style = TextStyle(
+            fontSize = 12.sp,
+            fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-        ),
-
-        keyboardOptions = KeyboardOptions.Default,
-        maxLines = 1,
+            color = White,
         )
+    )
+
+    Spacer(modifier = Modifier.size(2.dp))
+
+    BasicTextField(
+        value = text.value,
+        onValueChange = {
+            text.value = it
+        },
+        enabled = true,
+        readOnly = false,
+        modifier = Modifier
+            .fillMaxWidth(),
+        textStyle = TextStyle(
+            fontSize = 14.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            color = White
+        ),
+        decorationBox = { innerTextField ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = InputBackgroundColor,
+                        shape = RoundedCornerShape(size = 4.dp)
+                    )
+                    .padding(14.dp, 14.dp, 14.dp, 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (text.value.isEmpty()) {
+                    Text(
+                        text = placeholderValue,
+                        fontSize = 14.sp,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Medium,
+                        color = LightGrey
+                    )
+                }
+
+                innerTextField()
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,5 +1,6 @@
 package com.example.automobile.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,8 +30,15 @@ import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.AnnotatedString
 import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
+import com.example.automobile.data.ApiClient
+import com.example.automobile.data.models.Account
+import com.example.automobile.data.repositories.AuthenticationRepository
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.fontFamily
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.concurrent.thread
 
 
 @Composable
@@ -64,7 +72,24 @@ fun SignUpScreen(navController: NavHostController) {
                 Column {
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.register_button),
-                        route = { navController.navigate(route = "login_screen") }
+                        route = {
+                            val account: Account = Account("AppTest", "test")
+
+                            thread {
+                                AuthenticationRepository.register(account).enqueue(object: Callback<Unit> {
+                                    override fun onResponse(
+                                        call: Call<Unit>,
+                                        response: Response<Unit>
+                                    ) {
+                                        Log.d("Response", "${response.body()}")
+                                    }
+
+                                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                                        Log.d("Response", "FAIL")
+                                    }
+                                })
+                            }
+                        }
                     )
 
                     Spacer(modifier = Modifier.size(20.dp))
@@ -85,13 +110,6 @@ fun SignUpScreen(navController: NavHostController) {
                 .padding(30.dp, 0.dp),
             verticalArrangement = Arrangement.Center
         ) {
-
-            TextInputFieldComponent(
-                labelValue = stringResource(id = R.string.sign_up_username)
-            )
-
-            Spacer(modifier = Modifier.size(8.dp))
-
             TextInputFieldComponent(
                 labelValue = stringResource(id = R.string.sign_up_email)
             )
