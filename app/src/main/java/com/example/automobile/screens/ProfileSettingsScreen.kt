@@ -22,7 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.SmallPrimaryButtonComponent
-import com.example.automobile.components.TextInputFieldComponent
+import com.example.automobile.components.SmallTextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
@@ -51,32 +51,32 @@ fun ProfileSettingsScreen(navController: NavController) {
                     value = stringResource(id = R.string.profileSettings_heading)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_username_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_username_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_fullName_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_email_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_telephoneNumber_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_telephoneNumber_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_dateOfBirth_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                TextInputFieldComponent(
+                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder)
                 )
