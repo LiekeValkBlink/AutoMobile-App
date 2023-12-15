@@ -47,10 +47,9 @@ import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextInputFieldComponent(
-    labelValue: String, placeholderValue: String = "") {
+fun SmallTextInputFieldComponent(
+    labelValue: String = "", placeholderValue: String = "") {
 
     val text = remember {
         mutableStateOf("")
@@ -110,6 +109,68 @@ fun TextInputFieldComponent(
     )
 }
 
+@Composable
+fun MediumTextInputFieldComponent(
+    labelValue: String = "", placeholderValue: String = "", value: String? = null, onValueChange: ((String) -> Unit)? = null) {
+
+    val text = remember {
+        mutableStateOf("")
+    }
+
+    Text(
+        text = labelValue,
+        style = TextStyle(
+            fontSize = 12.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            color = White,
+        )
+    )
+
+    Spacer(modifier = Modifier.size(2.dp))
+
+    BasicTextField(
+        value = value ?: text.value,
+        onValueChange = onValueChange ?: {
+            text.value = it
+        },
+        enabled = true,
+        readOnly = false,
+        modifier = Modifier
+            .fillMaxWidth(),
+        textStyle = TextStyle(
+            fontSize = 16.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            color = White
+        ),
+        decorationBox = { innerTextField ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = InputBackgroundColor,
+                        shape = RoundedCornerShape(size = 4.dp)
+                    )
+                    .padding(16.dp, 16.dp, 16.dp, 14.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
+                    Text(
+                        text = placeholderValue,
+                        fontSize = 16.sp,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Medium,
+                        color = LightGrey
+                    )
+                }
+
+                innerTextField()
+            }
+        }
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextLeadingIconInputFieldComponent(
@@ -132,7 +193,7 @@ fun TextLeadingIconInputFieldComponent(
         modifier = Modifier
             .fillMaxWidth()
             .height(height = 50.dp),
-        colors = TextFieldDefaults.textFieldColors(
+            colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
             textColor = White,
@@ -162,7 +223,7 @@ fun TextLeadingIconInputFieldComponent(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordInputFieldComponent(labelValue: String) {
+fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onValueChange: ((String) -> Unit)? = null) {
 
     val password = remember {
         mutableStateOf("")
@@ -173,18 +234,24 @@ fun PasswordInputFieldComponent(labelValue: String) {
     }
 
     TextField(
-        value = password.value,
-        onValueChange = {
+        value = value ?: password.value,
+        onValueChange = onValueChange ?: {
             password.value = it
         },
         placeholder = {
-            Text(text = labelValue, color = LightGrey)
+            Text(
+                text = labelValue,
+                color = LightGrey,
+                fontFamily = fontFamily)
         },
 
         modifier = Modifier
             .fillMaxWidth()
-            .height(height = 55.dp),
-        colors = TextFieldDefaults.textFieldColors(
+            .height(height = 55.dp)
+            .background(
+                color = InputBackgroundColor,
+                shape = RoundedCornerShape(size = 4.dp)),
+            colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
             textColor = White,

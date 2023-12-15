@@ -12,6 +12,7 @@ import com.example.automobile.screens.FavoritesScreen
 import com.example.automobile.screens.MapScreen
 import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
+import com.example.automobile.screens.SignUpViewModel
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -23,7 +24,7 @@ fun Navigation(navController: NavHostController) {
             StartScreen(navController = navController)
         }
         composable(route = "sign_up_screen") {
-            SignUpScreen(navController = navController)
+            SignUpScreen(navController = navController, SignUpViewModel())
         }
         composable(route = "login_screen") {
             LoginScreen(navController = navController)
