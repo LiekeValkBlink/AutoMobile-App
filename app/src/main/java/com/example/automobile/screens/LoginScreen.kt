@@ -48,13 +48,13 @@ fun LoginScreen(navController: NavController) {
             ) {
                 Column {
                     H1TextComponent(
-                        value = stringResource(id = R.string.login_screen_heading)
+                        value = stringResource(id = R.string.login_heading)
                     )
                 }
 
                 Column {
                     PrimaryButtonComponent(
-                        value = stringResource(id = R.string.login_screen_btn),
+                        value = stringResource(id = R.string.login_btn),
                         route = { navController.navigate(route = "home_screen") },
                     )
                     Spacer(modifier = Modifier.size(20.dp))
@@ -75,11 +75,11 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             MediumTextInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_screen_email)
+                labelValue = stringResource(id = R.string.login_email)
             )
             Spacer(modifier = Modifier.size(8.dp))
             PasswordInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_screen_password)
+                labelValue = stringResource(id = R.string.login_password)
             )
         }
     }

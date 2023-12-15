@@ -116,7 +116,7 @@ fun HomeScreen(navController: NavController) {
                     Spacer(modifier = Modifier.size(20.dp))
 
                     PrimaryButtonComponent(
-                        value = stringResource(id = R.string.home_screen_search),
+                        value = stringResource(id = R.string.home_search),
                         route = { TODO() }
                     )
                 }
@@ -130,7 +130,7 @@ fun HomeScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        H2TextComponent(value = stringResource(id = R.string.home_screen_available_cars))
+                        H2TextComponent(value = stringResource(id = R.string.home_available_cars))
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 imageVector = Icons.Outlined.FilterAlt,
