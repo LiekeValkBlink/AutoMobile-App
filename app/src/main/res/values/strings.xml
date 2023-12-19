@@ -6,31 +6,28 @@
     <string name="show_password">Show password</string>
 
     //StartScreen
-    <string name="start_screen_slogan">Fast. Reliable. Durable.</string>
-    <string name="start_screen_primary_btn">Get started</string>
-    <string name="start_screen_secondary_btn">Login</string>
+    <string name="start_slogan">Fast. Reliable. Durable.</string>
+    <string name="start_signUp">Get started</string>
+    <string name="start_login">Login</string>
 
     //SignUpScreen
     <string name="signUp_header">Create your account</string>
-    <string name="signUp_username">What will be your username?</string>
     <string name="signUp_email">Enter your e-mail</string>
     <string name="signUp_password">Enter your password</string>
     <string name="signUp_password_repeat">Repeat your password</string>
+    <string name="signUp_submit">Create account</string>
     <string name="signUp_already_an_account">Already an account? </string>
     <string name="signUp_login">Login.</string>
 
-    <string name="register_button">Create account</string>
-
     // LoginScreen
-    <string name="login_screen_heading">Nice to see\nyou again!</string>
-    <string name="login_screen_email">Enter your e-mail</string>
-    <string name="login_screen_password">Enter your password</string>
-    <string name="login_screen_btn">Login</string>
+    <string name="login_heading">Nice to see\nyou again!</string>
+    <string name="login_email">Enter your e-mail</string>
+    <string name="login_password">Enter your password</string>
+    <string name="login_btn">Login</string>
 
     // HomeScreen
-    <string name="home_screen_location">Search for location...</string>
-    <string name="home_screen_search">Search</string>
-    <string name="home_screen_available_cars">Available cars near you</string>
+    <string name="home_search">Search</string>
+    <string name="home_available_cars">Available cars near you</string>
 
     // LoginScreen
     <string name="login_forgot_password">Forgot your password?</string>
@@ -38,9 +35,9 @@
 
 
     // ProfileScreen
+    <string name="profile">Your profile</string>
     <string name="profile_complete_profile">Complete your profile</string>
     <string name="profile_add_car">Add your first car</string>
-    <string name="profile">Your profile</string>
     <string name="profile_your_cars">Your cars</string>
 
     // ProfileSettingsScreen

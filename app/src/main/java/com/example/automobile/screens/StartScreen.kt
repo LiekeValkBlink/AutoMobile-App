@@ -54,7 +54,7 @@ fun StartScreen(navController: NavController) {
             ) {
                 Column {
                     Text(
-                        text = stringResource(id = R.string.start_screen_slogan),
+                        text = stringResource(id = R.string.start_slogan),
                         color = Color.White,
                         lineHeight = 60.sp,
                         fontFamily = fontFamily,
@@ -65,12 +65,12 @@ fun StartScreen(navController: NavController) {
 
                 Column {
                     PrimaryButtonComponent(
-                        value = stringResource(id = R.string.start_screen_primary_btn),
+                        value = stringResource(id = R.string.start_signUp),
                         route = { navController.navigate(route = "sign_up_screen") },
                     )
                     Spacer(modifier = Modifier.size(16.dp))
                     SecondaryButtonComponent(
-                        value = stringResource(id = R.string.start_screen_secondary_btn),
+                        value = stringResource(id = R.string.start_login),
                         route = { navController.navigate(route = "login_screen") },
                     )
                 }

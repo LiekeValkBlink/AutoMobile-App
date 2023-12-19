@@ -34,7 +34,6 @@ import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.TextLeadingIconInputFieldComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.TopNavigationBar
@@ -116,7 +115,7 @@ fun HomeScreen(navController: NavController) {
                     Spacer(modifier = Modifier.size(20.dp))
 
                     PrimaryButtonComponent(
-                        value = stringResource(id = R.string.home_screen_search),
+                        value = stringResource(id = R.string.home_search),
                         route = { TODO() }
                     )
                 }
@@ -130,7 +129,7 @@ fun HomeScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        H2TextComponent(value = stringResource(id = R.string.home_screen_available_cars))
+                        H2TextComponent(value = stringResource(id = R.string.home_available_cars))
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 imageVector = Icons.Outlined.FilterAlt,

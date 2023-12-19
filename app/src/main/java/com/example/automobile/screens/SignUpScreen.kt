@@ -64,7 +64,7 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
 
                 Column {
                     PrimaryButtonComponent(
-                        value = stringResource(id = R.string.register_button),
+                        value = stringResource(id = R.string.signUp_submit),
                         route = {
                             viewModel.submit()
                         }
