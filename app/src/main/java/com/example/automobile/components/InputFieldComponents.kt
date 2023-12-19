@@ -183,7 +183,9 @@ fun ImageInputFieldComponent (
     image: Painter
 ) {
     Row (
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .offset(x = 15.dp)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
         Image(

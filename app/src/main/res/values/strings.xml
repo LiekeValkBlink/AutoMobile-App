@@ -56,4 +56,20 @@
     <string name="profileSettings_DriversLicenceNumber_placeholder">1234567890</string>
     <string name="profileSettings_btn">Save changes</string>
 
+    // CarSettingsScreen
+    <string name="carSettings_heading">Add your car</string>
+    <string name="carSettings_licencePlate_label">Licence plate</string>
+    <string name="carSettings_licencePlate_placeholder">Example: 12-34-AB</string>
+    <string name="carSettings_carBrand_label">Car brand</string>
+    <string name="carSettings_carBrand_placeholder">Example: Kia</string>
+    <string name="carSettings_vehicleType_label">Vehicle type</string>
+    <string name="carSettings_vehicleType_placeholder">Example: Rio</string>
+    <string name="carSettings_constructionYear_label">Construction year</string>
+    <string name="carSettings_constructionYear_placeholder">Example: 2022</string>
+    <string name="carSettings_fuelType_label">Fuel type</string>
+    <string name="cerSettings_fuelType_placeholder">Example: Gasoline</string>
+    <string name="carSettings_location_label">Where can we find your car?</string>
+    <string name="carSettings_location_placeholder">Example: 1234AB</string>
+
+
 </resources>

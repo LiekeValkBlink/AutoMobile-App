@@ -14,6 +14,7 @@ import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
 import com.example.automobile.screens.ProfileSettingsScreen
 import com.example.automobile.screens.SignUpViewModel
+import com.example.automobile.screens.CarSettingsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -48,6 +49,8 @@ fun Navigation(navController: NavHostController) {
         composable(route = "profile_settings_screen") {
             ProfileSettingsScreen(navController = navController)
         }
-
+        composable(route = "car_settings_screen") {
+            CarSettingsScreen(navController = navController)
+        }
     }
 }

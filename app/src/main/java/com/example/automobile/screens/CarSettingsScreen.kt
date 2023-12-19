@@ -29,7 +29,7 @@ import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun ProfileSettingsScreen(navController: NavController) {
+fun CarSettingsScreen(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +50,7 @@ fun ProfileSettingsScreen(navController: NavController) {
                     .weight(weight = 1f, fill = false)
             ) {
                 H2TextComponent(
-                    value = stringResource(id = R.string.profileSettings_heading)
+                    value = stringResource(id = R.string.carSettings_heading)
                 )
                 Spacer(modifier = Modifier.size(24.dp))
                 ImageInputFieldComponent(
@@ -58,33 +58,33 @@ fun ProfileSettingsScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_username_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_username_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_licencePlate_label),
+                    placeholderValue = stringResource(id = R.string.carSettings_licencePlate_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_fullName_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_carBrand_label),
+                    placeholderValue = stringResource(id = R.string.carSettings_carBrand_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_email_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_vehicleType_label),
+                    placeholderValue = stringResource(id = R.string.carSettings_vehicleType_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_telephoneNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_telephoneNumber_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_constructionYear_label),
+                    placeholderValue = stringResource(id = R.string.carSettings_constructionYear_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_dateOfBirth_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_fuelType_label),
+                    placeholderValue = stringResource(id = R.string.cerSettings_fuelType_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder)
+                    labelValue = stringResource(id = R.string.carSettings_location_label),
+                    placeholderValue = stringResource(id = R.string.carSettings_location_placeholder)
                 )
                 Spacer(modifier = Modifier.size(40.dp))
                 PrimaryButtonComponent(
@@ -106,6 +106,6 @@ fun ProfileSettingsScreen(navController: NavController) {
 
 @Preview
 @Composable
-fun DefaultPreviewOfProfileSettingsScreen() {
-    ProfileSettingsScreen(navController = rememberNavController())
+fun DefaultPreviewOfCarSettingsScreen() {
+    CarSettingsScreen(navController = rememberNavController())
 }

@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,13 +28,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
-fun ProfileComponent(profileImage: Painter, username: String, email: String) {
+fun ProfileComponent(
+    profileImage: Painter,
+    username: String,
+    email: String,
+    route: () -> Unit
+) {
     Spacer(modifier = Modifier.size(10.dp))
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
@@ -68,16 +75,21 @@ fun ProfileComponent(profileImage: Painter, username: String, email: String) {
                     .background(color = PrimaryColor, shape = RoundedCornerShape(100)),
             ) {
                 Column (
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Edit,
-                        modifier = Modifier.size(20.dp),
-                        contentDescription = "Edit profile",
-                        tint = Color.White
-                    )
+                    IconButton (
+                        onClick = route
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Edit,
+                            modifier = Modifier.size(20.dp),
+                            contentDescription = "Edit profile",
+                            tint = Color.White
+                        )
+                    }
                 }
             }
         }
