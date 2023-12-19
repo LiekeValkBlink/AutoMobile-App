@@ -34,7 +34,6 @@ import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.TextLeadingIconInputFieldComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.TopNavigationBar
