@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DefaultPreviewOfCarInformationScreen">
-        <State />
-      </entry>
       <entry key="DefaultPreviewOfProfileScreen">
         <State />
       </entry>
@@ -12,6 +9,9 @@
         <State />
       </entry>
       <entry key="DefaultPreviewOfSignUpScreen">
+        <State />
+      </entry>
+      <entry key="DefaultPreviewOfStartScreen">
         <State />
       </entry>
       <entry key="MainActivity">

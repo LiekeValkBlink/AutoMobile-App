@@ -13,6 +13,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
+import com.example.automobile.components.ImageInputFieldComponent
+import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SmallPrimaryButtonComponent
 import com.example.automobile.components.SmallTextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
@@ -43,12 +46,16 @@ fun ProfileSettingsScreen(navController: NavController) {
             //BodyContent
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
                     .padding(30.dp, 0.dp)
-                    .verticalScroll(rememberScrollState()),
+                    .verticalScroll(rememberScrollState())
+                    .weight(weight = 1f, fill = false)
             ) {
                 H2TextComponent(
                     value = stringResource(id = R.string.profileSettings_heading)
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+                ImageInputFieldComponent(
+                    image = painterResource(id = R.drawable.profile_placeholder)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
@@ -80,11 +87,12 @@ fun ProfileSettingsScreen(navController: NavController) {
                     labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder)
                 )
-                Spacer(modifier = Modifier.size(30.dp))
-                SmallPrimaryButtonComponent(
+                Spacer(modifier = Modifier.size(40.dp))
+                PrimaryButtonComponent(
                     route = {},
                     value = stringResource(id = R.string.profileSettings_btn)
                 )
+                Spacer(modifier = Modifier.size(60.dp))
             }
         }
         Column(

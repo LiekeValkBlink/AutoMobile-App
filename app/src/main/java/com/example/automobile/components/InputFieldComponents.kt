@@ -1,13 +1,16 @@
 package com.example.automobile.components
 
-import android.service.autofill.DateTransformation
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -15,9 +18,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,10 +33,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -46,6 +52,7 @@ import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
 fun SmallTextInputFieldComponent(
@@ -58,7 +65,7 @@ fun SmallTextInputFieldComponent(
     Text(
         text = labelValue,
         style = TextStyle(
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
             color = White,
@@ -77,7 +84,7 @@ fun SmallTextInputFieldComponent(
         modifier = Modifier
             .fillMaxWidth(),
         textStyle = TextStyle(
-            fontSize = 14.sp,
+            fontSize = 16.sp,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
             color = White
@@ -90,13 +97,13 @@ fun SmallTextInputFieldComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(14.dp, 14.dp, 14.dp, 12.dp),
+                    .padding(16.dp, 17.dp, 16.dp, 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (text.value.isEmpty()) {
                     Text(
                         text = placeholderValue,
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         fontFamily = fontFamily,
                         fontWeight = FontWeight.Medium,
                         color = LightGrey
@@ -169,6 +176,47 @@ fun MediumTextInputFieldComponent(
             }
         }
     )
+}
+
+@Composable
+fun ImageInputFieldComponent (
+    image: Painter
+) {
+    Row (
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = Modifier
+                .width(100.dp)
+                .height(100.dp)
+                .background(InputBackgroundColor, shape = RoundedCornerShape(100))
+        )
+
+        Box(
+            modifier = Modifier
+                .offset(x = (-30).dp)
+                .width(30.dp)
+                .height(30.dp)
+                .background(color = PrimaryColor, shape = RoundedCornerShape(100))
+                .align(Alignment.Bottom)
+        ) {
+            Column (
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    imageVector = Icons.Outlined.Edit,
+                    modifier = Modifier.size(20.dp),
+                    contentDescription = "Edit profile",
+                    tint = Color.White
+                )
+            }
+        }
+    }
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -250,7 +298,8 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
             .height(height = 55.dp)
             .background(
                 color = InputBackgroundColor,
-                shape = RoundedCornerShape(size = 4.dp)),
+                shape = RoundedCornerShape(size = 4.dp)
+            ),
             colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,

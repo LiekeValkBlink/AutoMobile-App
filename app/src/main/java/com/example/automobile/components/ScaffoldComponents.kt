@@ -67,7 +67,6 @@ fun TopNavigationBar(navController: NavController) {
             append("Mobile")
         }
     }
-
     Row(
         modifier = Modifier
             .fillMaxWidth()

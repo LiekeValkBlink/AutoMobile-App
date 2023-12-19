@@ -145,15 +145,13 @@ fun HomeScreen(navController: NavController) {
                         CarComponent(
                             carBrand = "Kia Rio 2019",
                             price = 4.75,
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
+                            image = painterResource(id = R.drawable.car_placeholder)
                         )
 
                         CarComponent(
                             carBrand = "Kia Rio 2019",
                             price = 4.75,
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
+                            image = painterResource(id = R.drawable.car_placeholder)
                         )
                     }
                 }

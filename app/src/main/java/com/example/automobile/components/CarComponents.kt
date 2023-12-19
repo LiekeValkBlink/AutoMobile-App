@@ -37,8 +37,7 @@ import com.example.automobile.ui.theme.fontFamily
 fun CarComponent(
     carBrand: String,
     price: Double,
-    image: Painter,
-    imageDescription: String) {
+    image: Painter) {
 
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(
@@ -97,7 +96,7 @@ fun CarComponent(
 
         Image(
             painter = image,
-            contentDescription = imageDescription,
+            contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(InputBackgroundColor)
