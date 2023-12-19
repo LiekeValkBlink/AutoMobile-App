@@ -26,7 +26,7 @@ import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +55,13 @@ fun LoginScreen(navController: NavController) {
                 Column {
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.login_btn),
-                        route = { navController.navigate(route = "home_screen") },
+                        route = {
+                            viewModel.submit(callback = { result ->
+                                if (result) {
+                                    navController.navigate(route = "home_screen")
+                                }
+                            })
+                        }
                     )
                     Spacer(modifier = Modifier.size(20.dp))
                     AnnotatedString(
@@ -75,11 +81,15 @@ fun LoginScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             MediumTextInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_email)
+                labelValue = stringResource(id = R.string.login_email),
+                value = viewModel.email,
+                onValueChange = { email -> viewModel.updateEmail(email) }
             )
             Spacer(modifier = Modifier.size(8.dp))
             PasswordInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_password)
+                labelValue = stringResource(id = R.string.login_password),
+                value = viewModel.password,
+                onValueChange = { password -> viewModel.updatePassword(password) }
             )
         }
     }
@@ -88,5 +98,5 @@ fun LoginScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreviewOfLoginScreen() {
-    LoginScreen(navController = rememberNavController())
+    LoginScreen(navController = rememberNavController(), LoginViewModel())
 }

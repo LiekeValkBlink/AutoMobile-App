@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.automobile.data.models.Account
-import com.example.automobile.data.repositories.AuthenticationRepository;
+import com.example.automobile.data.repositories.RegistrationRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +35,7 @@ class SignUpViewModel() : ViewModel() {
         val account = Account(email, password)
 
         thread {
-            AuthenticationRepository.register(account).enqueue(object: Callback<Unit> {
+            RegistrationRepository.register(account).enqueue(object: Callback<Unit> {
                 override fun onResponse(
                     call: Call<Unit>,
                     response: Response<Unit>
