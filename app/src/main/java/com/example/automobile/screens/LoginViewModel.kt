@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.automobile.data.models.AuthCredentials
 import com.example.automobile.data.repositories.AuthenticationRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
@@ -28,8 +29,10 @@ class LoginViewModel : ViewModel() {
     fun submit(callback: (result: Boolean) -> Unit) {
         val authCredentials = AuthCredentials(email, password)
 
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = AuthenticationRepository.login(authCredentials)
+        viewModelScope.launch {
+            val result = viewModelScope.async(Dispatchers.IO) {
+                AuthenticationRepository.login(authCredentials)
+            }.await()
 
             callback(result)
         }
