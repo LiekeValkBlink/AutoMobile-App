@@ -5,6 +5,10 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/**
+ * Gets token from LocalStorageRepository and adds it to requests as a Bearer token
+ */
+
 class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val token: String? = runBlocking {

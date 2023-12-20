@@ -17,6 +17,7 @@ private val Context.localStorageDataStore: DataStore<Preferences> by preferences
 /**
  * LocalStorageRepository provides data persistence using a custom Preference DataStore.
  */
+
 object LocalStorageRepository {
     var context: WeakReference<Context> = WeakReference(null)
 
@@ -24,6 +25,7 @@ object LocalStorageRepository {
         val AUTH_JWT = stringPreferencesKey("auth_jwt")
     }
 
+    // Load a preference from the datastore by Key (loadPreference)
     suspend fun <T> loadPreference(key: Preferences.Key<T>): T? {
         val currentContext: Context = context.get() ?: return null
 
@@ -32,6 +34,7 @@ object LocalStorageRepository {
             .first()
     }
 
+    // Save preference to the datastore by Key (savePreference)
     suspend fun <T> savePreference(key: Preferences.Key<T>, value: T) {
         val currentContext: Context? = context.get()
 
@@ -40,6 +43,7 @@ object LocalStorageRepository {
         }
     }
 
+    // Clear a preference from the datastore by Key (clearPreference)
     suspend fun <T> clearPreference(key: Preferences.Key<T>) {
         val currentContext: Context? = context.get()
 

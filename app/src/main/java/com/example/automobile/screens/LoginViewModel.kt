@@ -11,6 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
+/**
+ * loginViewModel connects the LoginScreen with AuthenticationRepository
+ */
+
 class LoginViewModel : ViewModel() {
     var email by mutableStateOf("")
         private set
