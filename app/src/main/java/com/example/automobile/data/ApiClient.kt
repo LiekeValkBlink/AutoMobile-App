@@ -46,6 +46,6 @@ object ApiClient {
 
         // initialize endpoints for declared services
         registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
-        authenticationService = retrofit.create(AuthenticationService::class.java)
+        authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
     }
 }
