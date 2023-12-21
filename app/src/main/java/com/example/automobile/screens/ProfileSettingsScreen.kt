@@ -58,7 +58,11 @@ fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettin
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_username_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_username_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_username_placeholder),
+                    value = viewModel.email,
+                    onValueChange = {
+                        username -> viewModel.updateEmail(username)
+                    }
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
@@ -72,7 +76,11 @@ fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettin
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_email_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder),
+                    value = viewModel.email,
+                    onValueChange = {
+                            email -> viewModel.updateEmail(email)
+                    }
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(

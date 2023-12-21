@@ -13,6 +13,9 @@ import kotlinx.coroutines.launch
 class ProfileSettingsViewModel : ViewModel() {
     var loading by mutableStateOf(false)
 
+    var email by mutableStateOf("")
+        private set
+
     var firstName by mutableStateOf("")
         private set
 
@@ -24,6 +27,10 @@ class ProfileSettingsViewModel : ViewModel() {
 
     var driversLicenceNumber by mutableStateOf("")
         private set
+
+    fun updateEmail(input: String) {
+        email = input
+    }
 
     fun updateFirstName(input: String) {
         firstName = input
@@ -43,11 +50,19 @@ class ProfileSettingsViewModel : ViewModel() {
 
     fun getData() {
         viewModelScope.launch {
-            val profile = viewModelScope.async(Dispatchers.IO) {
+            val accountWithProfile = viewModelScope.async(Dispatchers.IO) {
                 ProfileRepository.getProfile()
             }.await()
 
-            if (profile != null) {
+            if (accountWithProfile?.account != null) {
+                val account = accountWithProfile.account
+
+                email = account.email
+            }
+
+            if (accountWithProfile?.profile != null) {
+                val profile = accountWithProfile.profile
+
                 firstName = profile.firstName
                 lastName = profile.lastName
                 dateOfBirth = profile.dateOfBirth
