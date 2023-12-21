@@ -18,8 +18,6 @@ class MainActivity : ComponentActivity() {
          */
         LocalStorageRepository.context = WeakReference(this)
 
-        ApiClient.init()
-
         setContent {
             AutoMobileApp()
         }

@@ -14,38 +14,36 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 
 object ApiClient {
-    // an interceptor captures an http request and logs information about it
+    /**
+     * Create an OkHttpClient interceptor for logging HTTP requests to Logcat.
+     * An interceptor captures an OkHttpClient HTTP request and modifies its configuration
+     * before executing it.
+     */
     private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
 
-    // declare services callable by retrofit
-    lateinit var registrationService: RegistrationService
-    lateinit var authenticationService: AuthenticationService
+    // Create a shared Retrofit builder, which serves as a base for building Retrofit clients with different configurations
+    private val retrofitBuilder: Retrofit.Builder = Retrofit.Builder()
+        .baseUrl(BuildConfig.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
 
-    fun init() {
-        // Create a shared Retrofit builder, which serves as a base for building Retrofit clients with different configurations
-        val retrofitBuilder: Retrofit.Builder = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-
-        // Create a Retrofit client that can be used for endpoints that do not require authentication
-        val retrofitNonAuthenticated = retrofitBuilder
-            .client(OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build()
-            )
+    // Create a Retrofit client that can be used for endpoints that do not require authentication
+    private val retrofitNonAuthenticated = retrofitBuilder
+        .client(OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
             .build()
+        )
+        .build()
 
-        // Create a Retrofit client that can be used for endpoints that require authentication
-        val retrofit = retrofitBuilder
-            .client(OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor())
-                .addInterceptor(loggingInterceptor)
-                .build()
-            )
+    // Create a Retrofit client that can be used for endpoints that require authentication
+    private val retrofit = retrofitBuilder
+        .client(OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
+            .addInterceptor(loggingInterceptor)
             .build()
+        )
+        .build()
 
-        // initialize endpoints for declared services
-        registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
-        authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
-    }
+    // Create Retrofit2 services based on service interfaces
+    val registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
+    val authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
 }
