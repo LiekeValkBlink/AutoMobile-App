@@ -196,7 +196,6 @@ fun TextLeadingIconInputFieldComponent(
             colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
-            textColor = White,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor,
         ),
@@ -254,7 +253,6 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
             colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = PrimaryColor,
-            textColor = White,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor
         ),
