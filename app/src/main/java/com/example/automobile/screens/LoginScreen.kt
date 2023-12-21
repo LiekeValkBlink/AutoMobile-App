@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -63,6 +64,9 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
                             })
                         }
                     )
+                    if (viewModel.loading) {
+                        CircularProgressIndicator()
+                    }
                     Spacer(modifier = Modifier.size(20.dp))
                     AnnotatedString(
                         startValue = stringResource(id = R.string.login_forgot_password),

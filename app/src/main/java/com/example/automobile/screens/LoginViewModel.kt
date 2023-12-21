@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
  */
 
 class LoginViewModel : ViewModel() {
+    var loading by mutableStateOf(false)
+
     var email by mutableStateOf("")
         private set
 
@@ -31,12 +33,16 @@ class LoginViewModel : ViewModel() {
     }
 
     fun submit(callback: (result: Boolean) -> Unit) {
+        loading = true
+
         val authCredentials = AuthCredentials(email, password)
 
         viewModelScope.launch {
             val result = viewModelScope.async(Dispatchers.IO) {
                 AuthenticationRepository.login(authCredentials)
             }.await()
+
+            loading = false
 
             callback(result)
         }

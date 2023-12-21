@@ -17,6 +17,8 @@ import kotlin.concurrent.thread
  */
 
 class SignUpViewModel() : ViewModel() {
+    var loading by mutableStateOf(false)
+
     var email by mutableStateOf("")
         private set
 
@@ -32,6 +34,8 @@ class SignUpViewModel() : ViewModel() {
     }
 
     fun submit() {
+        loading = true
+
         val account = Account(email, password)
 
         thread {
@@ -40,10 +44,12 @@ class SignUpViewModel() : ViewModel() {
                     call: Call<Unit>,
                     response: Response<Unit>
                 ) {
+                    loading = false
                     Log.d("Response", "${response.body()}")
                 }
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    loading = false
                     Log.d("Response", "FAIL")
                 }
             })
