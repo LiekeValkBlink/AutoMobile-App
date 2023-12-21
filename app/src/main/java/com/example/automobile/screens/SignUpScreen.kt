@@ -1,6 +1,5 @@
 package com.example.automobile.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,13 +25,7 @@ import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.AnnotatedString
 import com.example.automobile.components.TopNavigationBar
-import com.example.automobile.data.models.Account
-import com.example.automobile.data.repositories.AuthenticationRepository
 import com.example.automobile.ui.theme.BackgroundColor
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import kotlin.concurrent.thread
 
 
 @Composable

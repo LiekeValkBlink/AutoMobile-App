@@ -3,7 +3,6 @@ package com.example.automobile.data.repositories
 import com.auth0.android.jwt.JWT
 import com.example.automobile.data.ApiClient
 import com.example.automobile.data.models.AuthCredentials
-import com.example.automobile.data.models.AuthResponse
 
 /**
  * AuthenticationRepository connects user authentication endpoint calls to Retrofit2
@@ -12,10 +11,10 @@ import com.example.automobile.data.models.AuthResponse
 object AuthenticationRepository {
     suspend fun login(credentials: AuthCredentials): Boolean {
         // Login using authenticationService
-        val authResponse: AuthResponse? = ApiClient.authenticationService.login(credentials).execute().body()
+        val authResponse = ApiClient.authenticationService.login(credentials).execute().body()
 
         // If a token is present in the response (login is successful), store token in LocalStorageRepository
-        if (authResponse != null && authResponse.success && authResponse.data.isNotEmpty()) {
+        if (authResponse != null && authResponse.success && !authResponse.data.isNullOrEmpty()) {
             LocalStorageRepository.savePreference(LocalStorageRepository.Keys.AUTH_JWT, authResponse.data)
             return true
         }

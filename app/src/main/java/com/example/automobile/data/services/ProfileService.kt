@@ -1,5 +1,6 @@
 package com.example.automobile.data.services
 
+import com.example.automobile.data.models.APIResponse
 import com.example.automobile.data.models.Profile
 import retrofit2.Call
 import retrofit2.http.Headers
@@ -12,5 +13,5 @@ import retrofit2.http.Path
 interface ProfileService {
     @GET("/user/{id}")
     @Headers("Content-Type: application/json")
-    fun getProfile(@Path("id") id: Int): Call<Profile>
+    fun getProfile(@Path("id") id: Int): Call<APIResponse<Profile>>
 }

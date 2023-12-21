@@ -12,6 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +28,11 @@ import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun ProfileSettingsScreen(navController: NavController) {
+fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettingsViewModel) {
+    LaunchedEffect(true) {
+        viewModel.getData()
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +63,11 @@ fun ProfileSettingsScreen(navController: NavController) {
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_fullName_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder),
+                    value = viewModel.lastName,
+                    onValueChange = {
+                        lastName -> viewModel.updateLastName(lastName)
+                    }
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
@@ -73,12 +82,20 @@ fun ProfileSettingsScreen(navController: NavController) {
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_dateOfBirth_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder),
+                    value = viewModel.dateOfBirth,
+                    onValueChange = {
+                        dateOfBirth -> viewModel.updateDateOfBirth(dateOfBirth)
+                    }
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder),
+                    value = viewModel.driversLicenceNumber,
+                    onValueChange = {
+                        driversLicenceNumber -> viewModel.updateDriversLicenceNumber(driversLicenceNumber)
+                    }
                 )
                 Spacer(modifier = Modifier.size(30.dp))
                 SmallPrimaryButtonComponent(
@@ -100,5 +117,5 @@ fun ProfileSettingsScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreviewOfProfileSettingsScreen() {
-    ProfileSettingsScreen(navController = rememberNavController())
+    ProfileSettingsScreen(navController = rememberNavController(), ProfileSettingsViewModel())
 }

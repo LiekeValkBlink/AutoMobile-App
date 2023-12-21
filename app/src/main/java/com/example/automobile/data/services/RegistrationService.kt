@@ -3,7 +3,7 @@ package com.example.automobile.data.services
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Body
-import com.example.automobile.data.models.Account
+import com.example.automobile.data.models.RegistrationData
 import retrofit2.http.Headers
 
 /**
@@ -13,5 +13,5 @@ import retrofit2.http.Headers
 interface RegistrationService {
     @POST("/register")
     @Headers("Content-Type: application/json")
-    fun register(@Body accountData: Account): Call<Unit>
+    fun register(@Body registrationData: RegistrationData): Call<Unit>
 }

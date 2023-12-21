@@ -49,7 +49,7 @@ import com.example.automobile.ui.theme.fontFamily
 
 @Composable
 fun SmallTextInputFieldComponent(
-    labelValue: String = "", placeholderValue: String = "") {
+    labelValue: String = "", placeholderValue: String = "", value: String? = null, onValueChange: ((String) -> Unit)? = null) {
 
     val text = remember {
         mutableStateOf("")
@@ -68,8 +68,8 @@ fun SmallTextInputFieldComponent(
     Spacer(modifier = Modifier.size(2.dp))
 
     BasicTextField(
-        value = text.value,
-        onValueChange = {
+        value = value ?: text.value,
+        onValueChange = onValueChange ?: {
             text.value = it
         },
         enabled = true,
@@ -93,7 +93,7 @@ fun SmallTextInputFieldComponent(
                     .padding(14.dp, 14.dp, 14.dp, 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (text.value.isEmpty()) {
+                if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
                     Text(
                         text = placeholderValue,
                         fontSize = 14.sp,
