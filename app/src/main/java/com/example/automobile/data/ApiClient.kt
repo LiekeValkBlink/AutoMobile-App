@@ -3,6 +3,7 @@ package com.example.automobile.data
 import com.example.automobile.BuildConfig
 import com.example.automobile.data.interceptors.auth.AuthInterceptor
 import com.example.automobile.data.services.AuthenticationService
+import com.example.automobile.data.services.ProfileService
 import com.example.automobile.data.services.RegistrationService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,4 +47,5 @@ object ApiClient {
     // Create Retrofit2 services based on service interfaces
     val registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
     val authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
+    val profileService = retrofit.create(ProfileService::class.java)
 }
