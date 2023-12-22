@@ -29,10 +29,6 @@ import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
 fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettingsViewModel) {
-    LaunchedEffect(true) {
-        viewModel.getData()
-    }
-
     Surface(
         modifier = Modifier
             .fillMaxSize()

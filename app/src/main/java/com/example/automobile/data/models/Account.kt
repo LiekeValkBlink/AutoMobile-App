@@ -12,7 +12,7 @@ data class Account(
     @Json(name = "id")
     val id: Int,
     @Json(name = "email")
-    val email: String,
+    var email: String,
     @Json(name = "userProfileID")
     val userProfileID: Int?
 )

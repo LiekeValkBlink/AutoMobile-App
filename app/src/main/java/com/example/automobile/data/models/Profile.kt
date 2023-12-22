@@ -10,11 +10,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass (generateAdapter = true)
 data class Profile(
     @Json(name = "firstName")
-    val firstName: String,
+    var firstName: String,
     @Json(name = "lastName")
-    val lastName: String,
+    var lastName: String,
     @Json(name = "dateOfBirth")
-    val dateOfBirth: String,
+    var dateOfBirth: String,
     @Json(name = "driversLicenceNumber")
-    val driversLicenceNumber: Int
+    var driversLicenceNumber: Int
 )

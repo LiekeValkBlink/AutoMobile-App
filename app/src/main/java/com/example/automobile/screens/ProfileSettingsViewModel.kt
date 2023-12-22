@@ -48,7 +48,13 @@ class ProfileSettingsViewModel : ViewModel() {
         driversLicenceNumber = input
     }
 
+    init {
+        getData()
+    }
+
     fun getData() {
+        loading = true
+
         viewModelScope.launch {
             val accountWithProfile = viewModelScope.async(Dispatchers.IO) {
                 ProfileRepository.getProfile()
