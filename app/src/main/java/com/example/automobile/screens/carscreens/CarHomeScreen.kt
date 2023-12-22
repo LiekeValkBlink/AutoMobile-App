@@ -30,9 +30,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
+import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.models.CarLocation
 
@@ -66,7 +68,8 @@ fun HomeScreen(
                     is CarsUiState.Success -> HomeBody(
                         itemList = carsUiState.cars,
                         modifier = modifier
-                            .padding(2.dp)
+                            .padding(2.dp),
+                        navController = navController
                     )
 
                     is CarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
@@ -110,19 +113,11 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 /**
  * ResultScreen displaying number of photos retrieved.
  */
-@Composable
-fun ResultScreen(photos: String, modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-    ) {
-        H2TextComponent(photos)
-    }
-}
+
 
 @Composable
 fun HomeBody(
-    itemList: List<CarLocation>, modifier: Modifier = Modifier,
+    itemList: List<CarLocation>, modifier: Modifier = Modifier, navController: NavController
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -141,6 +136,10 @@ fun HomeBody(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_small))
             )
         }
+        PrimaryButtonComponent(
+            value = "Edit Car location",
+            route = { navController.navigate(route = "car_edit_screen") }
+        )
     }
 }
 
