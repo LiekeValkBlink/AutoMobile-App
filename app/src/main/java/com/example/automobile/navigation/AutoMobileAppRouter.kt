@@ -3,7 +3,6 @@ package com.example.automobile.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +11,6 @@ import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.StartScreen
 import com.example.automobile.screens.HomeScreen
 import com.example.automobile.screens.FavoritesScreen
-import com.example.automobile.screens.MapScreen
 import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
 import com.example.automobile.screens.SignUpViewModel
@@ -64,7 +62,10 @@ fun Navigation(navController: NavHostController) {
             )
         }
         composable(route = "car_edit_screen"){
-            AddNewCarLocation()
+            val postalViewModel: PostalViewModel = viewModel()
+            AddNewCarLocation(
+                postalUiState = postalViewModel.postalUiState
+            )
         }
     }
 }

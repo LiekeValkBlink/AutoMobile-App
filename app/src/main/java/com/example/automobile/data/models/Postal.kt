@@ -12,3 +12,8 @@ data class Postal(
     val latitude: Double,
     val longitude: Double
 )
+@Serializable
+data class PostalSearch(
+    val postal: String,
+    val number: Int
+)

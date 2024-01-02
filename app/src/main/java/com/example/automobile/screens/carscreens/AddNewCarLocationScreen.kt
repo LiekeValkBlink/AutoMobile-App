@@ -17,29 +17,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
-import com.example.automobile.components.MediumTextInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.navigation.Navigation
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun AddNewCarLocation() {
+fun AddNewCarLocation(postalUiState: String) {
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
         val navController = rememberNavController()
         Navigation(navController)
         val state = rememberScrollState()
+
+
+
         Column(
             modifier = Modifier
                 .fillMaxHeight()
@@ -64,13 +63,10 @@ fun AddNewCarLocation() {
                         imageDescription = "description"
                     )
                 }
+
                 Column {
-                    MediumTextInputFieldComponent(labelValue = stringResource(id = R.string.postal))
-                    Spacer(modifier = Modifier.size(12.dp))
-                    MediumTextInputFieldComponent(labelValue = stringResource(id = R.string.number))
-                    Spacer(modifier = Modifier.size(50.dp))
-                    Text(text = "latitude: 51.6466307", style = TextStyle(color = Color.White))
-                    Text(text = "longitude: 4.6022469", style = TextStyle(color = Color.White))}
+                    Text(text = postalUiState.toString(), color = Color.White)
+                    }
                 Spacer(modifier = Modifier.size(12.dp))
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.save_postal_btn),
@@ -89,3 +85,4 @@ fun AddNewCarLocation() {
 
 
 }
+
