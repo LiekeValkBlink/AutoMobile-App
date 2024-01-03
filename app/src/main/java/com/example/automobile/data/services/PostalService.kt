@@ -9,16 +9,27 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://json.api-postcode.nl"
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
     .baseUrl(BASE_URL)
     .build()
 interface PostalService {
     @Headers("token: d33f51f3-29b5-498e-90d2-95bbf1263140")
-    @GET("?postcode=4826NP&number=542")
-    suspend fun getPostal(): String
+    @GET("/")
+    suspend fun getPostal(
+        @Query("postcode") postcode: String,
+        @Query("number") number: String
+
+    ): Postal
+
+    @GET("/")
+    fun getPostalText(
+        @Query("postcode") postcode: String,
+        @Query("number") number: String
+    ) : Postal
 }
 
 object PostalApi {

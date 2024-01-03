@@ -18,12 +18,13 @@ class PostalViewModel : ViewModel() {
     init {
         getPostalInfo()
     }
-
-
+/// bij de volgende functie moet ik de dynamische gegevens gebruiken
     fun getPostalInfo() {
+        val postal = "4826NP"
+        val number = "542"
         viewModelScope.launch {
-            val listResult = PostalApi.retrofitService.getPostal()
-            postalUiState = listResult
+            val listResult = PostalApi.retrofitService.getPostal(postal, number )
+            postalUiState = listResult.street
         }
     }
 }
