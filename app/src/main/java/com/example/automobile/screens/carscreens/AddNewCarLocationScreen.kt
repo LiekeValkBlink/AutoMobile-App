@@ -105,8 +105,8 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel) {
 
 
                         )
-//                        Text("Latitude: ${postal.latitude}", color = Color.White)
-//                        Text("Longitude: ${postal.longitude}", color = Color.White)
+                        Text("Latitude: ${postal.latitude}", color = Color.White)
+                        Text("Longitude: ${postal.longitude}", color = Color.White)
 
                     }
                 }
