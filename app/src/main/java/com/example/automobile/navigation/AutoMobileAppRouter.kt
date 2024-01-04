@@ -1,6 +1,7 @@
 package com.example.automobile.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -62,9 +63,9 @@ fun Navigation(navController: NavHostController) {
             )
         }
         composable(route = "car_edit_screen"){
-            val postalViewModel: PostalViewModel = viewModel()
+            val viewModel = remember { AddPostalViewModel()}
             AddNewCarLocation(
-                postalUiState = postalViewModel.postalUiState
+                viewModel
             )
         }
     }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.automobile.data.models.Postal
 import com.example.automobile.data.services.PostalApi
 import kotlinx.coroutines.launch
 
@@ -26,5 +27,23 @@ class PostalViewModel : ViewModel() {
             val listResult = PostalApi.retrofitService.getPostal(postal, number )
             postalUiState = listResult.street
         }
+    }
+}
+
+class AddPostalViewModel: ViewModel() {
+    var postalRepository = PostalApi
+    var postalData: Postal? by mutableStateOf(null)
+    fun getPostalData(postcode: String, huisnummer: String){
+        viewModelScope.launch {
+            try {
+                postalData = postalRepository.retrofitService.getPostal(postcode, huisnummer)
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun SavePostal(postal: Postal){
+
     }
 }

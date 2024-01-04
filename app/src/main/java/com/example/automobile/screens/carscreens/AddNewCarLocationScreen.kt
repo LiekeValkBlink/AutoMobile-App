@@ -35,11 +35,14 @@ import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.services.PostalApi
 import com.example.automobile.navigation.Navigation
+import com.example.automobile.screens.mapscreens.AddPostalViewModel
 import com.example.automobile.ui.theme.BackgroundColor
+import org.w3c.dom.Text
 
 @Composable
-fun AddNewCarLocation(postalUiState: String) {
-
+fun AddNewCarLocation(viewModel: AddPostalViewModel) {
+    var postcode by remember { mutableStateOf("") }
+    var huisnummer by remember { mutableStateOf("") }
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -48,6 +51,7 @@ fun AddNewCarLocation(postalUiState: String) {
         val state = rememberScrollState()
         var postalInput by remember { mutableStateOf("") }
         var numberInput by remember { mutableStateOf("") }
+        var adresInput by remember { mutableStateOf("") }
 
         Column(
             modifier = Modifier
@@ -64,33 +68,54 @@ fun AddNewCarLocation(postalUiState: String) {
                     .padding(30.dp, 20.dp, 30.dp, 40.dp)
             ) {
                 Column {
-                    H2TextComponent(value = stringResource(id = R.string.add_postal_to_car))
-                    Spacer(modifier = Modifier.size(12.dp))
-                    CarComponent(
-                        carBrand = "Kia Rio 2019",
-                        price = 4.75,
-                        image = painterResource(id = R.drawable.car_placeholder),
-                        imageDescription = "description"
-                    )
-                }
-
-                Column {
 
 
-                    MediumTextInputFieldComponent(value = postalInput,labelValue = stringResource(id = R.string.postal)
+                    MediumTextInputFieldComponent(
+                        value = postalInput,
+                        onValueChange = {
+                            postalInput = it.uppercase()
+                            viewModel.getPostalData(postalInput, numberInput)
+                        },
+                        labelValue = stringResource(id = R.string.postal)
                     )
                     Spacer(modifier = Modifier.size(12.dp))
-                    MediumTextInputFieldComponent(value = numberInput, labelValue = stringResource(id = R.string.number))
-                    Spacer(modifier = Modifier.size(50.dp))
-                 Button(onClick = { /*TODO*/ }) {
+                    MediumTextInputFieldComponent(
+                        value = numberInput,
+                        onValueChange = {
+                            numberInput = it
+                            viewModel.getPostalData(postalInput, numberInput)
+                        },
+                        labelValue = stringResource(id = R.string.number)
+                    )
+                    Spacer(modifier = Modifier.size(12.dp))
 
-                 }
-//                    val info = PostalApi.retrofitService.getPostalText("2210AA", "2")
-                    Text(text = postalUiState.toString(), color = Color.White)
+
+//                    PrimaryButtonComponent(value = "get long/lat",
+//                        route = {
+//                            if (numberInput.isNotBlank() && postalInput.isNotBlank()) {
+//                                viewModel.getPostalData(postalInput, numberInput)
+//                            }
+//                        }
+//                    )
+                    viewModel.postalData?.let { postal ->
+
+                        MediumTextInputFieldComponent(
+                            value = postal.street + " " + postal.house_number,
+                            onValueChange = { },
+
+
+                        )
+//                        Text("Latitude: ${postal.latitude}", color = Color.White)
+//                        Text("Longitude: ${postal.longitude}", color = Color.White)
+
+                    }
                 }
                 Spacer(modifier = Modifier.size(12.dp))
+
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.save_postal_btn),
+                    // de route wordt de save functie
+
                     route = { navController.navigate(route = "home_screen") },
                 )
                 Spacer(modifier = Modifier.size(50.dp))

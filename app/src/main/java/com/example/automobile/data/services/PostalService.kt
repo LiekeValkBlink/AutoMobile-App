@@ -25,11 +25,6 @@ interface PostalService {
 
     ): Postal
 
-    @GET("/")
-    fun getPostalText(
-        @Query("postcode") postcode: String,
-        @Query("number") number: String
-    ) : Postal
 }
 
 object PostalApi {
