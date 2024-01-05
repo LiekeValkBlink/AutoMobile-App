@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.automobile.data.models.Profile
 import com.example.automobile.data.repositories.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -37,6 +38,7 @@ class ProfileSettingsViewModel : ViewModel() {
     }
 
     fun updateLastName(input: String) {
+        firstName = input
         lastName = input
     }
 
@@ -52,7 +54,7 @@ class ProfileSettingsViewModel : ViewModel() {
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         loading = true
 
         viewModelScope.launch {
@@ -74,6 +76,20 @@ class ProfileSettingsViewModel : ViewModel() {
                 dateOfBirth = profile.dateOfBirth
                 driversLicenceNumber = profile.driversLicenceNumber.toString()
             }
+
+            loading = false
+        }
+    }
+
+    fun submit() {
+        loading = true
+
+        val profile = Profile(firstName, lastName, dateOfBirth, driversLicenceNumber.toInt())
+
+        viewModelScope.launch {
+            viewModelScope.async(Dispatchers.IO) {
+                ProfileRepository.postProfile(profile)
+            }.await()
 
             loading = false
         }

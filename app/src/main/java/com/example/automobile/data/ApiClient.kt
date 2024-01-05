@@ -21,7 +21,7 @@ object ApiClient {
      * An interceptor captures an OkHttpClient HTTP request and modifies its configuration
      * before executing it.
      */
-    private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
+    private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     // Create a shared Retrofit builder, which serves as a base for building Retrofit clients with different configurations
     private val retrofitBuilder: Retrofit.Builder = Retrofit.Builder()

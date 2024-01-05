@@ -12,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
+import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SmallTextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
@@ -102,8 +101,8 @@ fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettin
                     }
                 )
                 Spacer(modifier = Modifier.size(30.dp))
-                SmallPrimaryButtonComponent(
-                    route = {},
+                PrimaryButtonComponent(
+                    route = { viewModel.submit() },
                     value = stringResource(id = R.string.profileSettings_btn)
                 )
             }
