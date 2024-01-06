@@ -96,7 +96,7 @@ fun HomeScreen(navController: NavController) {
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
                                 placeholder = "00-00-0000",
-                                labelValue = "Pick-up date",
+                                labelValue = "Return date",
                                 leadingIcon = Icons.Outlined.DateRange
                             )
                         }
@@ -106,7 +106,7 @@ fun HomeScreen(navController: NavController) {
                         Column(modifier = Modifier.weight(1f)) {
                             DateTimeInputFieldComponent(
                                 placeholder = "00:00",
-                                labelValue = "Pick-up Time",
+                                labelValue = "Return Time",
                                 leadingIcon = Icons.Outlined.AccessTime
                             )
                         }

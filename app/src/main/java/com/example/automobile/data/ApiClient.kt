@@ -2,6 +2,7 @@ package com.example.automobile.data
 
 import com.example.automobile.BuildConfig
 import com.example.automobile.data.services.AuthenticationService
+import com.example.automobile.data.services.CarAvailabilityService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,5 +29,9 @@ object ApiClient {
     // make authentication service endpoints callable by retrofit
     val authenticationService: AuthenticationService by lazy {
         retrofit.create(AuthenticationService::class.java)
+    }
+
+    val CarAvailabilityService: CarAvailabilityService by lazy {
+        retrofit.create(CarAvailabilityService::class.java)
     }
 }
