@@ -20,10 +20,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.H1TextComponent
-import com.example.automobile.components.MediumTextInputFieldComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.AnnotatedString
+import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
@@ -47,13 +47,17 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(30.dp, 20.dp, 30.dp, 40.dp),
+                    .padding(30.dp, 30.dp, 30.dp, 30.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
                     H1TextComponent(
                         value = stringResource(id = R.string.signUp_header)
                     )
+                }
+
+                if (viewModel.loading) {
+                    CircularProgressIndicator()
                 }
 
                 Column {
@@ -63,10 +67,6 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
                             viewModel.submit()
                         }
                     )
-
-                    if (viewModel.loading) {
-                        CircularProgressIndicator()
-                    }
 
                     Spacer(modifier = Modifier.size(20.dp))
 
@@ -86,15 +86,18 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
                 .padding(30.dp, 0.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            MediumTextInputFieldComponent(
+
+            TextInputFieldComponent(
+                labelValue = stringResource(id = R.string.signUp_email),
                 placeholderValue = stringResource(id = R.string.signUp_email),
                 value = viewModel.email,
                 onValueChange = { email -> viewModel.updateEmail(email) }
             )
-
             Spacer(modifier = Modifier.size(12.dp))
+
             PasswordInputFieldComponent(
                 labelValue = stringResource(id = R.string.signUp_password),
+                placeholderValue = stringResource(id = R.string.signUp_password),
                 value = viewModel.password,
                 onValueChange = { password -> viewModel.updatePassword(password) }
             )
@@ -102,7 +105,8 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
             Spacer(modifier = Modifier.size(12.dp))
 
             PasswordInputFieldComponent(
-                labelValue = stringResource(id = R.string.signUp_password_repeat)
+                labelValue = stringResource(id = R.string.signUp_password_repeat),
+                placeholderValue = stringResource(id = R.string.signUp_password_repeat)
             )
         }
     }

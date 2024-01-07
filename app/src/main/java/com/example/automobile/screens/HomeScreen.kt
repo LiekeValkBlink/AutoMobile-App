@@ -34,7 +34,6 @@ import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.TextLeadingIconInputFieldComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.TopNavigationBar
@@ -143,19 +142,7 @@ fun HomeScreen(navController: NavController) {
                     }
 
                     Column {
-                        CarComponent(
-                            carBrand = "Kia Rio 2019",
-                            price = 4.75,
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
-                        )
-
-                        CarComponent(
-                            carBrand = "Kia Rio 2019",
-                            price = 4.75,
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
-                        )
+                        // Car components
                     }
                 }
             }

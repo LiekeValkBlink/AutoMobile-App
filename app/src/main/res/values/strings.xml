@@ -7,7 +7,7 @@
 
     //StartScreen
     <string name="start_slogan">Fast. Reliable. Durable.</string>
-    <string name="start_signUp">Get started</string>
+    <string name="start_signUp">Let\'s get started >></string>
     <string name="start_login">Login</string>
 
     //SignUpScreen
@@ -48,12 +48,20 @@
     <string name="profileSettings_fullName_placeholder">What is your full name?</string>
     <string name="profileSettings_email_label">E-mailaddress</string>
     <string name="profileSettings_email_placeholder">E-mailaddress</string>
-    <string name="profileSettings_telephoneNumber_label">Telephone number</string>
-    <string name="profileSettings_telephoneNumber_placeholder">0612345678</string>
     <string name="profileSettings_dateOfBirth_label">Date of birth</string>
     <string name="profileSettings_dateOfBirth_placeholder">01-01-2022</string>
     <string name="profileSettings_DriversLicenceNumber_label">Drivers licence number</string>
     <string name="profileSettings_DriversLicenceNumber_placeholder">1234567890</string>
     <string name="profileSettings_btn">Save changes</string>
+
+    // CarSettingsScreen
+    <string name="carSettings_heading">Add your car</string>
+    <string name="carSettings_carBrand">Car brand</string>
+    <string name="carSettings_vehicleType">Vehicle type</string>
+    <string name="carSettings_amountOfPassengers">Amount of passengers</string>
+    <string name="carSettings_gearboxType">Gearbox type</string>
+    <string name="carSettings_licencePlate">Licence plate</string>
+    <string name="carSettings_carPriceAmount">Car price per hour</string>
+    <string name="carSettings_btn">Add car</string>
 
 </resources>

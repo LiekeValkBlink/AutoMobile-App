@@ -2,8 +2,12 @@ package com.example.automobile.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.automobile.screens.CarSettingsScreen
+import com.example.automobile.screens.CarSettingsViewModel
 import com.example.automobile.screens.LoginScreen
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.StartScreen
@@ -72,6 +76,22 @@ fun Navigation(navController: NavHostController) {
                 navController = navController,
                 viewModel = ProfileSettingsViewModel()
             )
+        }
+        composable(route = "car_settings_screen") {
+            CarSettingsScreen(
+                navController = navController,
+                viewModel = CarSettingsViewModel()
+            )
+        }
+        composable(
+            route = "car_settings_screen/{carId}",
+            arguments = listOf(navArgument("carId") { type = NavType.IntType })
+        ) {
+            backStackEntry ->
+                CarSettingsScreen(
+                    navController = navController,
+                    viewModel = CarSettingsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
+                )
         }
     }
 }

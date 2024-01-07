@@ -79,25 +79,11 @@ fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettin
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_telephoneNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_telephoneNumber_placeholder)
-                )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_dateOfBirth_label),
                     placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder),
                     value = viewModel.dateOfBirth,
                     onValueChange = {
                         dateOfBirth -> viewModel.updateDateOfBirth(dateOfBirth)
-                    }
-                )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder),
-                    value = viewModel.driversLicenceNumber,
-                    onValueChange = {
-                        driversLicenceNumber -> viewModel.updateDriversLicenceNumber(driversLicenceNumber)
                     }
                 )
                 Spacer(modifier = Modifier.size(30.dp))

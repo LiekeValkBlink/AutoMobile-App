@@ -77,18 +77,21 @@ fun TopNavigationBar(navController: NavController) {
         verticalAlignment = Alignment.CenterVertically
     ){
         Box {
-            IconButton(
-                onClick = {
-                    navController.navigateUp()
+            if (navController.previousBackStackEntry != null) {
+                // Show back button if there is a previous backstack entry in the navigation stack
+                IconButton(
+                    onClick = {
+                        navController.navigateUp()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "Go back",
+                        modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
+                        tint = White
+                    )
                 }
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "Go back",
-                    modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
-                    tint = White
-                )
-        }
+            }
 
         Column (
             modifier = Modifier.fillMaxWidth(),

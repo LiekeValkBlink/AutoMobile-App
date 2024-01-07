@@ -49,7 +49,10 @@ import com.example.automobile.ui.theme.fontFamily
 
 @Composable
 fun SmallTextInputFieldComponent(
-    labelValue: String = "", placeholderValue: String = "", value: String? = null, onValueChange: ((String) -> Unit)? = null) {
+    labelValue: String = "",
+    placeholderValue: String = "",
+    value: String? = null,
+    onValueChange: ((String) -> Unit)? = null) {
 
     val text = remember {
         mutableStateOf("")
@@ -110,8 +113,11 @@ fun SmallTextInputFieldComponent(
 }
 
 @Composable
-fun MediumTextInputFieldComponent(
-    labelValue: String = "", placeholderValue: String = "", value: String? = null, onValueChange: ((String) -> Unit)? = null) {
+fun TextInputFieldComponent(
+    labelValue: String = "",
+    placeholderValue: String = "",
+    value: String? = null,
+    onValueChange: ((String) -> Unit)? = null) {
 
     val text = remember {
         mutableStateOf("")
@@ -120,7 +126,7 @@ fun MediumTextInputFieldComponent(
     Text(
         text = labelValue,
         style = TextStyle(
-            fontSize = 12.sp,
+            fontSize = 13.sp,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
             color = White,
@@ -152,7 +158,7 @@ fun MediumTextInputFieldComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(16.dp, 16.dp, 16.dp, 14.dp),
+                    .padding(16.dp, 15.dp, 16.dp, 13.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
@@ -173,57 +179,11 @@ fun MediumTextInputFieldComponent(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextLeadingIconInputFieldComponent(
+fun PasswordInputFieldComponent(
     labelValue: String,
-    leadingIcon: ImageVector,
-) {
-    val textValue = remember {
-        mutableStateOf("")
-    }
-
-    TextField(
-        value = textValue.value,
-        onValueChange = {
-            textValue.value = it
-        },
-        placeholder = {
-            Text(text = labelValue, color = LightGrey)
-        },
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(height = 50.dp),
-            colors = TextFieldDefaults.textFieldColors(
-            containerColor = InputBackgroundColor,
-            focusedIndicatorColor = PrimaryColor,
-            textColor = White,
-            cursorColor = White,
-            unfocusedIndicatorColor = InputBackgroundColor,
-        ),
-        textStyle = TextStyle (
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-        ),
-
-        keyboardOptions = KeyboardOptions.Default,
-        maxLines = 1,
-
-        leadingIcon = {
-            Icon (
-                imageVector = leadingIcon,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(20.dp),
-                tint = White
-            )
-        }
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onValueChange: ((String) -> Unit)? = null) {
+    placeholderValue: String = "",
+    value: String? = null,
+    onValueChange: ((String) -> Unit)? = null) {
 
     val password = remember {
         mutableStateOf("")
@@ -233,6 +193,18 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
         mutableStateOf(false)
     }
 
+    Text(
+        text = labelValue,
+        style = TextStyle(
+            fontSize = 13.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            color = White,
+        )
+    )
+
+    Spacer(modifier = Modifier.size(2.dp))
+
     TextField(
         value = value ?: password.value,
         onValueChange = onValueChange ?: {
@@ -240,7 +212,7 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
         },
         placeholder = {
             Text(
-                text = labelValue,
+                text = placeholderValue,
                 color = LightGrey,
                 fontFamily = fontFamily)
         },
@@ -253,7 +225,7 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
                 shape = RoundedCornerShape(size = 4.dp)),
             colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
-            focusedIndicatorColor = PrimaryColor,
+            focusedIndicatorColor = InputBackgroundColor,
             textColor = White,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor

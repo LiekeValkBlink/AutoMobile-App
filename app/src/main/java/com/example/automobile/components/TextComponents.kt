@@ -50,6 +50,23 @@ fun AnnotatedString(startValue: String, endValue: String, fontSize: Int, route: 
 }
 
 @Composable
+fun TextComponent(value: String) {
+    Text(
+        text = value,
+        modifier = Modifier
+            .background(color = BackgroundColor)
+            .fillMaxWidth(),
+        style = TextStyle(
+            fontSize = 16.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Bold,
+            lineHeight = 28.sp,
+            color = White,
+        )
+    )
+}
+
+@Composable
 fun H1TextComponent(value: String) {
     Text(
         text = value,
@@ -57,10 +74,10 @@ fun H1TextComponent(value: String) {
             .background(color = BackgroundColor)
             .fillMaxWidth(),
         style = TextStyle(
-            fontSize = 40.sp,
+            fontSize = 38.sp,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Bold,
-            lineHeight = 48.sp,
+            lineHeight = 44.sp,
             color = White,
         )
     )

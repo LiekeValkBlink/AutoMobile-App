@@ -22,7 +22,7 @@ import com.example.automobile.components.AnnotatedString
 import com.example.automobile.components.H1TextComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.MediumTextInputFieldComponent
+import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
@@ -44,7 +44,7 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(30.dp, 20.dp, 30.dp, 40.dp),
+                    .padding(30.dp, 30.dp, 30.dp, 30.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
@@ -84,14 +84,16 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
                 .padding(30.dp, 0.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            MediumTextInputFieldComponent (
+            TextInputFieldComponent (
                 labelValue = stringResource(id = R.string.login_email),
+                placeholderValue = stringResource(id = R.string.login_email),
                 value = viewModel.email,
                 onValueChange = { email -> viewModel.updateEmail(email) }
             )
-            Spacer(modifier = Modifier.size(8.dp))
+            Spacer(modifier = Modifier.size(12.dp))
             PasswordInputFieldComponent (
                 labelValue = stringResource(id = R.string.login_password),
+                placeholderValue = stringResource(id = R.string.login_password),
                 value = viewModel.password,
                 onValueChange = { password -> viewModel.updatePassword(password) }
             )
