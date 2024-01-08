@@ -3,6 +3,16 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="DefaultPreviewOfCarDetailsScreen">
+      <entry key="DefaultPreviewOfCarInformationScreen">
+        <State />
+      </entry>
+      <entry key="DefaultPreviewOfProfileScreen">
+        <State />
+      </entry>
+      <entry key="DefaultPreviewOfProfileSettingsScreen">
+        <State />
+      </entry>
+      <entry key="DefaultPreviewOfSignUpScreen">
         <State />
       </entry>
       <entry key="MainActivity">
