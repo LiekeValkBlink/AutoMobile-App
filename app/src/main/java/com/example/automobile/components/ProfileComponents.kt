@@ -21,7 +21,6 @@ import com.example.automobile.ui.theme.fontFamily
 
 @Composable
 fun ProfileComponent(profileImage: Painter, username: String, email: String) {
-    Spacer(modifier = Modifier.size(10.dp))
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = profileImage,

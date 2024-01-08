@@ -1,16 +1,15 @@
 package com.example.automobile.components
 
-import android.service.autofill.DateTransformation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +17,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -37,8 +39,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.PopupProperties
 import com.example.automobile.R
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.InputBackgroundColor
@@ -47,9 +51,14 @@ import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
+
+// Creates a simple text input field
 @Composable
-fun SmallTextInputFieldComponent(
-    labelValue: String = "", placeholderValue: String = "") {
+fun TextInputFieldComponent(
+    labelValue: String = "",
+    placeholderValue: String = "",
+    value: String? = null,
+    onValueChange: ((String) -> Unit)? = null) {
 
     val text = remember {
         mutableStateOf("")
@@ -58,69 +67,7 @@ fun SmallTextInputFieldComponent(
     Text(
         text = labelValue,
         style = TextStyle(
-            fontSize = 12.sp,
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            color = White,
-        )
-    )
-
-    Spacer(modifier = Modifier.size(2.dp))
-
-    BasicTextField(
-        value = text.value,
-        onValueChange = {
-            text.value = it
-        },
-        enabled = true,
-        readOnly = false,
-        modifier = Modifier
-            .fillMaxWidth(),
-        textStyle = TextStyle(
-            fontSize = 14.sp,
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            color = White
-        ),
-        decorationBox = { innerTextField ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = InputBackgroundColor,
-                        shape = RoundedCornerShape(size = 4.dp)
-                    )
-                    .padding(14.dp, 14.dp, 14.dp, 12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (text.value.isEmpty()) {
-                    Text(
-                        text = placeholderValue,
-                        fontSize = 14.sp,
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.Medium,
-                        color = LightGrey
-                    )
-                }
-
-                innerTextField()
-            }
-        }
-    )
-}
-
-@Composable
-fun MediumTextInputFieldComponent(
-    labelValue: String = "", placeholderValue: String = "", value: String? = null, onValueChange: ((String) -> Unit)? = null) {
-
-    val text = remember {
-        mutableStateOf("")
-    }
-
-    Text(
-        text = labelValue,
-        style = TextStyle(
-            fontSize = 12.sp,
+            fontSize = 13.sp,
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
             color = White,
@@ -152,7 +99,7 @@ fun MediumTextInputFieldComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(16.dp, 16.dp, 16.dp, 14.dp),
+                    .padding(16.dp, 15.dp, 16.dp, 13.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
@@ -169,61 +116,18 @@ fun MediumTextInputFieldComponent(
             }
         }
     )
+
+    Spacer(modifier = Modifier.size(12.dp))
 }
 
+// Creates a password input field
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextLeadingIconInputFieldComponent(
+fun PasswordInputFieldComponent(
     labelValue: String,
-    leadingIcon: ImageVector,
-) {
-    val textValue = remember {
-        mutableStateOf("")
-    }
-
-    TextField(
-        value = textValue.value,
-        onValueChange = {
-            textValue.value = it
-        },
-        placeholder = {
-            Text(text = labelValue, color = LightGrey)
-        },
-
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(height = 50.dp),
-            colors = TextFieldDefaults.textFieldColors(
-            containerColor = InputBackgroundColor,
-            focusedIndicatorColor = PrimaryColor,
-            textColor = White,
-            cursorColor = White,
-            unfocusedIndicatorColor = InputBackgroundColor,
-        ),
-        textStyle = TextStyle (
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
-        ),
-
-        keyboardOptions = KeyboardOptions.Default,
-        maxLines = 1,
-
-        leadingIcon = {
-            Icon (
-                imageVector = leadingIcon,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(20.dp),
-                tint = White
-            )
-        }
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onValueChange: ((String) -> Unit)? = null) {
+    placeholderValue: String = "",
+    value: String? = null,
+    onValueChange: ((String) -> Unit)? = null) {
 
     val password = remember {
         mutableStateOf("")
@@ -233,6 +137,18 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
         mutableStateOf(false)
     }
 
+    Text(
+        text = labelValue,
+        style = TextStyle(
+            fontSize = 13.sp,
+            fontFamily = fontFamily,
+            fontWeight = FontWeight.Medium,
+            color = White,
+        )
+    )
+
+    Spacer(modifier = Modifier.size(2.dp))
+
     TextField(
         value = value ?: password.value,
         onValueChange = onValueChange ?: {
@@ -240,7 +156,7 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
         },
         placeholder = {
             Text(
-                text = labelValue,
+                text = placeholderValue,
                 color = LightGrey,
                 fontFamily = fontFamily)
         },
@@ -253,7 +169,7 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
                 shape = RoundedCornerShape(size = 4.dp)),
             colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
-            focusedIndicatorColor = PrimaryColor,
+            focusedIndicatorColor = InputBackgroundColor,
             textColor = White,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor
@@ -292,8 +208,12 @@ fun PasswordInputFieldComponent(labelValue: String, value: String? = null, onVal
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else
             PasswordVisualTransformation()
     )
+
+    Spacer(modifier = Modifier.size(12.dp))
 }
-@OptIn(ExperimentalMaterial3Api::class)
+
+
+//Creates a date/time input field
 @Composable
 fun DateTimeInputFieldComponent (
     placeholder: String,
@@ -408,7 +328,7 @@ fun InputTextFieldWithIconComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(14.dp, 17.dp, 14.dp, 14.dp),
+                    .padding(14.dp, 18.dp, 14.dp, 10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -435,5 +355,3 @@ fun InputTextFieldWithIconComponent(
         }
     )
 }
-
-

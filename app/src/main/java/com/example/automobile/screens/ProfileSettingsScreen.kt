@@ -21,13 +21,13 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
-import com.example.automobile.components.SmallTextInputFieldComponent
+import com.example.automobile.components.PrimaryButtonComponent
+import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun ProfileSettingsScreen(navController: NavController) {
+fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettingsViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -50,39 +50,36 @@ fun ProfileSettingsScreen(navController: NavController) {
                 H2TextComponent(
                     value = stringResource(id = R.string.profileSettings_heading)
                 )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_username_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_username_placeholder)
-                )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
+
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_fullName_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_fullName_placeholder),
+                    value = viewModel.lastName,
+                    onValueChange = {
+                        lastName -> viewModel.updateLastName(lastName)
+                    }
                 )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
+
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_email_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_email_placeholder),
+                    value = viewModel.email,
+                    onValueChange = {
+                            email -> viewModel.updateEmail(email)
+                    }
                 )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_telephoneNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_telephoneNumber_placeholder)
-                )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
+
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.profileSettings_dateOfBirth_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder)
+                    placeholderValue = stringResource(id = R.string.profileSettings_dateOfBirth_placeholder),
+                    value = viewModel.dateOfBirth,
+                    onValueChange = {
+                        dateOfBirth -> viewModel.updateDateOfBirth(dateOfBirth)
+                    }
                 )
-                Spacer(modifier = Modifier.size(16.dp))
-                SmallTextInputFieldComponent(
-                    labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
-                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder)
-                )
-                Spacer(modifier = Modifier.size(30.dp))
-                SmallPrimaryButtonComponent(
-                    route = {},
+
+                PrimaryButtonComponent(
+                    route = { viewModel.submit() },
                     value = stringResource(id = R.string.profileSettings_btn)
                 )
             }
@@ -100,5 +97,5 @@ fun ProfileSettingsScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreviewOfProfileSettingsScreen() {
-    ProfileSettingsScreen(navController = rememberNavController())
+    ProfileSettingsScreen(navController = rememberNavController(), ProfileSettingsViewModel())
 }

@@ -1,22 +1,23 @@
 package com.example.automobile.screens
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.automobile.data.models.Account
-import com.example.automobile.data.repositories.AuthenticationRepository;
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import kotlin.concurrent.thread
+import androidx.lifecycle.viewModelScope
+import com.example.automobile.data.models.RegistrationData
+import com.example.automobile.data.repositories.RegistrationRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 /**
  * connects the ui with the repository
  */
 
 class SignUpViewModel() : ViewModel() {
+    var loading by mutableStateOf(false)
+
     var email by mutableStateOf("")
         private set
 
@@ -32,21 +33,16 @@ class SignUpViewModel() : ViewModel() {
     }
 
     fun submit() {
-        val account = Account(email, password)
+        loading = true
 
-        thread {
-            AuthenticationRepository.register(account).enqueue(object: Callback<Unit> {
-                override fun onResponse(
-                    call: Call<Unit>,
-                    response: Response<Unit>
-                ) {
-                    Log.d("Response", "${response.body()}")
-                }
+        val registrationData = RegistrationData(email, password)
 
-                override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Log.d("Response", "FAIL")
-                }
-            })
+        viewModelScope.launch {
+            viewModelScope.async(Dispatchers.IO) {
+                RegistrationRepository.register(registrationData)
+            }.await()
+
+            loading = false
         }
     }
 }

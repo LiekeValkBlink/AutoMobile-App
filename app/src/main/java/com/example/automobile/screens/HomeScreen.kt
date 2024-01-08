@@ -15,8 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.outlined.AccessTime
-import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.FilterAlt
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -32,10 +30,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
-import com.example.automobile.components.H2TextComponent
+import com.example.automobile.components.H3TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
+import com.example.automobile.components.SmallPrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
@@ -68,53 +67,9 @@ fun HomeScreen(navController: NavController) {
                         leadingIcon = Icons.Filled.Search
                     )
 
-                    Spacer(modifier = Modifier.size(20.dp))
+                    Spacer(modifier = Modifier.size(18.dp))
 
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            DateTimeInputFieldComponent(
-                                placeholder = "00-00-0000",
-                                labelValue = "Pick-up date",
-                                leadingIcon = Icons.Outlined.DateRange
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.size(10.dp))
-
-                        Column(modifier = Modifier.weight(1f)) {
-                            DateTimeInputFieldComponent(
-                                placeholder = "00:00",
-                                labelValue = "Pick-up Time",
-                                leadingIcon = Icons.Outlined.AccessTime
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.size(10.dp))
-
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            DateTimeInputFieldComponent(
-                                placeholder = "00-00-0000",
-                                labelValue = "Pick-up date",
-                                leadingIcon = Icons.Outlined.DateRange
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.size(10.dp))
-
-                        Column(modifier = Modifier.weight(1f)) {
-                            DateTimeInputFieldComponent(
-                                placeholder = "00:00",
-                                labelValue = "Pick-up Time",
-                                leadingIcon = Icons.Outlined.AccessTime
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.size(20.dp))
-
-                    PrimaryButtonComponent(
+                    SmallPrimaryButtonComponent(
                         value = stringResource(id = R.string.home_search),
                         route = { TODO() }
                     )
@@ -123,13 +78,17 @@ fun HomeScreen(navController: NavController) {
                 Spacer(modifier = Modifier.size(40.dp))
 
                 Column(
-                    modifier = Modifier.verticalScroll(rememberScrollState())
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState())
+                        .padding(bottom = 60.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
-                        H2TextComponent(value = stringResource(id = R.string.home_available_cars))
+                        H3TextComponent(
+                            value = stringResource(id = R.string.home_available_cars)
+                        )
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
                                 imageVector = Icons.Outlined.FilterAlt,
@@ -142,18 +101,23 @@ fun HomeScreen(navController: NavController) {
                     }
 
                     Column {
+                        // Car components
                         CarComponent(
-                            carBrand = "Kia Rio 2019",
-                            price = 4.75,
+                            carBrand = "Kia Rio 2021",
+                            licencePlate = "AB-123-C",
                             image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
+                            amountOfPassengers = 2,
+                            gearboxType = "Manual",
+                            price = 12.99
                         )
 
                         CarComponent(
-                            carBrand = "Kia Rio 2019",
-                            price = 4.75,
+                            carBrand = "Kia Rio 2021",
+                            licencePlate = "AB-123-C",
                             image = painterResource(id = R.drawable.car_placeholder),
-                            imageDescription = "description"
+                            amountOfPassengers = 2,
+                            gearboxType = "Manual",
+                            price = 12.99
                         )
                     }
                 }

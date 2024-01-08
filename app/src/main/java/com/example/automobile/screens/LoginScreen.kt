@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,12 +22,12 @@ import com.example.automobile.components.AnnotatedString
 import com.example.automobile.components.H1TextComponent
 import com.example.automobile.components.PasswordInputFieldComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.MediumTextInputFieldComponent
+import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -43,7 +44,7 @@ fun LoginScreen(navController: NavController) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(30.dp, 20.dp, 30.dp, 40.dp),
+                    .padding(30.dp, 30.dp, 30.dp, 30.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
@@ -55,8 +56,17 @@ fun LoginScreen(navController: NavController) {
                 Column {
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.login_btn),
-                        route = { navController.navigate(route = "home_screen") },
+                        route = {
+                            viewModel.submit(callback = { result ->
+                                if (result) {
+                                    navController.navigate(route = "home_screen")
+                                }
+                            })
+                        }
                     )
+                    if (viewModel.loading) {
+                        CircularProgressIndicator()
+                    }
                     Spacer(modifier = Modifier.size(20.dp))
                     AnnotatedString(
                         startValue = stringResource(id = R.string.login_forgot_password),
@@ -74,12 +84,17 @@ fun LoginScreen(navController: NavController) {
                 .padding(30.dp, 0.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            MediumTextInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_email)
+            TextInputFieldComponent (
+                labelValue = stringResource(id = R.string.login_email_label),
+                placeholderValue = stringResource(id = R.string.login_email_placeholder),
+                value = viewModel.email,
+                onValueChange = { email -> viewModel.updateEmail(email) }
             )
-            Spacer(modifier = Modifier.size(8.dp))
+
             PasswordInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_password)
+                labelValue = stringResource(id = R.string.login_password),
+                value = viewModel.password,
+                onValueChange = { password -> viewModel.updatePassword(password) }
             )
         }
     }
@@ -88,5 +103,5 @@ fun LoginScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreviewOfLoginScreen() {
-    LoginScreen(navController = rememberNavController())
+    LoginScreen(navController = rememberNavController(), LoginViewModel())
 }
