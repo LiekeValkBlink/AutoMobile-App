@@ -88,25 +88,20 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
         ) {
 
             TextInputFieldComponent(
-                labelValue = stringResource(id = R.string.signUp_email),
-                placeholderValue = stringResource(id = R.string.signUp_email),
+                labelValue = stringResource(id = R.string.signUp_email_label),
+                placeholderValue = stringResource(id = R.string.signUp_email_placeholder),
                 value = viewModel.email,
                 onValueChange = { email -> viewModel.updateEmail(email) }
             )
-            Spacer(modifier = Modifier.size(12.dp))
 
             PasswordInputFieldComponent(
                 labelValue = stringResource(id = R.string.signUp_password),
-                placeholderValue = stringResource(id = R.string.signUp_password),
                 value = viewModel.password,
                 onValueChange = { password -> viewModel.updatePassword(password) }
             )
 
-            Spacer(modifier = Modifier.size(12.dp))
-
             PasswordInputFieldComponent(
                 labelValue = stringResource(id = R.string.signUp_password_repeat),
-                placeholderValue = stringResource(id = R.string.signUp_password_repeat)
             )
         }
     }

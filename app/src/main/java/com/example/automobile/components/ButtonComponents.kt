@@ -2,9 +2,11 @@ package com.example.automobile.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -22,6 +24,8 @@ import com.example.automobile.ui.theme.fontFamily
 
 @Composable
 fun PrimaryButtonComponent(value: String, route: () -> Unit) {
+    Spacer(modifier = Modifier.size(32.dp))
+
     Button(
         onClick = route,
         modifier = Modifier

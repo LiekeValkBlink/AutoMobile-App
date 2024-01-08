@@ -23,9 +23,9 @@ import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.R
+import com.example.automobile.components.DropdownInputComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
-import com.example.automobile.components.SmallTextInputFieldComponent
+import com.example.automobile.components.TextInputFieldComponent
 
 @Composable
 fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewModel) {
@@ -52,9 +52,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     value = stringResource(id = R.string.carSettings_heading)
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_carBrand),
                     placeholderValue = stringResource(id = R.string.carSettings_carBrand),
                     value = viewModel.carBrand,
@@ -64,9 +62,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
 
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_vehicleType),
                     placeholderValue = stringResource(id = R.string.carSettings_vehicleType),
                     value = viewModel.vehicleType,
@@ -75,9 +71,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_licencePlate),
                     placeholderValue = stringResource(id = R.string.carSettings_licencePlate),
                     value = viewModel.licencePlate,
@@ -86,9 +80,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_amountOfPassengers),
                     placeholderValue = stringResource(id = R.string.carSettings_amountOfPassengers),
                     value = viewModel.amountOfPassengers,
@@ -97,9 +89,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_gearboxType),
                     placeholderValue = stringResource(id = R.string.carSettings_gearboxType),
                     value = viewModel.gearboxType,
@@ -108,9 +98,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_amountOfDoors),
                     placeholderValue = stringResource(id = R.string.carSettings_amountOfDoors),
                     value = viewModel.amountOfDoors,
@@ -119,9 +107,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
-
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_gpsAvailable),
                     placeholderValue = stringResource(id = R.string.carSettings_gpsAvailable),
                     value = viewModel.gpsAvailable,
@@ -130,9 +116,9 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                Spacer(modifier = Modifier.size(16.dp))
+                DropdownInputComponent()
 
-                SmallTextInputFieldComponent(
+                TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_carPriceAmount),
                     placeholderValue = stringResource(id = R.string.carSettings_carPriceAmount),
                     value = viewModel.carPriceAmount,
@@ -140,8 +126,6 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                         viewModel.updateCarPriceAmount(carPriceAmount)
                     }
                 )
-
-                Spacer(modifier = Modifier.size(16.dp))
 
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.carSettings_btn),
@@ -155,6 +139,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 )
             }
         }
+
         Column(
             modifier = Modifier.fillMaxHeight(),
             verticalArrangement = Arrangement.Bottom

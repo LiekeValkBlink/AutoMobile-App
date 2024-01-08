@@ -52,6 +52,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                     .padding(30.dp, 0.dp, 30.dp, 90.dp),
             ) {
                 H2TextComponent(value = stringResource(id = R.string.profile))
+
                 ProfileComponent(
                     profileImage = painterResource(id = R.drawable.profile_placeholder),
                     username = account?.email ?: "",
@@ -67,7 +68,6 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
 
                 H2TextComponent(value = stringResource(id = R.string.profile_your_cars))
 
-                Spacer(modifier = Modifier.size(12.dp))
                 for (car in viewModel.cars) {
                     CarComponent(
                         carBrand = car.carBrand + " " + car.vehicleType,

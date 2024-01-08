@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">AutoMobile</string>
+
+    //InputFieldTextComponents
+    <string name="hide_password">Verberg wachtwoord</string>
+    <string name="show_password">Toon wachtwoord</string>
+
+    //StartScreen
+    <string name="start_slogan">Snel. Betrouwbaar. Duurzaam.</string>
+    <string name="start_signUp">Laten we beginnen >></string>
+    <string name="start_login">Inloggen</string>
+
+    //SignUpScreen
+    <string name="signUp_header">Maak een account aan</string>
+    <string name="signUp_email_label">Voer je e-mailadres in</string>
+    <string name="signUp_email_placeholder">johndoe@email.com</string>
+    <string name="signUp_password">Voer je wachtwoord in</string>
+    <string name="signUp_password_repeat">Herhaal je wachtwoord</string>
+    <string name="signUp_submit">Maak een account aan</string>
+    <string name="signUp_already_an_account">Heb je al een account? </string>
+    <string name="signUp_login">Inloggen.</string>
+
+    // LoginScreen
+    <string name="login_heading">Leuk dat je terug bent!</string>
+    <string name="login_email_label">Voer je e-mailadres in</string>
+    <string name="login_email_placeholder">johndoe@email.com</string>
+    <string name="login_password">Voer je wachtwoord in</string>
+    <string name="login_btn">Inloggen</string>
+    <string name="login_forgot_password">Wachtwoord vergeten?</string>
+    <string name="login_reset_password">Resetten.</string>
+
+    // HomeScreen
+    <string name="home_search">Zoeken</string>
+    <string name="home_available_cars">Beschikbare auto\'s in jouw buurt</string>
+
+
+    // ProfileScreen
+    <string name="profile">Jouw profiel</string>
+    <string name="profile_complete_profile">Maak je profiel compleet</string>
+    <string name="profile_add_car">Auto toevoegen</string>
+    <string name="profile_your_cars">Jouw auto\'s</string>
+
+    // ProfileSettingsScreen
+    <string name="profileSettings_heading">Profiel bewerken</string>
+    <string name="profileSettings_fullName_label">Volledige naam</string>
+    <string name="profileSettings_fullName_placeholder">Wat is je volledige naam?</string>
+    <string name="profileSettings_email_label">E-mailadres</string>
+    <string name="profileSettings_email_placeholder">johndoe@email.com</string>
+    <string name="profileSettings_dateOfBirth_label">Geboortedatum</string>
+    <string name="profileSettings_dateOfBirth_placeholder">01-01-2022</string>
+    <string name="profileSettings_DriversLicenceNumber_label">Rijbewijsnummer</string>
+    <string name="profileSettings_DriversLicenceNumber_placeholder">1234567890</string>
+    <string name="profileSettings_btn">Wijzigingen opslaan</string>
+
+    // CarSettingsScreen
+    <string name="carSettings_heading">Auto toevoegen</string>
+    <string name="carSettings_carBrand">Automerk</string>
+    <string name="carSettings_vehicleType">Voertuigtype</string>
+    <string name="carSettings_amountOfPassengers">Aantal passagiers</string>
+    <string name="carSettings_gearboxType">Soort versnellingsbak</string>
+    <string name="carSettings_licencePlate">Kentekennummer</string>
+    <string name="carSettings_carPriceAmount">Huur prijs per uur</string>
+    <string name="carSettings_btn">Auto toevoegen</string>
+    <string name="carSettings_gpsAvailable">Is er een gps aanwezig?</string>
+    <string name="carSettings_amountOfDoors">Over hoe veel deuren beschikt de auto?</string>
+
+
+    // CarDetailsScreen
+    <string name="carDetails_carInformation">Auto informatie</string>
+    <string name="carDetails_dateTime">Ophalen en wegbrengen</string>
+    <string name="carDetails_btn">Reserveer deze auto</string>
+
+    // DateTimeComponent
+    <string name="dateTimeComponent_pickUpDate_label">Datum ophalen</string>
+    <string name="dateTimeComponent_pickUpDate_placeholder">00-00-0000</string>
+    <string name="dateTimeComponent_pickUpTime_label">Datum wegbrengen</string>
+    <string name="dateTimeComponent_pickUpTime_placeholder">00:00</string>
+
+</resources>

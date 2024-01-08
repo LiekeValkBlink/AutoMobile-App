@@ -6,6 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.automobile.screens.AppSettingsScreen
+import com.example.automobile.screens.CarDetailsScreen
+import com.example.automobile.screens.CarDetailsViewModel
 import com.example.automobile.screens.CarSettingsScreen
 import com.example.automobile.screens.CarSettingsViewModel
 import com.example.automobile.screens.LoginScreen
@@ -92,6 +95,17 @@ fun Navigation(navController: NavHostController) {
                     navController = navController,
                     viewModel = CarSettingsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
                 )
+        }
+        composable(route = "car_details_screen") {
+            CarDetailsScreen(
+                navController = navController,
+                viewModel = CarDetailsViewModel()
+            )
+        }
+        composable(route = "app_settings_screen") {
+            AppSettingsScreen(
+                navController = navController
+            )
         }
     }
 }

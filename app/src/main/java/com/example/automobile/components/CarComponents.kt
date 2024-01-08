@@ -2,7 +2,6 @@ package com.example.automobile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,8 +21,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -37,6 +39,8 @@ import com.example.automobile.ui.theme.MediumGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
+import com.example.automobile.R
+import kotlin.math.round
 
 @Composable
 fun CarComponent(
@@ -113,7 +117,6 @@ fun CarComponent(
                         )
                         .height(40.dp)
                         .width(40.dp)
-                        .padding(top = 2.dp)
 
                 ) {
                     Icon(
@@ -207,4 +210,34 @@ fun CarComponent(
         }
     }
     Spacer(modifier = Modifier.size(20.dp))
+}
+
+@Composable
+fun CarInformationComponent (
+    icon: ImageVector,
+    value: String
+) {
+    Row (
+        modifier = Modifier
+            .background(color = InputBackgroundColor, shape = RoundedCornerShape(50.dp))
+            .padding(20.dp, 12.dp, 20.dp, 10.dp),
+    ){
+        Icon(
+            modifier = Modifier
+                .size(20.dp)
+                .padding(top = 1.dp, end = 4.dp),
+            imageVector = icon,
+            contentDescription = null,
+            tint = White
+        )
+        Text(
+            text = value,
+            style = TextStyle(
+                fontSize = 14.sp,
+                fontFamily = fontFamily,
+                fontWeight = FontWeight.Medium,
+                color = White,
+            )
+        )
+    }
 }

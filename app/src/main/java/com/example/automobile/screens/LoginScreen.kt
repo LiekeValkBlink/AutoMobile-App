@@ -85,15 +85,14 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             TextInputFieldComponent (
-                labelValue = stringResource(id = R.string.login_email),
-                placeholderValue = stringResource(id = R.string.login_email),
+                labelValue = stringResource(id = R.string.login_email_label),
+                placeholderValue = stringResource(id = R.string.login_email_placeholder),
                 value = viewModel.email,
                 onValueChange = { email -> viewModel.updateEmail(email) }
             )
-            Spacer(modifier = Modifier.size(12.dp))
+
             PasswordInputFieldComponent (
                 labelValue = stringResource(id = R.string.login_password),
-                placeholderValue = stringResource(id = R.string.login_password),
                 value = viewModel.password,
                 onValueChange = { password -> viewModel.updatePassword(password) }
             )

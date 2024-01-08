@@ -12,12 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.automobile.components.BottomNavigationBar
+import com.example.automobile.components.DropdownInputComponent
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
-fun NotificationsScreen(navController: NavController) {
+fun AppSettingsScreen(navController: NavController) {
     Surface {
         Surface (modifier = Modifier
             .fillMaxSize()
@@ -36,7 +37,9 @@ fun NotificationsScreen(navController: NavController) {
                         .fillMaxHeight()
                         .padding(30.dp, 0.dp),
                 ) {
-                    H2TextComponent(value = "Notifications Screen")
+                    H2TextComponent(value = "App settings")
+
+                    DropdownInputComponent()
                 }
             }
 

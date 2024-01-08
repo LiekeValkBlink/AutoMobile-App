@@ -1,16 +1,15 @@
 package com.example.automobile.components
 
-import android.service.autofill.DateTransformation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +17,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -37,8 +39,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.PopupProperties
 import com.example.automobile.R
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.InputBackgroundColor
@@ -47,71 +51,8 @@ import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
-@Composable
-fun SmallTextInputFieldComponent(
-    labelValue: String = "",
-    placeholderValue: String = "",
-    value: String? = null,
-    onValueChange: ((String) -> Unit)? = null) {
 
-    val text = remember {
-        mutableStateOf("")
-    }
-
-    Text(
-        text = labelValue,
-        style = TextStyle(
-            fontSize = 12.sp,
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            color = White,
-        )
-    )
-
-    Spacer(modifier = Modifier.size(2.dp))
-
-    BasicTextField(
-        value = value ?: text.value,
-        onValueChange = onValueChange ?: {
-            text.value = it
-        },
-        enabled = true,
-        readOnly = false,
-        modifier = Modifier
-            .fillMaxWidth(),
-        textStyle = TextStyle(
-            fontSize = 14.sp,
-            fontFamily = fontFamily,
-            fontWeight = FontWeight.Medium,
-            color = White
-        ),
-        decorationBox = { innerTextField ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = InputBackgroundColor,
-                        shape = RoundedCornerShape(size = 4.dp)
-                    )
-                    .padding(14.dp, 14.dp, 14.dp, 12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
-                    Text(
-                        text = placeholderValue,
-                        fontSize = 14.sp,
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.Medium,
-                        color = LightGrey
-                    )
-                }
-
-                innerTextField()
-            }
-        }
-    )
-}
-
+// Creates a simple text input field
 @Composable
 fun TextInputFieldComponent(
     labelValue: String = "",
@@ -175,8 +116,11 @@ fun TextInputFieldComponent(
             }
         }
     )
+
+    Spacer(modifier = Modifier.size(12.dp))
 }
 
+// Creates a password input field
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordInputFieldComponent(
@@ -264,8 +208,12 @@ fun PasswordInputFieldComponent(
         visualTransformation = if (passwordVisible.value) VisualTransformation.None else
             PasswordVisualTransformation()
     )
+
+    Spacer(modifier = Modifier.size(12.dp))
 }
-@OptIn(ExperimentalMaterial3Api::class)
+
+
+//Creates a date/time input field
 @Composable
 fun DateTimeInputFieldComponent (
     placeholder: String,
@@ -380,7 +328,7 @@ fun InputTextFieldWithIconComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(14.dp, 17.dp, 14.dp, 14.dp),
+                    .padding(14.dp, 18.dp, 14.dp, 10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -407,5 +355,3 @@ fun InputTextFieldWithIconComponent(
         }
     )
 }
-
-

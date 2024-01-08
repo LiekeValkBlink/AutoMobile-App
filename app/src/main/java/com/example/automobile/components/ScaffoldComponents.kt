@@ -20,6 +20,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
@@ -74,7 +75,8 @@ fun TopNavigationBar(navController: NavController) {
             .background(BackgroundColor)
             .height(80.dp)
             .padding(20.dp, 10.dp, 20.dp, 0.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ){
         Box {
             if (navController.previousBackStackEntry != null) {
@@ -87,21 +89,31 @@ fun TopNavigationBar(navController: NavController) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBack,
                         contentDescription = "Go back",
-                        modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
+                        modifier = Modifier.offset(y = (-4).dp, x = (0).dp),
                         tint = White
                     )
                 }
             }
+        }
 
-        Column (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        Box {
             Text(
                 text = annotatedString,
                 textAlign = TextAlign.Center
             )
         }
+
+        Box {
+            IconButton(
+                onClick = { navController.navigate("app_settings_screen") }
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Settings,
+                    contentDescription = "Settings",
+                    modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
+                    tint = White
+                )
+            }
         }
     }
 }
