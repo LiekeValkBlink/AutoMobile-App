@@ -45,7 +45,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(30.dp, 0.dp)
+                    .padding(30.dp, 0.dp, 30.dp, 90.dp)
                     .verticalScroll(rememberScrollState()),
             ) {
                 H2TextComponent(
@@ -57,8 +57,11 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_carBrand),
                     placeholderValue = stringResource(id = R.string.carSettings_carBrand),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.carBrand,
+                    onValueChange = { carBrand ->
+                        viewModel.updateCarBrand(carBrand)
+                    }
+
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -66,8 +69,10 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_vehicleType),
                     placeholderValue = stringResource(id = R.string.carSettings_vehicleType),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.vehicleType,
+                    onValueChange = { vehicleType ->
+                        viewModel.updateVehicleType(vehicleType)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -75,8 +80,10 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_licencePlate),
                     placeholderValue = stringResource(id = R.string.carSettings_licencePlate),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.licencePlate,
+                    onValueChange = { licencePlate ->
+                        viewModel.updateLicencePlate(licencePlate)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -84,8 +91,10 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_amountOfPassengers),
                     placeholderValue = stringResource(id = R.string.carSettings_amountOfPassengers),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.amountOfPassengers,
+                    onValueChange = { amountOfPassengers ->
+                        viewModel.updateAmountOfPassengers(amountOfPassengers)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -93,8 +102,32 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_gearboxType),
                     placeholderValue = stringResource(id = R.string.carSettings_gearboxType),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.gearboxType,
+                    onValueChange = { gearboxType ->
+                        viewModel.updateGearboxType(gearboxType)
+                    }
+                )
+
+                Spacer(modifier = Modifier.size(16.dp))
+
+                SmallTextInputFieldComponent(
+                    labelValue = stringResource(id = R.string.carSettings_amountOfDoors),
+                    placeholderValue = stringResource(id = R.string.carSettings_amountOfDoors),
+                    value = viewModel.amountOfDoors,
+                    onValueChange = { amountOfDoors ->
+                        viewModel.updateAmountOfDoors(amountOfDoors)
+                    }
+                )
+
+                Spacer(modifier = Modifier.size(16.dp))
+
+                SmallTextInputFieldComponent(
+                    labelValue = stringResource(id = R.string.carSettings_gpsAvailable),
+                    placeholderValue = stringResource(id = R.string.carSettings_gpsAvailable),
+                    value = viewModel.gpsAvailable,
+                    onValueChange = { gpsAvailable ->
+                        viewModel.updateGpsAvailable(gpsAvailable)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
@@ -102,15 +135,23 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 SmallTextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_carPriceAmount),
                     placeholderValue = stringResource(id = R.string.carSettings_carPriceAmount),
-                    value = null,
-                    onValueChange = {}
+                    value = viewModel.carPriceAmount,
+                    onValueChange = { carPriceAmount ->
+                        viewModel.updateCarPriceAmount(carPriceAmount)
+                    }
                 )
 
                 Spacer(modifier = Modifier.size(16.dp))
 
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.carSettings_btn),
-                    route = { }
+                    route = {
+                        viewModel.submit(callback = { success ->
+                            if (success) {
+                                navController.navigate("profile_screen")
+                            }
+                        })
+                    }
                 )
             }
         }

@@ -49,7 +49,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(30.dp, 0.dp),
+                    .padding(30.dp, 0.dp, 30.dp, 90.dp),
             ) {
                 H2TextComponent(value = stringResource(id = R.string.profile))
                 ProfileComponent(
@@ -57,12 +57,16 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                     username = account?.email ?: "",
                     email = account?.email ?: ""
                 )
+
                 SmallPrimaryButtonComponent(
                     value = stringResource(id = R.string.profile_complete_profile),
                     route = { navController.navigate("profile_settings_screen") }
                 )
+
                 Spacer(modifier = Modifier.size(40.dp))
+
                 H2TextComponent(value = stringResource(id = R.string.profile_your_cars))
+
                 Spacer(modifier = Modifier.size(12.dp))
                 for (car in viewModel.cars) {
                     CarComponent(
@@ -75,6 +79,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                         isOwnCar = true
                     )
                 }
+
                 SmallPrimaryButtonComponent(
                     value = stringResource(id = R.string.profile_add_car),
                     route = { navController.navigate("car_settings_screen") }

@@ -63,5 +63,7 @@
     <string name="carSettings_licencePlate">Licence plate</string>
     <string name="carSettings_carPriceAmount">Car price per hour</string>
     <string name="carSettings_btn">Add car</string>
+    <string name="carSettings_gpsAvailable">Is there a gps available?</string>
+    <string name="carSettings_amountOfDoors">How many doors?</string>
 
 </resources>

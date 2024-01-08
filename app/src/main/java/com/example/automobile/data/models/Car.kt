@@ -30,5 +30,29 @@ data class Car(
     @Json(name = "carPriceCurrency")
     var carPriceCurrency: String,
     @Json(name = "userProfileID")
+    val userProfileID: Int,
+)
+
+@JsonClass(generateAdapter = true)
+data class NewCar(
+    @Json(name = "licencePlate")
+    var licencePlate: String,
+    @Json(name = "carBrand")
+    var carBrand: String,
+    @Json(name = "vehicleType")
+    var vehicleType: String,
+    @Json(name = "amountOfPassengers")
+    var amountOfPassengers: Int,
+    @Json(name = "amountOfDoors")
+    var amountOfDoors: Int,
+    @Json(name = "automatic")
+    var automatic: Boolean,
+    @Json(name = "gpsAvailable")
+    var gpsAvailable: Boolean,
+    @Json(name = "carPriceAmount")
+    var carPriceAmount: Double,
+    @Json(name = "carPriceCurrency")
+    var carPriceCurrency: String,
+    @Json(name = "userProfileID")
     var userProfileID: Int,
 )
