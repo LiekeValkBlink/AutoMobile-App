@@ -6,24 +6,24 @@ import kotlin.random.Random
 
 data class Location(val latitude: Double, val longitude: Double)
 
-fun generateDummyData(numWithin2_5km: Int, numBetween2_5And10km: Int, centerLocation: Location): List<CarLocation> {
+fun generateDummyData(numWithin1km: Int, numBetween2: Int, centerLocation: Location): List<CarLocation> {
     val dummyData = mutableListOf<CarLocation>()
 
     // Genereren van 5 locaties binnen 5 km van het centrum
-    repeat(numWithin2_5km) {
-        val latOffset = randomUniform(-0.0225, 0.0225)
-        val lonOffset = randomUniform(-0.0225, 0.0225)
-        val location = CarLocation(null, "", centerLocation.latitude + latOffset, centerLocation.longitude + lonOffset)
+    repeat(numWithin1km) {
+        val latOffset = randomUniform(-0.009, 0.009)
+        val lonOffset = randomUniform(-0.009, 0.009)
+        val location = CarLocation(null, "", centerLocation.latitude + latOffset, centerLocation.longitude + lonOffset, null)
         dummyData.add(location)
     }
 
     // Genereren van 15 locaties tussen 5 en 15 km van het centrum
-    repeat(numBetween2_5And10km) {
-        val distance = randomUniform(2.5, 10.0)
+    repeat(numBetween2) {
+        val distance = randomUniform(5.0, 15.0)
         val angle = randomUniform(0.0, 360.0)
         val latOffset = distance * 0.008983 * sin(Math.toRadians(angle))
         val lonOffset = distance * 0.008983 * cos(Math.toRadians(angle))
-        val location = CarLocation(null, "", centerLocation.latitude + latOffset, centerLocation.longitude + lonOffset)
+        val location = CarLocation(null, "", centerLocation.latitude + latOffset, centerLocation.longitude + lonOffset, null)
         dummyData.add(location)
     }
 
