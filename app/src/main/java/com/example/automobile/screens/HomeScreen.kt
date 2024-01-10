@@ -65,8 +65,6 @@ fun HomeScreen(navController: NavController) {
                         leadingIcon = Icons.Filled.Search
                     )
 
-                    Spacer(modifier = Modifier.size(18.dp))
-
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.home_search),
                         route = { TODO() }
