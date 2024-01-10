@@ -75,8 +75,7 @@ fun TopNavigationBar(navController: NavController) {
             .background(BackgroundColor)
             .height(80.dp)
             .padding(20.dp, 10.dp, 20.dp, 0.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        verticalAlignment = Alignment.CenterVertically
     ){
         Box {
             if (navController.previousBackStackEntry != null) {
@@ -96,24 +95,14 @@ fun TopNavigationBar(navController: NavController) {
             }
         }
 
-        Box {
+        Column (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             Text(
                 text = annotatedString,
                 textAlign = TextAlign.Center
             )
-        }
-
-        Box {
-            IconButton(
-                onClick = { navController.navigate("app_settings_screen") }
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.Settings,
-                    contentDescription = "Settings",
-                    modifier = Modifier.offset(y=(-4).dp, x=(0).dp),
-                    tint = White
-                )
-            }
         }
     }
 }
