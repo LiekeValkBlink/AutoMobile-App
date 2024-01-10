@@ -34,6 +34,7 @@ import androidx.compose.ui.text.withStyle
 import com.example.automobile.ui.theme.InputBackgroundColor
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.MediumGrey
 import com.example.automobile.ui.theme.PrimaryColor
@@ -50,7 +51,9 @@ fun CarComponent(
     amountOfPassengers: Int,
     gearboxType: String,
     price: Double,
-    isOwnCar: Boolean = false
+    isOwnCar: Boolean = false,
+    carId: Int? = null,
+    navController: NavController? = null
     ) {
 
     val annotatedString = buildAnnotatedString {
@@ -109,7 +112,11 @@ fun CarComponent(
 
             if (isOwnCar) {
                 IconButton(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        if (navController != null && carId != null) {
+                            navController.navigate("car_settings_screen/${carId}")
+                        }
+                    },
                     modifier = Modifier
                         .background(
                             MediumGrey,
@@ -127,7 +134,7 @@ fun CarComponent(
                 }
             } else {
                 IconButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { },
                     modifier = Modifier
                         .background(
                             MediumGrey,

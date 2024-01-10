@@ -23,10 +23,11 @@ import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
-fun PrimaryButtonComponent(value: String, route: () -> Unit) {
+fun PrimaryButtonComponent(value: String, route: () -> Unit, enabled: Boolean = true) {
     Spacer(modifier = Modifier.size(32.dp))
 
     Button(
+        enabled = enabled,
         onClick = route,
         modifier = Modifier
             .fillMaxWidth()
@@ -50,32 +51,11 @@ fun PrimaryButtonComponent(value: String, route: () -> Unit) {
 }
 
 @Composable
-fun SmallPrimaryButtonComponent(value: String, route: () -> Unit) {
-    Button(
-        onClick = route,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(BackgroundColor)
-            .height(height = 60.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = PrimaryColor,
-            contentColor = White),
-
-        ) {
-        Text(
-            text = value,
-            textAlign = TextAlign.Center,
-            fontFamily = fontFamily,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(top = 6.dp)
-        )
-    }
-}
-
-@Composable
-fun SecondaryButtonComponent(value: String, route: () -> Unit) {
+fun SecondaryButtonComponent(
+    value: String,
+    route: () -> Unit,
+    color: Color
+) {
     Button(
         onClick = route,
         modifier = Modifier
@@ -84,8 +64,8 @@ fun SecondaryButtonComponent(value: String, route: () -> Unit) {
             .height(height = 60.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = BackgroundColor,
-            contentColor = PrimaryColor),
-        border = BorderStroke(2.dp, PrimaryColor)
+            contentColor = color),
+        border = BorderStroke(2.dp, color)
 
         ) {
         Text(

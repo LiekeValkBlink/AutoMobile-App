@@ -39,11 +39,11 @@ import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.H2TextComponent
 import com.example.automobile.components.H3TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
-import com.example.automobile.components.ProfileComponent
+import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TextComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.Red
 
 @Composable
 fun CarDetailsScreen(navController: NavController, viewModel: CarDetailsViewModel) {
@@ -176,6 +176,13 @@ fun CarDetailsScreen(navController: NavController, viewModel: CarDetailsViewMode
                     value = stringResource(id = R.string.carDetails_btn),
                     route = { TODO() }
                 )
+
+                Spacer(modifier = Modifier.size(16.dp))
+
+                SecondaryButtonComponent(
+                    value = stringResource(id = R.string.carDetails_secondary_btn),
+                    route = { /*TODO*/ },
+                    color = Red)
             }
         }
 

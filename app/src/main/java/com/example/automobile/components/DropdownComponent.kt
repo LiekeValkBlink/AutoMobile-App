@@ -31,10 +31,12 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.automobile.R
 import com.example.automobile.ui.theme.InputBackgroundColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
@@ -42,11 +44,11 @@ import com.example.automobile.ui.theme.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropdownInputComponent() {
+fun DropdownInputComponent(options: Map<String, String>, defaultKey: String? = null, onChange: ((option: Map.Entry<String, String>?) -> Unit)? = null) {
     val context = LocalContext.current
-    val coffeeDrinks = arrayOf("English", "Dutch")
+    val options = options
+    var selectedOption by remember { mutableStateOf(if (options[defaultKey] != null) defaultKey else null) }
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(coffeeDrinks[0]) }
 
     Text(
         text = "Language",
@@ -69,7 +71,7 @@ fun DropdownInputComponent() {
             }
         ) {
             TextField(
-                value = selectedText,
+                value = options[selectedOption] ?: "",
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -84,7 +86,6 @@ fun DropdownInputComponent() {
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = InputBackgroundColor,
                     focusedIndicatorColor = InputBackgroundColor,
-                    textColor = White,
                     cursorColor = White,
                     unfocusedIndicatorColor = InputBackgroundColor
                 ),
@@ -92,6 +93,7 @@ fun DropdownInputComponent() {
                     fontFamily = fontFamily,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
+                    color = White
                 ),
             )
 
@@ -99,13 +101,14 @@ fun DropdownInputComponent() {
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                coffeeDrinks.forEach { item ->
+                options.forEach { item ->
                     DropdownMenuItem(
-                        text = { Text(text = item) },
+                        text = { Text(text = item.value) },
                         onClick = {
-                            selectedText = item
+                            selectedOption = item.key
                             expanded = false
-                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, item.value, Toast.LENGTH_SHORT).show()
+                            onChange?.invoke(item)
                         }
                     )
                 }

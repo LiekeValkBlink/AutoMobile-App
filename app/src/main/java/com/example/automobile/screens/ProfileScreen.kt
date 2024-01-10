@@ -23,9 +23,8 @@ import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H2TextComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
+import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.ProfileComponent
-import com.example.automobile.components.TextComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 
@@ -59,7 +58,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                     email = account?.email ?: ""
                 )
 
-                SmallPrimaryButtonComponent(
+                PrimaryButtonComponent(
                     value = stringResource(id = R.string.profile_complete_profile),
                     route = { navController.navigate("profile_settings_screen") }
                 )
@@ -70,17 +69,19 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
 
                 for (car in viewModel.cars) {
                     CarComponent(
+                        carId = car.id,
                         carBrand = car.carBrand + " " + car.vehicleType,
                         licencePlate = car.licencePlate,
                         image = painterResource(id = R.drawable.car_placeholder),
                         amountOfPassengers = car.amountOfPassengers,
                         gearboxType = if (car.automatic) "Automatic" else "Manual",
                         price = car.carPriceAmount,
-                        isOwnCar = true
+                        isOwnCar = true,
+                        navController = navController
                     )
                 }
 
-                SmallPrimaryButtonComponent(
+                PrimaryButtonComponent(
                     value = stringResource(id = R.string.profile_add_car),
                     route = { navController.navigate("car_settings_screen") }
                 )

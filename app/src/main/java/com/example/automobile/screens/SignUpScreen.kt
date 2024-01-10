@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -63,6 +64,7 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
                 Column {
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.signUp_submit),
+                        enabled = !viewModel.formHasErrors,
                         route = {
                             viewModel.submit()
                         }
@@ -91,13 +93,25 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
                 labelValue = stringResource(id = R.string.signUp_email_label),
                 placeholderValue = stringResource(id = R.string.signUp_email_placeholder),
                 value = viewModel.email,
-                onValueChange = { email -> viewModel.updateEmail(email) }
+                onValueChange = { email ->
+                    viewModel.updateEmail(email)
+                    viewModel.validateEmail()
+                }
             )
+
+            if (viewModel.emailError != null) {
+                Text(
+                    text = stringResource(id = viewModel.emailError!!)
+                )
+            }
 
             PasswordInputFieldComponent(
                 labelValue = stringResource(id = R.string.signUp_password),
                 value = viewModel.password,
-                onValueChange = { password -> viewModel.updatePassword(password) }
+                onValueChange = { password ->
+                    viewModel.updatePassword(password)
+                    viewModel.validatePassword()
+                }
             )
 
             PasswordInputFieldComponent(

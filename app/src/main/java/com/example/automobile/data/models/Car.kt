@@ -30,7 +30,7 @@ data class Car(
     @Json(name = "carPriceCurrency")
     var carPriceCurrency: String,
     @Json(name = "userProfileID")
-    val userProfileID: Int,
+    var userProfileID: Int,
 )
 
 @JsonClass(generateAdapter = true)
