@@ -41,11 +41,14 @@ import androidx.compose.ui.unit.sp
 import com.example.automobile.R
 import com.example.automobile.ui.theme.InputBackgroundColor
 import com.example.automobile.ui.theme.LightGrey
+import com.example.automobile.ui.theme.PrimaryColor
+import com.example.automobile.ui.theme.Red
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 
 // Creates a simple text input field
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextInputFieldComponent(
     labelValue: String = "",
@@ -69,46 +72,39 @@ fun TextInputFieldComponent(
 
     Spacer(modifier = Modifier.size(2.dp))
 
-    BasicTextField(
+    TextField(
         value = value ?: text.value,
         onValueChange = onValueChange ?: {
             text.value = it
         },
         enabled = true,
         readOnly = false,
+        placeholder = {
+            Text(
+                text = placeholderValue,
+                color = LightGrey,
+                fontFamily = fontFamily)
+        },
         modifier = Modifier
-            .fillMaxWidth(),
-        textStyle = TextStyle(
-            fontSize = 16.sp,
+            .fillMaxWidth()
+            .background(
+                color = InputBackgroundColor,
+                shape = RoundedCornerShape(size = 4.dp)
+            ),
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = InputBackgroundColor,
+            focusedIndicatorColor = PrimaryColor,
+            cursorColor = White,
+            unfocusedIndicatorColor = InputBackgroundColor,
+            errorLabelColor = Red
+        ),
+        textStyle = TextStyle (
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
+            fontSize = 17.sp,
             color = White
         ),
-        decorationBox = { innerTextField ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = InputBackgroundColor,
-                        shape = RoundedCornerShape(size = 4.dp)
-                    )
-                    .padding(16.dp, 15.dp, 16.dp, 13.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (text.value.isNullOrEmpty() && value.isNullOrEmpty()) {
-                    Text(
-                        text = placeholderValue,
-                        fontSize = 16.sp,
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.Medium,
-                        color = LightGrey
-                    )
-                }
-
-                innerTextField()
-            }
-        }
-    )
+        )
 
     Spacer(modifier = Modifier.size(12.dp))
 }
@@ -156,20 +152,20 @@ fun PasswordInputFieldComponent(
 
         modifier = Modifier
             .fillMaxWidth()
-            .height(height = 55.dp)
             .background(
                 color = InputBackgroundColor,
-                shape = RoundedCornerShape(size = 4.dp)),
+                shape = RoundedCornerShape(size = 4.dp)
+            ),
         colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
-            focusedIndicatorColor = InputBackgroundColor,
+            focusedIndicatorColor = PrimaryColor,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor
         ),
         textStyle = TextStyle (
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
-            fontSize = 16.sp,
+            fontSize = 17.sp,
             color = White
         ),
 
