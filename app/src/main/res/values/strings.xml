@@ -75,5 +75,14 @@
     <string name="dateTimeComponent_pickUpDate_placeholder">00-00-0000</string>
     <string name="dateTimeComponent_pickUpTime_label">Pick up time</string>
     <string name="dateTimeComponent_pickUpTime_placeholder">00:00</string>
+    <string name="carDetails_secondary_btn">Remove car</string>
+    <string name="validation_email_empty">Enter an e-mail address</string>
+    <string name="validation_email_invalid">Enter a valid e-mail address</string>
+    <string name="validation_password_empty">Enter a password</string>
+    <string name="carSettings_btn_edit">Edit car</string>
+    <string name="carSettings_heading_edit">Edit your car</string>
+    <string name="carSetting_secondary_btn">Remove car</string>
+    <string name="choose_language">Choose your language</string>
+    <string name="pick_an_option">Pick an option</string>
 
 </resources>

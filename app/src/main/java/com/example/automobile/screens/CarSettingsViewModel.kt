@@ -14,8 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
+class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
     var loading by mutableStateOf(false)
+
+    private var userProfileId by mutableStateOf<Int?>(null)
 
     var carBrand by mutableStateOf("")
         private set
@@ -39,9 +41,6 @@ class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
         private set
 
     var gpsAvailable by mutableStateOf("")
-        private set
-
-    var carPriceCurrency by mutableStateOf("")
         private set
 
     fun updateCarBrand(input: String) {
@@ -76,10 +75,6 @@ class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
         gpsAvailable = input
     }
 
-    fun updateCarPriceCurrency(input: String) {
-        carPriceCurrency = input
-    }
-
     init {
         getData()
     }
@@ -87,7 +82,27 @@ class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
     private fun getData() {
         loading = true
 
+        if (carId == null || carId < 0) {
+            return
+        }
+
         viewModelScope.launch {
+            val car = viewModelScope.async(Dispatchers.IO) {
+                CarRepository.getCar(carId)
+            }.await()
+
+            if (car != null) {
+                carBrand = car.carBrand
+                vehicleType = car.vehicleType
+                licencePlate = car.licencePlate
+                amountOfPassengers = car.amountOfPassengers.toString()
+                gearboxType = if (car.automatic) "Automatic" else "Manual"
+                carPriceAmount = car.carPriceAmount.toString()
+                amountOfDoors = car.amountOfDoors.toString()
+                gpsAvailable = if (car.gpsAvailable) "Available" else "Not available"
+                userProfileId = car.userProfileID
+            }
+
             loading = false
         }
     }
@@ -97,6 +112,43 @@ class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
 
         var success = false
 
+        viewModelScope.launch {
+            if (carId == null || carId < 0) {
+                success = submitNewCar()
+            } else {
+                success = submitCarUpdate()
+            }
+
+            if (callback != null) {
+                callback(success)
+            }
+
+            loading = false
+        }
+    }
+
+    fun removeCar(callback: ((success: Boolean) -> Unit?)? = null) {
+        loading = true
+
+        var success = false
+
+        viewModelScope.launch {
+            if (carId == null || carId < 0) {
+                callback?.invoke(false)
+                return@launch
+            }
+
+            success = viewModelScope.async(Dispatchers.IO) {
+                CarRepository.removeCar(carId)
+            }.await()
+
+            callback?.invoke(success)
+
+            loading = false
+        }
+    }
+
+    private suspend fun submitNewCar(): Boolean {
         val car = NewCar(
             carBrand = carBrand,
             amountOfPassengers = amountOfPassengers.toInt(),
@@ -110,16 +162,28 @@ class CarSettingsViewModel(carId: Int? = null) : ViewModel() {
             userProfileID = -1
         )
 
-        viewModelScope.launch {
-            success = viewModelScope.async(Dispatchers.IO) {
-                CarRepository.postCar(car)
-            }.await()
+        return viewModelScope.async(Dispatchers.IO) {
+            CarRepository.postCar(car)
+        }.await()
+    }
 
-            if (callback != null) {
-                callback(success)
-            }
+    private suspend fun submitCarUpdate(): Boolean {
+        val car = Car(
+            id = carId!!,
+            carBrand = carBrand,
+            amountOfPassengers = amountOfPassengers.toInt(),
+            licencePlate = licencePlate,
+            vehicleType = vehicleType,
+            automatic = gearboxType == "Automatic",
+            carPriceAmount = carPriceAmount.toDouble(),
+            amountOfDoors = amountOfDoors.toInt(),
+            gpsAvailable = gpsAvailable == "Available",
+            carPriceCurrency = "EUR",
+            userProfileID = userProfileId ?: -1
+        )
 
-            loading = false
-        }
+        return viewModelScope.async(Dispatchers.IO) {
+            CarRepository.updateCar(car)
+        }.await()
     }
 }

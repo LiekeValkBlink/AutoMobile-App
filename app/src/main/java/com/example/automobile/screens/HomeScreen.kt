@@ -32,9 +32,7 @@ import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H3TextComponent
 import com.example.automobile.components.PrimaryButtonComponent
-import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
-import com.example.automobile.components.SmallPrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
@@ -69,7 +67,7 @@ fun HomeScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.size(18.dp))
 
-                    SmallPrimaryButtonComponent(
+                    PrimaryButtonComponent(
                         value = stringResource(id = R.string.home_search),
                         route = { TODO() }
                     )

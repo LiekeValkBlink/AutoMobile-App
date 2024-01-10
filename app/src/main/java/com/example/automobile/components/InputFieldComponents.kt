@@ -17,37 +17,30 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.PopupProperties
 import com.example.automobile.R
-import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.InputBackgroundColor
 import com.example.automobile.ui.theme.LightGrey
-import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
@@ -167,10 +160,9 @@ fun PasswordInputFieldComponent(
             .background(
                 color = InputBackgroundColor,
                 shape = RoundedCornerShape(size = 4.dp)),
-            colors = TextFieldDefaults.textFieldColors(
+        colors = TextFieldDefaults.textFieldColors(
             containerColor = InputBackgroundColor,
             focusedIndicatorColor = InputBackgroundColor,
-            textColor = White,
             cursorColor = White,
             unfocusedIndicatorColor = InputBackgroundColor
         ),
@@ -178,6 +170,7 @@ fun PasswordInputFieldComponent(
             fontFamily = fontFamily,
             fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
+            color = White
         ),
 
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -328,7 +321,7 @@ fun InputTextFieldWithIconComponent(
                         color = InputBackgroundColor,
                         shape = RoundedCornerShape(size = 4.dp)
                     )
-                    .padding(14.dp, 18.dp, 14.dp, 10.dp),
+                    .padding(16.dp, 15.dp, 16.dp, 13.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(

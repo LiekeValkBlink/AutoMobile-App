@@ -34,6 +34,7 @@ import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
@@ -79,6 +80,7 @@ fun StartScreen(navController: NavController) {
                     SecondaryButtonComponent(
                         value = stringResource(id = R.string.start_login),
                         route = { navController.navigate(route = "login_screen") },
+                        color = PrimaryColor
                     )
                 }
             }

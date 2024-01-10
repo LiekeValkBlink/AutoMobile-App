@@ -1,5 +1,7 @@
 package com.example.automobile.screens
 
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,9 +9,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavController
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.DropdownInputComponent
@@ -19,6 +23,8 @@ import com.example.automobile.ui.theme.BackgroundColor
 
 @Composable
 fun AppSettingsScreen(navController: NavController) {
+    var currentLanguage = AppCompatDelegate.getApplicationLocales()[0]?.toLanguageTag()
+
     Surface {
         Surface (modifier = Modifier
             .fillMaxSize()
@@ -39,7 +45,16 @@ fun AppSettingsScreen(navController: NavController) {
                 ) {
                     H2TextComponent(value = "App settings")
 
-                    DropdownInputComponent()
+                    DropdownInputComponent(options = mapOf(
+                        "nl" to "Nederlands",
+                        "en" to "English"
+                    ), currentLanguage
+                    ) { selectedOption ->
+                        if (selectedOption != null) {
+                            val appLocale = LocaleListCompat.forLanguageTags("nl")
+                            AppCompatDelegate.setApplicationLocales(appLocale)
+                        }
+                    }
                 }
             }
 

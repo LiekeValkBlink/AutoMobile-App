@@ -29,4 +29,34 @@ object CarRepository {
 
         return response != null && response.success && response.data != null
     }
+
+    fun updateCar(car: Car): Boolean {
+        val account = AccountRepository.getAccount() ?: return false
+
+        if (account.userProfileID == null) {
+            return false
+        }
+
+        car.userProfileID = account.userProfileID
+
+        val response = ApiClient.carService.updateCar(car.id, car).execute().body()
+
+        return response != null && response.success && response.data != null
+    }
+
+    fun getCar(carId: Int): Car? {
+        val carResponse = ApiClient.carService.getCar(carId).execute().body()
+
+        if (carResponse != null && carResponse.success && carResponse.data != null) {
+            return carResponse.data
+        }
+
+        return null
+    }
+
+    fun removeCar(carId: Int): Boolean {
+        val response = ApiClient.carService.removeCar(carId).execute().body()
+
+        return response != null && response.success
+    }
 }

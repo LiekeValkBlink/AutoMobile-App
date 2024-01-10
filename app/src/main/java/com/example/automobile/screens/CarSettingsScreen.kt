@@ -25,7 +25,9 @@ import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.R
 import com.example.automobile.components.DropdownInputComponent
 import com.example.automobile.components.PrimaryButtonComponent
+import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
+import com.example.automobile.ui.theme.Red
 
 @Composable
 fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewModel) {
@@ -49,7 +51,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     .verticalScroll(rememberScrollState()),
             ) {
                 H2TextComponent(
-                    value = stringResource(id = R.string.carSettings_heading)
+                    value = if (viewModel.carId != null) stringResource(id = R.string.carSettings_heading_edit) else stringResource(id = R.string.carSettings_heading)
                 )
 
                 TextInputFieldComponent(
@@ -116,8 +118,6 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     }
                 )
 
-                DropdownInputComponent()
-
                 TextInputFieldComponent(
                     labelValue = stringResource(id = R.string.carSettings_carPriceAmount),
                     placeholderValue = stringResource(id = R.string.carSettings_carPriceAmount),
@@ -128,7 +128,9 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                 )
 
                 PrimaryButtonComponent(
-                    value = stringResource(id = R.string.carSettings_btn),
+                    value = if (viewModel.carId == null) stringResource(id = R.string.carSettings_btn) else stringResource(
+                        id = R.string.carSettings_btn_edit
+                    ),
                     route = {
                         viewModel.submit(callback = { success ->
                             if (success) {
@@ -137,6 +139,21 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                         })
                     }
                 )
+
+                Spacer(modifier = Modifier.size(24.dp))
+
+                if (viewModel.carId != null && viewModel.carId >= 0) {
+                    SecondaryButtonComponent(
+                        value = stringResource(id = R.string.carSetting_secondary_btn),
+                        route = {
+                            viewModel.removeCar(callback = { success ->
+                                if (success) {
+                                    navController.navigate("profile_screen")
+                                }
+                            })
+                        },
+                        color = Red )
+                }
             }
         }
 
