@@ -68,7 +68,6 @@ fun TopNavigationBar(navController: NavController) {
             append("Mobile")
         }
     }
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,16 +92,16 @@ fun TopNavigationBar(navController: NavController) {
                     )
                 }
             }
-        }
 
-        Column (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Text(
-                text = annotatedString,
-                textAlign = TextAlign.Center
-            )
+            Column (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(
+                    text = annotatedString,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }

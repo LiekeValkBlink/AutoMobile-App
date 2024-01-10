@@ -67,6 +67,11 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
 
                 H2TextComponent(value = stringResource(id = R.string.profile_your_cars))
 
+                PrimaryButtonComponent(
+                    value = stringResource(id = R.string.profile_add_car),
+                    route = { navController.navigate("car_settings_screen") }
+                )
+
                 for (car in viewModel.cars) {
                     CarComponent(
                         carId = car.id,
@@ -80,11 +85,6 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                         navController = navController
                     )
                 }
-
-                PrimaryButtonComponent(
-                    value = stringResource(id = R.string.profile_add_car),
-                    route = { navController.navigate("car_settings_screen") }
-                )
             }
         }
 
