@@ -18,6 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.ui.theme.InputBackgroundColor
+import com.example.automobile.ui.theme.LightGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
@@ -35,7 +37,10 @@ fun PrimaryButtonComponent(value: String, route: () -> Unit, enabled: Boolean = 
             .height(height = 60.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = PrimaryColor,
-            contentColor = White),
+            contentColor = White,
+            disabledContainerColor = InputBackgroundColor,
+            disabledContentColor = LightGrey),
+
 
     ) {
         Text(

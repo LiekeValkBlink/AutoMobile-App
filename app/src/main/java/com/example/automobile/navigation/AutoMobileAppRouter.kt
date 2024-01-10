@@ -6,7 +6,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.automobile.screens.AppSettingsScreen
 import com.example.automobile.screens.CarDetailsScreen
 import com.example.automobile.screens.CarDetailsViewModel
 import com.example.automobile.screens.CarSettingsScreen
@@ -100,11 +99,6 @@ fun Navigation(navController: NavHostController) {
             CarDetailsScreen(
                 navController = navController,
                 viewModel = CarDetailsViewModel()
-            )
-        }
-        composable(route = "app_settings_screen") {
-            AppSettingsScreen(
-                navController = navController
             )
         }
     }
