@@ -69,7 +69,7 @@ fun HomeScreen(navController: NavController) {
 
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.home_search),
-                        route = { TODO() }
+                        route = { navController.navigate(route = "Map_Homescreen") }
                     )
                 }
 
