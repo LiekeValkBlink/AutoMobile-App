@@ -22,7 +22,9 @@ import com.example.automobile.screens.ProfileViewModel
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.SignUpViewModel
 import com.example.automobile.screens.StartScreen
+import com.example.automobile.screens.carscreens.AddNewCarLocation
 import com.example.automobile.screens.carscreens.CarsViewModel
+import com.example.automobile.screens.mapscreens.AddPostalViewModel
 import com.example.automobile.screens.mapscreens.GoogleMapView
 
 @Composable
@@ -100,6 +102,9 @@ fun Navigation(navController: NavHostController) {
                     navController = navController,
                     viewModel = CarSettingsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
                 )
+        }
+        composable(route = "add_postal_screen"){
+            AddNewCarLocation(viewModel = AddPostalViewModel())
         }
 
     }

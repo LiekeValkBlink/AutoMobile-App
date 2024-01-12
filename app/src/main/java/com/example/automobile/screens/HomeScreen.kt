@@ -31,8 +31,8 @@ import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H3TextComponent
-import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
+import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
@@ -69,7 +69,7 @@ fun HomeScreen(navController: NavController) {
 
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.home_search),
-                        route = { navController.navigate(route = "Map_Homescreen") }
+                        route = { navController.navigate(route = "add_postal_screen") }
                     )
                 }
 
