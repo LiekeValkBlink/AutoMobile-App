@@ -29,12 +29,6 @@ class CarsViewModel : ViewModel() {
         getCarLocations()
     }
 
-
-
-    /**
-     * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [MutableList].
-     */
     fun getCarLocations() {
         viewModelScope.launch {
             carsUiState = try {

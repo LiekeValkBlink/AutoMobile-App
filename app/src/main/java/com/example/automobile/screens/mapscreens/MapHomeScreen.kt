@@ -32,12 +32,12 @@ import kotlinx.serialization.Serializable
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.pow
-import kotlin.math.round
 import kotlin.math.sin
 import kotlin.math.sqrt
 
 @Composable
 fun GoogleMapView(
+//    currentLocation: Location,
     modifier: Modifier,
     cameraPositionState: CameraPositionState = rememberCameraPositionState(),
     carsUiState: CarsUiState,
@@ -46,6 +46,7 @@ fun GoogleMapView(
 
     when (carsUiState) {
         is CarsUiState.Success -> HomeMapBody(
+//            currentLocation = currentLocation,
             navController = navController,
             itemList = carsUiState.cars,
             modifier = modifier
@@ -61,6 +62,7 @@ data class Location(val latitude: Double, val longitude: Double)
 
 @Composable
 fun HomeMapBody(
+//    currentLocation: Location,
     itemList: List<CarLocation>,
     modifier: Modifier = Modifier,
     navController: NavController

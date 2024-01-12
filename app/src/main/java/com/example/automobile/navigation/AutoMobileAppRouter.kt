@@ -1,7 +1,6 @@
 package com.example.automobile.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -9,25 +8,22 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.automobile.screens.CarDetailsScreen
-import com.example.automobile.screens.CarDetailsViewModel
 import com.example.automobile.screens.CarSettingsScreen
 import com.example.automobile.screens.CarSettingsViewModel
-import com.example.automobile.screens.LoginScreen
-import com.example.automobile.screens.SignUpScreen
-import com.example.automobile.screens.StartScreen
-import com.example.automobile.screens.HomeScreen
 import com.example.automobile.screens.FavoritesScreen
-import com.example.automobile.screens.MapScreen
+import com.example.automobile.screens.HomeScreen
+import com.example.automobile.screens.LoginScreen
+import com.example.automobile.screens.LoginViewModel
 import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
 import com.example.automobile.screens.ProfileSettingsScreen
 import com.example.automobile.screens.ProfileSettingsViewModel
 import com.example.automobile.screens.ProfileViewModel
+import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.SignUpViewModel
-import com.example.automobile.screens.carscreens.AddNewCarLocation
+import com.example.automobile.screens.StartScreen
 import com.example.automobile.screens.carscreens.CarsViewModel
-import com.example.automobile.screens.mapscreens.*
+import com.example.automobile.screens.mapscreens.GoogleMapView
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -63,7 +59,14 @@ fun Navigation(navController: NavHostController) {
             )
         }
         composable(route = "map_screen") {
-            MapScreen(navController = navController)
+            val carsViewModel:  CarsViewModel = viewModel()
+            val CarsUiState = carsViewModel.carsUiState
+            GoogleMapView(
+//                currentLocation = Location(),
+                modifier = Modifier,
+                carsUiState = CarsUiState,
+                navController = navController,
+            )
         }
         composable(route = "notifications_screen") {
             NotificationsScreen(
