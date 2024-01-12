@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.example.automobile.data.models.Car
 import com.example.automobile.data.models.NewCar
+import com.example.automobile.data.models.Postal
 import com.example.automobile.data.repositories.CarRepository
-import com.example.automobile.data.repositories.RegistrationRepository
+import com.example.automobile.data.services.PostalApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -43,6 +43,9 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
     var gpsAvailable by mutableStateOf("")
         private set
 
+    var postalUiState: String by mutableStateOf("")
+        private set
+
     fun updateCarBrand(input: String) {
         carBrand = input
     }
@@ -73,6 +76,27 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
 
     fun updateGpsAvailable(input: String) {
         gpsAvailable = input
+    }
+
+    fun getPostalInfo() {
+        val postal = "4826NP"
+        val number = "542"
+        viewModelScope.launch {
+            val listResult = PostalApi.retrofitService.getPostal(postal, number )
+            postalUiState = listResult.street
+        }
+    }
+
+    var postalRepository = PostalApi
+    var postalData: Postal? by mutableStateOf(null)
+    fun getPostalData(postcode: String, huisnummer: String){
+        viewModelScope.launch {
+            try {
+                postalData = postalRepository.retrofitService.getPostal(postcode, huisnummer)
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
     }
 
     init {
@@ -186,4 +210,8 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
             CarRepository.updateCar(car)
         }.await()
     }
+
+
+
+
 }
