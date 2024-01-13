@@ -11,17 +11,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
@@ -31,8 +30,11 @@ import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
+import com.example.automobile.data.models.CarLocation
+import com.example.automobile.data.services.CarsApi
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.Red
+import kotlinx.coroutines.launch
 
 @Composable
 fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewModel) {
@@ -156,19 +158,34 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     labelValue = stringResource(id = R.string.number)
                 )
 
-                viewModel.postalData?.let { postal ->
+//                viewModel.postalData?.let { postal ->
+//
+//                    Text(text = "${postal.street} ${postal.house_number}", color = Color.White)
+//                    Text("Latitude: ${postal.latitude}", color = Color.White)
+//                    Text("Longitude: ${postal.longitude}", color = Color.White)
+//
+//                }
 
-                    Text(text = "${postal.street} ${postal.house_number}", color = Color.White)
-                    Text("Latitude: ${postal.latitude}", color = Color.White)
-                    Text("Longitude: ${postal.longitude}", color = Color.White)
-
+                // create postal to save
+                val postal = viewModel.postalData
+                val PostalToSave = postal?.let {
+                    CarLocation(
+                        id = viewModel.carId,
+                        postal = it.postcode,
+                        latitude = postal.latitude,
+                        longitude = postal.longitude,
+                        number = postal.house_number.toString()
+                    )
                 }
 
                 PrimaryButtonComponent(
                     value = if (viewModel.carId == null) stringResource(id = R.string.carSettings_btn) else stringResource(
                         id = R.string.carSettings_btn_edit
                     ),
-                    route = {
+                    route = { viewModel.viewModelScope.launch{if (PostalToSave != null) {
+
+                        CarsApi.retrofitService.savePostal(12, PostalToSave)
+                    }}
                         viewModel.submit(callback = { success ->
                             if (success) {
                                 navController.navigate("profile_screen")

@@ -15,6 +15,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
+
+
+
     var loading by mutableStateOf(false)
 
     private var userProfileId by mutableStateOf<Int?>(null)
@@ -46,6 +49,9 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
     var postalUiState: String by mutableStateOf("")
         private set
 
+    var postal by mutableStateOf("")
+
+    var number by mutableStateOf("")
     fun updateCarBrand(input: String) {
         carBrand = input
     }
@@ -109,11 +115,28 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
         if (carId == null || carId < 0) {
             return
         }
+//
+//        var carLocation: CarLocation
+//
+//        viewModelScope.launch{
+//            val carLocation = viewModelScope.async (Dispatchers.IO){
+//                CarsApi.retrofitService.getLocation(id = carId)
+//
+//            }.await()
+//           if(carLocation != null){
+//               postal = carLocation.postal
+//               number = carLocation.number.toString()
+//           }
+//        }
+
 
         viewModelScope.launch {
             val car = viewModelScope.async(Dispatchers.IO) {
                 CarRepository.getCar(carId)
+
             }.await()
+
+
 
             if (car != null) {
                 carBrand = car.carBrand

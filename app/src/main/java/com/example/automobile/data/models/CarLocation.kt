@@ -1,7 +1,6 @@
 package com.example.automobile.data.models
 
 import kotlinx.serialization.Serializable
-import kotlin.math.*
 
 @Serializable
 data class CarLocation(
@@ -14,3 +13,9 @@ data class CarLocation(
 
 @Serializable
 data class Location(val latitude: Double, val longitude: Double)
+
+@Serializable
+data class SaveCarLocationResponse(
+    val success: Boolean,
+    val data: String?
+)

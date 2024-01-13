@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.automobile.data.models.CarLocation
 import com.example.automobile.data.models.Postal
+import com.example.automobile.data.services.CarsApi
 import com.example.automobile.data.services.PostalApi
 import kotlinx.coroutines.launch
 
@@ -43,7 +45,10 @@ class AddPostalViewModel: ViewModel() {
         }
     }
 
-    fun SavePostal(postal: Postal){
+    fun savePostal(id : Int, postal: CarLocation){
+        viewModelScope.launch {
+            CarsApi.retrofitService.savePostal(id, postal)
+        }
 
     }
 }

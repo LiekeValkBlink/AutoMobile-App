@@ -21,15 +21,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
+import com.example.automobile.data.models.CarLocation
+import com.example.automobile.data.services.CarsApi
 import com.example.automobile.navigation.Navigation
 import com.example.automobile.screens.mapscreens.AddPostalViewModel
 import com.example.automobile.ui.theme.BackgroundColor
+import kotlinx.coroutines.launch
 
 @Composable
 fun AddNewCarLocation(viewModel: AddPostalViewModel) {
@@ -104,12 +108,30 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel) {
                 }
                 Spacer(modifier = Modifier.size(12.dp))
 
+                // create postal to save
+                val postal = viewModel.postalData
+                val PostalToSave = postal?.let {
+                    CarLocation(
+                        id = 22,
+                        postal = it.postcode,
+                        latitude = postal.latitude,
+                        longitude = postal.longitude,
+                        number = postal.house_number.toString()
+                    )
+                }
+
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.save_postal_btn),
                     // de route wordt de save functie
 
-                    route = { viewModel.postalData?.let { viewModel.SavePostal(it) }
-                        navController.navigate(route = "home_screen") },
+                    route = {
+                        viewModel.viewModelScope.launch{if (PostalToSave != null) {
+
+                            CarsApi.retrofitService.savePostal(12, PostalToSave)
+                        }}
+
+                        navController.navigate(route = "home_screen")
+                    },
                 )
                 Spacer(modifier = Modifier.size(50.dp))
             }
