@@ -5,12 +5,14 @@ import com.example.automobile.data.interceptors.auth.AuthInterceptor
 import com.example.automobile.data.services.AccountService
 import com.example.automobile.data.services.AuthenticationService
 import com.example.automobile.data.services.CarService
+import com.example.automobile.data.services.HomeScreenService
 import com.example.automobile.data.services.ProfileService
 import com.example.automobile.data.services.RegistrationService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 /**
  * ApiClient contains singleton Retrofit2 clients and services for making HTTP calls to the back-end API.
@@ -52,4 +54,5 @@ object ApiClient {
     val accountService = retrofit.create(AccountService::class.java)
     val profileService = retrofit.create(ProfileService::class.java)
     val carService = retrofit.create(CarService::class.java)
+    val homeScreenService = retrofit.create(HomeScreenService::class.java)
 }

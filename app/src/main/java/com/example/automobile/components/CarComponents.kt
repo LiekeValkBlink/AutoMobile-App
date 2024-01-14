@@ -15,17 +15,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountTree
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -40,21 +43,25 @@ import com.example.automobile.ui.theme.MediumGrey
 import com.example.automobile.ui.theme.PrimaryColor
 import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
-import com.example.automobile.R
-import kotlin.math.round
+import com.example.automobile.screens.FavoritesViewModel
+import androidx.compose.runtime.livedata.observeAsState
+
 
 @Composable
 fun CarComponent(
     carBrand: String,
     licencePlate: String,
+    carLocation: String,
     image: Painter,
     amountOfPassengers: Int,
     gearboxType: String,
     price: Double,
     isOwnCar: Boolean = false,
-    carId: Int? = null,
+    carId: Int,
+    viewModel: FavoritesViewModel,
     navController: NavController? = null
     ) {
+    var isFavorite by remember { mutableStateOf(viewModel.isFavorite(carId))    }
 
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(
@@ -108,7 +115,18 @@ fun CarComponent(
                         color = LightGrey,
                     )
                 )
+                Text(
+                    text = carLocation,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight.Medium,
+                        color = LightGrey,
+                    )
+                )
             }
+
+
 
             if (isOwnCar) {
                 IconButton(
@@ -134,7 +152,10 @@ fun CarComponent(
                 }
             } else {
                 IconButton(
-                    onClick = { },
+                    onClick = {
+                                viewModel.toggleFavorite(carId)
+                                isFavorite = !isFavorite
+                              },
                     modifier = Modifier
                         .background(
                             MediumGrey,
@@ -146,9 +167,9 @@ fun CarComponent(
 
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.FavoriteBorder,
+                        imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                         contentDescription = "Favorite",
-                        tint = LightGrey
+                        tint = if (isFavorite) PrimaryColor else LightGrey
                     )
                 }
             }
@@ -189,6 +210,7 @@ fun CarComponent(
                 }
 
                 Spacer(modifier = Modifier.size(12.dp))
+
 
                 Row {
                     Icon(

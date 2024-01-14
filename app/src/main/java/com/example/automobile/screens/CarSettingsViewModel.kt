@@ -28,6 +28,9 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
     var licencePlate by mutableStateOf("")
         private set
 
+    var carLocation by mutableStateOf("")
+        private set
+
     var amountOfPassengers by mutableStateOf("")
         private set
 
@@ -95,6 +98,7 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
                 carBrand = car.carBrand
                 vehicleType = car.vehicleType
                 licencePlate = car.licencePlate
+                carLocation = car.carLocation
                 amountOfPassengers = car.amountOfPassengers.toString()
                 gearboxType = if (car.automatic) "Automatic" else "Manual"
                 carPriceAmount = car.carPriceAmount.toString()
@@ -153,6 +157,7 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
             carBrand = carBrand,
             amountOfPassengers = amountOfPassengers.toInt(),
             licencePlate = licencePlate,
+            carLocation = carLocation,
             vehicleType = vehicleType,
             automatic = gearboxType == "Automatic",
             carPriceAmount = carPriceAmount.toDouble(),
@@ -173,6 +178,7 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
             carBrand = carBrand,
             amountOfPassengers = amountOfPassengers.toInt(),
             licencePlate = licencePlate,
+            carLocation = carLocation,
             vehicleType = vehicleType,
             automatic = gearboxType == "Automatic",
             carPriceAmount = carPriceAmount.toDouble(),

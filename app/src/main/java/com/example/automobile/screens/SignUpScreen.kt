@@ -64,10 +64,10 @@ fun SignUpScreen(navController: NavHostController, viewModel: SignUpViewModel) {
                 Column {
                     PrimaryButtonComponent(
                         value = stringResource(id = R.string.signUp_submit),
-                        enabled = !viewModel.formHasErrors,
                         route = {
                             viewModel.submit()
-                        }
+                        },
+                        enabled = !viewModel.formHasErrors
                     )
 
                     Spacer(modifier = Modifier.size(20.dp))

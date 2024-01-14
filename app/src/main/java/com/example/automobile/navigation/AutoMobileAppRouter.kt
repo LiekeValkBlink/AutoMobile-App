@@ -15,6 +15,7 @@ import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.StartScreen
 import com.example.automobile.screens.HomeScreen
 import com.example.automobile.screens.FavoritesScreen
+import com.example.automobile.screens.HomeScreenViewModel
 import com.example.automobile.screens.LoginViewModel
 import com.example.automobile.screens.MapScreen
 import com.example.automobile.screens.NotificationsScreen
@@ -49,7 +50,8 @@ fun Navigation(navController: NavHostController) {
         }
         composable(route = "home_screen") {
             HomeScreen(
-                navController = navController
+                navController = navController,
+                viewModel = HomeScreenViewModel()
             )
         }
         composable(route = "favorites_screen") {

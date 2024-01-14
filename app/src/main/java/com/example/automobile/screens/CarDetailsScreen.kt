@@ -17,9 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AcUnit
 import androidx.compose.material.icons.outlined.AccessTime
 import androidx.compose.material.icons.outlined.AccountTree
-import androidx.compose.material.icons.outlined.Air
 import androidx.compose.material.icons.outlined.DateRange
-import androidx.compose.material.icons.outlined.FilterAlt
 import androidx.compose.material.icons.outlined.LocalGasStation
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Surface
@@ -33,7 +31,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
-import com.example.automobile.components.CarComponent
 import com.example.automobile.components.CarInformationComponent
 import com.example.automobile.components.DateTimeInputFieldComponent
 import com.example.automobile.components.H2TextComponent
