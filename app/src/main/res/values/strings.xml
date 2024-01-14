@@ -31,7 +31,7 @@
 
 
     // HomeScreen
-    <string name="home_search">Search</string>
+    <string name="home_search">Search postal</string>
     <string name="home_available_cars">Available cars near you</string>
 
     // ProfileScreen

@@ -97,8 +97,8 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
                     viewModel.postalData?.let { postal ->
 
 
-                        Text("Longitude: ${postal.street} ${postal.house_number}", color = Color.White)
-                        Text("Longitude: ${postal.city}", color = Color.White)
+                        Text("Straat: ${postal.street} ${postal.house_number}", color = Color.White)
+                        Text("woonplaats: ${postal.city}", color = Color.White)
                         Text("Latitude: ${postal.latitude}", color = Color.White)
                         Text("Longitude: ${postal.longitude}", color = Color.White)
 
