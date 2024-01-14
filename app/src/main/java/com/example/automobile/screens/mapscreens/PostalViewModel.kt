@@ -21,31 +21,32 @@ class PostalViewModel : ViewModel() {
     init {
         getPostalInfo()
     }
-/// bij de volgende functie moet ik de dynamische gegevens gebruiken
+
+    /// bij de volgende functie moet ik de dynamische gegevens gebruiken
     fun getPostalInfo() {
         val postal = "4826NP"
         val number = "542"
         viewModelScope.launch {
-            val listResult = PostalApi.retrofitService.getPostal(postal, number )
+            val listResult = PostalApi.retrofitService.getPostal(postal, number)
             postalUiState = listResult.street
         }
     }
 }
 
-class AddPostalViewModel: ViewModel() {
+class AddPostalViewModel : ViewModel() {
     var postalRepository = PostalApi
     var postalData: Postal? by mutableStateOf(null)
-    fun getPostalData(postcode: String, huisnummer: String){
+    fun getPostalData(postcode: String, huisnummer: String) {
         viewModelScope.launch {
             try {
                 postalData = postalRepository.retrofitService.getPostal(postcode, huisnummer)
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    fun savePostal(id : Int, postal: CarLocation){
+    fun savePostal(id: Int, postal: CarLocation) {
         viewModelScope.launch {
             CarsApi.retrofitService.savePostal(id, postal)
         }

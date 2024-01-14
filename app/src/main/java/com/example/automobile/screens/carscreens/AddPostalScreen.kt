@@ -38,14 +38,17 @@ import kotlinx.coroutines.launch
 fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavController) {
     var postcode by remember { mutableStateOf("") }
     var huisnummer by remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
 
-                val state = rememberScrollState()
+        val state = rememberScrollState()
         var postalInput by remember { mutableStateOf("") }
         var numberInput by remember { mutableStateOf("") }
         var adresInput by remember { mutableStateOf("") }
+
+
 
         Column(
             modifier = Modifier
@@ -105,12 +108,13 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
                     }
                 }
                 Spacer(modifier = Modifier.size(12.dp))
-//        val count = CarsApi.retrofitService.getCarLocs().size
+
+
                 // create postal to save
                 val postal = viewModel.postalData
-                val PostalToSave = postal?.let {
+                var PostalToSave = postal?.let {
                     CarLocation(
-                        id = 55,
+                        id = 11,
                         postal = it.postcode,
                         latitude = postal.latitude,
                         longitude = postal.longitude,
@@ -123,10 +127,12 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
                     // de route wordt de save functie
 
                     route = {
-                        viewModel.viewModelScope.launch{if (PostalToSave != null) {
- val id = CarsApi.retrofitService.getCarLocations().size
-                            CarsApi.retrofitService.savePostal(id = 13, PostalToSave)
-                        }}
+                        viewModel.viewModelScope.launch {
+                            if (PostalToSave != null) {
+                                val count = CarsApi.retrofitService.getCarLocations().size
+                                CarsApi.retrofitService.savePostal(id = 13, PostalToSave)
+                            }
+                        }
 
                         navController.navigate(route = "home_screen")
                     },
