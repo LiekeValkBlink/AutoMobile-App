@@ -26,6 +26,9 @@ interface CarsApiService {
     @GET("carlocations")
     suspend fun getCarLocations() :List<CarLocation>
 
+    @GET("carlocation")
+    fun getCarLocs() : List<CarLocation>
+
     @GET("carlocation/{id}")
     suspend fun getLocation(@Path("id") id: Int) : CarLocation
 

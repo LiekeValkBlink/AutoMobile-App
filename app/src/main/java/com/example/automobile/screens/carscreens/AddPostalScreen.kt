@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavController
 import com.example.automobile.R
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.PrimaryButtonComponent
@@ -30,21 +30,19 @@ import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.models.CarLocation
 import com.example.automobile.data.services.CarsApi
-import com.example.automobile.navigation.Navigation
 import com.example.automobile.screens.mapscreens.AddPostalViewModel
 import com.example.automobile.ui.theme.BackgroundColor
 import kotlinx.coroutines.launch
 
 @Composable
-fun AddNewCarLocation(viewModel: AddPostalViewModel) {
+fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavController) {
     var postcode by remember { mutableStateOf("") }
     var huisnummer by remember { mutableStateOf("") }
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
-        val navController = rememberNavController()
-        Navigation(navController)
-        val state = rememberScrollState()
+
+                val state = rememberScrollState()
         var postalInput by remember { mutableStateOf("") }
         var numberInput by remember { mutableStateOf("") }
         var adresInput by remember { mutableStateOf("") }
@@ -107,12 +105,12 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel) {
                     }
                 }
                 Spacer(modifier = Modifier.size(12.dp))
-
+//        val count = CarsApi.retrofitService.getCarLocs().size
                 // create postal to save
                 val postal = viewModel.postalData
                 val PostalToSave = postal?.let {
                     CarLocation(
-                        id = 22,
+                        id = 55,
                         postal = it.postcode,
                         latitude = postal.latitude,
                         longitude = postal.longitude,
@@ -126,8 +124,8 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel) {
 
                     route = {
                         viewModel.viewModelScope.launch{if (PostalToSave != null) {
-
-                            CarsApi.retrofitService.savePostal(12, PostalToSave)
+ val id = CarsApi.retrofitService.getCarLocations().size
+                            CarsApi.retrofitService.savePostal(id = 13, PostalToSave)
                         }}
 
                         navController.navigate(route = "home_screen")

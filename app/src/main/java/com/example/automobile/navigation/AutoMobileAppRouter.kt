@@ -104,7 +104,7 @@ fun Navigation(navController: NavHostController) {
                 )
         }
         composable(route = "add_postal_screen"){
-            AddNewCarLocation(viewModel = AddPostalViewModel())
+            AddNewCarLocation(navController = navController,viewModel = AddPostalViewModel())
         }
 
     }
