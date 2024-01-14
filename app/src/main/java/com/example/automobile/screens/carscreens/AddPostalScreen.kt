@@ -96,12 +96,9 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
 //                    )
                     viewModel.postalData?.let { postal ->
 
-                        TextInputFieldComponent(
-                            value = postal.street + " " + postal.house_number,
-                            onValueChange = { },
 
-
-                            )
+                        Text("Longitude: ${postal.street} ${postal.house_number}", color = Color.White)
+                        Text("Longitude: ${postal.city}", color = Color.White)
                         Text("Latitude: ${postal.latitude}", color = Color.White)
                         Text("Longitude: ${postal.longitude}", color = Color.White)
 

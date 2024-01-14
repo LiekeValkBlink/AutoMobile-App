@@ -91,7 +91,7 @@ fun HomeMapBody(
             ) {
                 val carMarker = LatLng(car.latitude, car.longitude)
                 val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(carMarker, 15f)
+                    position = CameraPosition.fromLatLngZoom(carMarker, 12f)
                 }
                 GoogleMap(
                     cameraPositionState = cameraPositionState,
