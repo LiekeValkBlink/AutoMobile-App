@@ -38,7 +38,9 @@ import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H3TextComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.PrimaryButtonComponent
+
 import com.example.automobile.components.SearchButtonComponent
+
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
@@ -81,6 +83,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel) {
                     SearchButtonComponent(
                         value = stringResource(id = R.string.home_search),
                         onClick = { viewModel.searchCars(searchText)}
+
                     )
                 }
 

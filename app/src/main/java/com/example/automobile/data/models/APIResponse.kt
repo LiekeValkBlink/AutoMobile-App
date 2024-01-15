@@ -8,3 +8,4 @@ data class APIResponse<T>(
     @Json(name = "data")
     val data: T?
 )
+
