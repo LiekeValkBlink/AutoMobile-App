@@ -31,7 +31,7 @@
 
 
     // HomeScreen
-    <string name="home_search">Search</string>
+    <string name="home_search">Search postal</string>
     <string name="home_available_cars">Available cars near you</string>
 
     // ProfileScreen
@@ -51,6 +51,14 @@
     <string name="profileSettings_DriversLicenceNumber_label">Drivers licence number</string>
     <string name="profileSettings_DriversLicenceNumber_placeholder">1234567890</string>
     <string name="profileSettings_btn">Save changes</string>
+
+    //CarScreen
+    <string name="loading">Loading....</string>
+    <string name="loading_failed">Loading failed!</string>
+    <string name="postal">Postal</string>
+    <string name="add_postal_to_car">Add postal to your car\n</string>
+    <string name="number">Number</string>
+    <string name="save_postal_btn">Save your postal</string>
 
     // CarSettingsScreen
     <string name="carSettings_heading">Add your car</string>

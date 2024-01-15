@@ -4,13 +4,16 @@ import com.example.automobile.BuildConfig
 import com.example.automobile.data.interceptors.auth.AuthInterceptor
 import com.example.automobile.data.services.AccountService
 import com.example.automobile.data.services.AuthenticationService
+import com.example.automobile.data.services.CarLocationService
 import com.example.automobile.data.services.CarService
+import com.example.automobile.data.services.HomeScreenService
 import com.example.automobile.data.services.ProfileService
 import com.example.automobile.data.services.RegistrationService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 /**
  * ApiClient contains singleton Retrofit2 clients and services for making HTTP calls to the back-end API.
@@ -47,9 +50,11 @@ object ApiClient {
         .build()
 
     // Create Retrofit2 services based on service interfaces
-    val registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
-    val authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
-    val accountService = retrofit.create(AccountService::class.java)
-    val profileService = retrofit.create(ProfileService::class.java)
-    val carService = retrofit.create(CarService::class.java)
+    val registrationService: RegistrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
+    val authenticationService: AuthenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
+    val accountService: AccountService = retrofit.create(AccountService::class.java)
+    val profileService: ProfileService = retrofit.create(ProfileService::class.java)
+    val carService: CarService = retrofit.create(CarService::class.java)
+    val carLocationService: CarLocationService = retrofit.create(CarLocationService::class.java)
+    val homeScreenService: HomeScreenService = retrofit.create(HomeScreenService::class.java)
 }
