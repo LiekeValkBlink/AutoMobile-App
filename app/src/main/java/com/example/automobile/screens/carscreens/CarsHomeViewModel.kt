@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.automobile.data.models.CarLocation
-import com.example.automobile.data.repositories.NetworkCarLocationRepository
+import com.example.automobile.data.repositories.CarLocationRepository
 
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -32,7 +32,6 @@ class CarsViewModel : ViewModel() {
     fun getCarLocations() {
         viewModelScope.launch {
             carsUiState = try {
-                val CarLocationRepository = NetworkCarLocationRepository()
                 val listResult = CarLocationRepository.getCarLocations()
                 CarsUiState.Success(listResult)
             }catch (e: IOException){

@@ -1,21 +1,18 @@
 package com.example.automobile.data.models
 
-//dit gaat fout ??
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Serializable
+@JsonClass(generateAdapter = true)
 data class CarLocation(
+    @Json(name = "id")
     val id: Int?,
+    @Json(name = "postal")
     val postal: String,
+    @Json(name = "latitude")
     val latitude: Double,
+    @Json(name = "longitude")
     val longitude: Double,
+    @Json(name = "number")
     val number: String?
-)
-
-@Serializable
-data class Location(val latitude: Double, val longitude: Double)
-
-@Serializable
-data class SaveCarLocationResponse(
-    val success: Boolean,
-    val data: String?
 )

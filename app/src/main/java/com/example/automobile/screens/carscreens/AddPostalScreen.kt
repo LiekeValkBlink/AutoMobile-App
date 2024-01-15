@@ -29,7 +29,7 @@ import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.models.CarLocation
-import com.example.automobile.data.services.CarsApi
+import com.example.automobile.data.repositories.CarLocationRepository
 import com.example.automobile.screens.mapscreens.AddPostalViewModel
 import com.example.automobile.ui.theme.BackgroundColor
 import kotlinx.coroutines.launch
@@ -115,7 +115,7 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
                     route = {
                         viewModel.viewModelScope.launch {
                             // create postal to save
-                            val count = CarsApi.retrofitService.getCarLocations().size
+                            val count = CarLocationRepository.getCarLocations().size
                             val postal = viewModel.postalData
                             var PostalToSave = postal?.let {
                                 CarLocation(
@@ -130,7 +130,7 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
 
                             if (PostalToSave != null) {
 //                                val count = CarsApi.retrofitService.getCarLocations().size
-                                CarsApi.retrofitService.savePostal(id = count+ 1, PostalToSave)
+                                CarLocationRepository.savePostal(id = count+ 1, PostalToSave)
                             }
                         }
 

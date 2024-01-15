@@ -35,10 +35,8 @@ import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
-import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.models.CarLocation
-import com.example.automobile.data.services.CarsApi
-import com.example.automobile.ui.theme.BackgroundColor
+import com.example.automobile.data.repositories.CarLocationRepository
 import com.example.automobile.ui.theme.Red
 import kotlinx.coroutines.launch
 
@@ -190,7 +188,7 @@ fun CarSettingsScreen(navController: NavController, viewModel: CarSettingsViewMo
                     ),
                     route = { viewModel.viewModelScope.launch{if (PostalToSave != null) {
 
-                        CarsApi.retrofitService.savePostal(12, PostalToSave)
+                        CarLocationRepository.savePostal(12, PostalToSave)
                     }}
                         viewModel.submit(callback = { success ->
                             if (success) {
