@@ -2,6 +2,7 @@ package com.example.automobile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -59,6 +60,7 @@ fun CarComponent(
     isOwnCar: Boolean = false,
     carId: Int,
     viewModel: FavoritesViewModel,
+    onClick: () -> Unit,
     navController: NavController? = null
     ) {
     var isFavorite by remember { mutableStateOf(viewModel.isFavorite(carId))    }
@@ -89,6 +91,7 @@ fun CarComponent(
         )
         .fillMaxWidth()
         .padding(20.dp, 20.dp, 20.dp, 14.dp)
+        .clickable { onClick() }
     ) {
         Row (
             modifier = Modifier.fillMaxWidth(),

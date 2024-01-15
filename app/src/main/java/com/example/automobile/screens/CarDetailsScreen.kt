@@ -69,11 +69,11 @@ fun CarDetailsScreen(navController: NavController, viewModel: CarDetailsViewMode
                     )
 
                     H2TextComponent(
-                        value = "Kia Rio 2021"
+                        value = viewModel.carBrand
                     )
 
                     TextComponent(
-                        value = "Licence plate: 12-GHV-6"
+                        value = viewModel.licencePlate
                     )
                 }
 

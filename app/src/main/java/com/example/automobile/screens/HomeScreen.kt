@@ -125,7 +125,10 @@ fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel) {
                                 gearboxType = if (car.automatic) "Automatic" else "Manual",
                                 price = car.carPriceAmount,
                                 carId = car.id,
-                                viewModel = FavoritesViewModel()
+                                viewModel = FavoritesViewModel(),
+                                onClick = {
+                                    navController.navigate("car_details_screen/${car.id}")
+                                }
 
                             )
                         }

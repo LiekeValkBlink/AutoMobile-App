@@ -84,7 +84,10 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                         price = car.carPriceAmount,
                         isOwnCar = true,
                         navController = navController,
-                        viewModel = FavoritesViewModel()
+                        viewModel = FavoritesViewModel(),
+                        onClick = {
+                            navController.navigate("car_settings_screen/${car.id}")
+                        }
                     )
                 }
             }

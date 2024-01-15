@@ -8,6 +8,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.automobile.screens.CarDetailsScreen
+import com.example.automobile.screens.CarDetailsViewModel
 import com.example.automobile.screens.CarSettingsScreen
 import com.example.automobile.screens.CarSettingsViewModel
 import com.example.automobile.screens.FavoritesScreen
@@ -108,6 +110,17 @@ fun Navigation(navController: NavHostController) {
                     viewModel = CarSettingsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
                 )
         }
+
+        composable(
+            route = "car_details_screen/{carId}",
+            arguments = listOf(navArgument("carId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            CarDetailsScreen(
+                navController = navController,
+                viewModel = CarDetailsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
+            )
+        }
+
         composable(route = "add_postal_screen"){
             AddNewCarLocation(navController = navController,viewModel = AddPostalViewModel())
         }

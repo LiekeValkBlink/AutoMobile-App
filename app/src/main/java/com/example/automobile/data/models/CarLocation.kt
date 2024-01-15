@@ -1,5 +1,6 @@
 package com.example.automobile.data.models
 
+import kotlinx.serialization.Serializable
 //dit gaat fout ??
 
 @Serializable

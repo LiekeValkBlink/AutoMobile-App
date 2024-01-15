@@ -4,7 +4,7 @@ import org.gradle.internal.impldep.com.jcraft.jsch.ConfigRepository.defaultConfi
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.10"
     kotlin("kapt")
 }
 
