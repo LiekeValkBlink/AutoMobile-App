@@ -148,12 +148,12 @@ fun BottomNavigationBar(navController: NavController) {
             )
         }
         IconButton(
-            onClick = { navController.navigate(route = "notifications_screen") }
+            onClick = { navController.navigate(route = "reservation_screen") }
         ) {
             Icon(
                 imageVector = Icons.Outlined.Notifications,
                 modifier = Modifier.size(26.dp),
-                contentDescription = "Notifications",
+                contentDescription = "Reservations",
                 tint = LightGrey
             )
         }

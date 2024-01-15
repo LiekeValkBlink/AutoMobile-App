@@ -3,8 +3,11 @@ package com.example.automobile.screens
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.automobile.data.repositories.CarDetailsRepositories
 import com.example.automobile.data.repositories.CarRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -90,19 +93,6 @@ class CarDetailsViewModel(val carId: Int? = null) : ViewModel() {
         if (carId == null || carId < 0) {
             return
         }
-//
-//        var carLocation: CarLocation
-//
-//        viewModelScope.launch{
-//            val carLocation = viewModelScope.async (Dispatchers.IO){
-//                CarsApi.retrofitService.getLocation(id = carId)
-//
-//            }.await()
-//           if(carLocation != null){
-//               postal = carLocation.postal
-//               number = carLocation.number.toString()
-//           }
-//        }
 
 
         viewModelScope.launch {
@@ -130,4 +120,21 @@ class CarDetailsViewModel(val carId: Int? = null) : ViewModel() {
         }
     }
 
+    private val _reservationStatus = MutableLiveData<Boolean?>()
+    val reservationStatus: LiveData<Boolean?> = _reservationStatus
+
+    fun reserveCar() {
+        viewModelScope.launch {
+            if (carId != null) {
+                val result = CarDetailsRepositories.reserveCar(carId)
+                if (result.isSuccess) {
+                    _reservationStatus.value = true
+                } else {
+                    _reservationStatus.value = false
+                }
+            } else {
+                _reservationStatus.value = null
+            }
+        }
+    }
 }

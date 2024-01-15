@@ -20,8 +20,14 @@ import androidx.compose.material.icons.outlined.AccountTree
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.LocalGasStation
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,8 +48,14 @@ import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.Red
 
+
 @Composable
 fun CarDetailsScreen(navController: NavController, viewModel: CarDetailsViewModel) {
+    val reservationStatus by viewModel.reservationStatus.observeAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+
+
     Surface (modifier = Modifier
         .fillMaxSize()
     ){
@@ -171,8 +183,25 @@ fun CarDetailsScreen(navController: NavController, viewModel: CarDetailsViewMode
                 
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.carDetails_btn),
-                    route = { TODO() }
+                    route = {
+                        viewModel.reserveCar()
+                    }
+
                 )
+
+
+                LaunchedEffect(reservationStatus) {
+                    when(reservationStatus) {
+                        true -> snackbarHostState.showSnackbar(
+                            message = "Reservation successfully",
+                            duration = SnackbarDuration.Short
+                        ) else
+                         -> snackbarHostState.showSnackbar(
+                            message = "Reservation Failed",
+                            duration = SnackbarDuration.Short
+                        )
+                    }
+                }
 
                 Spacer(modifier = Modifier.size(16.dp))
 

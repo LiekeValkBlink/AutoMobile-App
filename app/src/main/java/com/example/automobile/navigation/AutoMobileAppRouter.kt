@@ -20,11 +20,12 @@ import com.example.automobile.screens.LoginScreen
 import com.example.automobile.screens.HomeScreenViewModel
 
 import com.example.automobile.screens.LoginViewModel
-import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
 import com.example.automobile.screens.ProfileSettingsScreen
 import com.example.automobile.screens.ProfileSettingsViewModel
 import com.example.automobile.screens.ProfileViewModel
+import com.example.automobile.screens.ReservationScreen
+import com.example.automobile.screens.ReservationViewModel
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.SignUpViewModel
 import com.example.automobile.screens.StartScreen
@@ -77,9 +78,10 @@ fun Navigation(navController: NavHostController) {
                 navController = navController,
             )
         }
-        composable(route = "notifications_screen") {
-            NotificationsScreen(
-                navController = navController
+        composable(route = "reservation_screen") {
+            ReservationScreen(
+                navController = navController,
+                viewModel = ReservationViewModel()
             )
         }
         composable(route = "profile_screen") {
