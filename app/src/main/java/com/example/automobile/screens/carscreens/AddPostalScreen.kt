@@ -96,12 +96,9 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
 //                    )
                     viewModel.postalData?.let { postal ->
 
-                        TextInputFieldComponent(
-                            value = postal.street + " " + postal.house_number,
-                            onValueChange = { },
 
-
-                            )
+                        Text("Straat: ${postal.street} ${postal.house_number}", color = Color.White)
+                        Text("woonplaats: ${postal.city}", color = Color.White)
                         Text("Latitude: ${postal.latitude}", color = Color.White)
                         Text("Longitude: ${postal.longitude}", color = Color.White)
 
@@ -110,17 +107,6 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
                 Spacer(modifier = Modifier.size(12.dp))
 
 
-                // create postal to save
-                val postal = viewModel.postalData
-                var PostalToSave = postal?.let {
-                    CarLocation(
-                        id = 11,
-                        postal = it.postcode,
-                        latitude = postal.latitude,
-                        longitude = postal.longitude,
-                        number = postal.house_number.toString()
-                    )
-                }
 
                 PrimaryButtonComponent(
                     value = stringResource(id = R.string.save_postal_btn),
@@ -128,9 +114,23 @@ fun AddNewCarLocation(viewModel: AddPostalViewModel, navController: NavControlle
 
                     route = {
                         viewModel.viewModelScope.launch {
+                            // create postal to save
+                            val count = CarsApi.retrofitService.getCarLocations().size
+                            val postal = viewModel.postalData
+                            var PostalToSave = postal?.let {
+                                CarLocation(
+                                    id = count,
+                                    postal = it.postcode,
+                                    latitude = postal.latitude,
+                                    longitude = postal.longitude,
+                                    number = postal.house_number.toString()
+                                )
+                            }
+
+
                             if (PostalToSave != null) {
-                                val count = CarsApi.retrofitService.getCarLocations().size
-                                CarsApi.retrofitService.savePostal(id = 13, PostalToSave)
+//                                val count = CarsApi.retrofitService.getCarLocations().size
+                                CarsApi.retrofitService.savePostal(id = count+ 1, PostalToSave)
                             }
                         }
 
