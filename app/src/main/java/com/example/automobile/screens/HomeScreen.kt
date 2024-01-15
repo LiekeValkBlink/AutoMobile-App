@@ -20,6 +20,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,13 +38,19 @@ import com.example.automobile.components.CarComponent
 import com.example.automobile.components.H3TextComponent
 import com.example.automobile.components.InputTextFieldWithIconComponent
 import com.example.automobile.components.PrimaryButtonComponent
+
+import com.example.automobile.components.SearchButtonComponent
+
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.LightGrey
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel) {
+    val cars = viewModel.availableCars.observeAsState(initial = emptyList())
+    var searchText by remember { mutableStateOf("") }
+    val filteredCars = viewModel.filteredCars.observeAsState(initial = emptyList())
 
     Surface(
         modifier = Modifier
@@ -62,14 +73,17 @@ fun HomeScreen(navController: NavController) {
                 Column {
                     InputTextFieldWithIconComponent(
                         placeholder = "Search for location...",
-                        leadingIcon = Icons.Filled.Search
+                        leadingIcon = Icons.Filled.Search,
+                        onValueChange = { newText -> searchText = newText },
+                        onSearch = { viewModel.searchCars(searchText) }
                     )
 
                     Spacer(modifier = Modifier.size(18.dp))
 
-                    PrimaryButtonComponent(
+                    SearchButtonComponent(
                         value = stringResource(id = R.string.home_search),
-                        route = { navController.navigate(route = "add_postal_screen") }
+                        onClick = { viewModel.searchCars(searchText)}
+
                     )
                 }
 
@@ -98,26 +112,25 @@ fun HomeScreen(navController: NavController) {
                         }
                     }
 
-                    Column {
-                        // Car components
-                        CarComponent(
-                            carBrand = "Kia Rio 2021",
-                            licencePlate = "AB-123-C",
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            amountOfPassengers = 2,
-                            gearboxType = "Manual",
-                            price = 12.99
-                        )
 
-                        CarComponent(
-                            carBrand = "Kia Rio 2021",
-                            licencePlate = "AB-123-C",
-                            image = painterResource(id = R.drawable.car_placeholder),
-                            amountOfPassengers = 2,
-                            gearboxType = "Manual",
-                            price = 12.99
-                        )
+                    Column {
+                        val carsToShow = if (searchText.isBlank()) cars.value else filteredCars.value
+                        carsToShow.forEach {car ->
+                            CarComponent(
+                                carBrand = car.carBrand,
+                                licencePlate = car.carLocation,
+                                carLocation = car.licencePlate,
+                                image = painterResource(id = R.drawable.car_placeholder),
+                                amountOfPassengers = car.amountOfPassengers,
+                                gearboxType = if (car.automatic) "Automatic" else "Manual",
+                                price = car.carPriceAmount,
+                                carId = car.id,
+                                viewModel = FavoritesViewModel()
+
+                            )
+                        }
                     }
+
                 }
             }
         }
@@ -135,5 +148,5 @@ fun HomeScreen(navController: NavController) {
 @Preview
 @Composable
 fun DefaultPreviewOfHomeScreen() {
-    HomeScreen(navController = rememberNavController())
+    HomeScreen(navController = rememberNavController(), HomeScreenViewModel())
 }

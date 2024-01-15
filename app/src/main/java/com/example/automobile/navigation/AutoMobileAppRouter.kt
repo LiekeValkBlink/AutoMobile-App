@@ -11,8 +11,12 @@ import androidx.navigation.navArgument
 import com.example.automobile.screens.CarSettingsScreen
 import com.example.automobile.screens.CarSettingsViewModel
 import com.example.automobile.screens.FavoritesScreen
+
 import com.example.automobile.screens.HomeScreen
 import com.example.automobile.screens.LoginScreen
+
+import com.example.automobile.screens.HomeScreenViewModel
+
 import com.example.automobile.screens.LoginViewModel
 import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
@@ -52,7 +56,8 @@ fun Navigation(navController: NavHostController) {
         }
         composable(route = "home_screen") {
             HomeScreen(
-                navController = navController
+                navController = navController,
+                viewModel = HomeScreenViewModel()
             )
         }
         composable(route = "favorites_screen") {
