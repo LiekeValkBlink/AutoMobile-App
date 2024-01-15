@@ -24,12 +24,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.automobile.R
+
 import com.example.automobile.components.BottomNavigationBar
 import com.example.automobile.components.H2TextComponent
 
 import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.ui.theme.BackgroundColor
-import com.example.automobile.R
+
 
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
