@@ -77,12 +77,14 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel) {
                         carId = car.id,
                         carBrand = car.carBrand + " " + car.vehicleType,
                         licencePlate = car.licencePlate,
+                        carLocation = car.carLocation,
                         image = painterResource(id = R.drawable.car_placeholder),
                         amountOfPassengers = car.amountOfPassengers,
                         gearboxType = if (car.automatic) "Automatic" else "Manual",
                         price = car.carPriceAmount,
                         isOwnCar = true,
-                        navController = navController
+                        navController = navController,
+                        viewModel = FavoritesViewModel()
                     )
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.automobile.data.models
 
+
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -31,7 +32,11 @@ data class Car(
     var carPriceCurrency: String,
     @Json(name = "userProfileID")
     var userProfileID: Int,
-)
+    @Json(name = "carLocation")
+    var carLocation: String,
+) {
+
+}
 
 @JsonClass(generateAdapter = true)
 data class NewCar(
@@ -55,4 +60,55 @@ data class NewCar(
     var carPriceCurrency: String,
     @Json(name = "userProfileID")
     var userProfileID: Int,
+    @Json(name = "carLocation")
+    var carLocation: String,
 )
+
+@JsonClass(generateAdapter = true)
+data class AvailableCar(
+    @Json(name = "licencePlate")
+    var licencePlate: String,
+    @Json(name = "carBrand")
+    var carBrand: String,
+    @Json(name = "carPriceAmount")
+    var carPriceAmount: Double,
+    @Json(name = "carAvailable")
+    var carAvailable: Boolean,
+    @Json(name = "carLocation")
+    var carLocation: String,
+    @Json(name = "automatic")
+    var automatic: Boolean,
+    @Json(name = "amountOfPassengers")
+    var amountOfPassengers: Int,
+    @Json(name = "id")
+    val id: Int,
+)
+
+data class CarsResponse(
+    val success: Boolean,
+    val data: List<AvailableCar>
+)
+
+@JsonClass(generateAdapter = true)
+data class SearchedCars(
+    @Json(name = "licencePlate")
+    var licencePlate: String,
+    @Json(name = "carBrand")
+    var carBrand: String,
+    @Json(name = "carPriceAmount")
+    var carPriceAmount: Double,
+    @Json(name = "carAvailable")
+    var carAvailable: Boolean,
+    @Json(name = "carLocation")
+    var carLocation: String,
+    @Json(name = "automatic")
+    var automatic: Boolean,
+    @Json(name = "amountOfPassengers")
+    var amountOfPassengers: Int,
+)
+
+data class FoundCars(
+    val success: Boolean,
+    val data: List<SearchedCars>
+)
+
