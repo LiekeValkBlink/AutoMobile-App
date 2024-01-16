@@ -1,18 +1,24 @@
 package com.example.automobile.data.models
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class CarLocation(
-    @Json(name = "id")
     val id: Int?,
-    @Json(name = "postal")
     val postal: String,
-    @Json(name = "latitude")
     val latitude: Double,
-    @Json(name = "longitude")
     val longitude: Double,
-    @Json(name = "number")
-    val number: String?
+    val number: String?,
+//    val street: String,
+//    val city: String,
+//    val province: String
+)
+
+@Serializable
+data class Location(val latitude: Double, val longitude: Double)
+
+@Serializable
+data class SaveCarLocationResponse(
+    val success: Boolean,
+    val data: String?
 )
