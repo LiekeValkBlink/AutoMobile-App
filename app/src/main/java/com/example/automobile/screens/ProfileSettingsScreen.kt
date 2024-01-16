@@ -78,6 +78,15 @@ fun ProfileSettingsScreen(navController: NavController, viewModel: ProfileSettin
                     }
                 )
 
+                TextInputFieldComponent(
+                    labelValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_label),
+                    placeholderValue = stringResource(id = R.string.profileSettings_DriversLicenceNumber_placeholder),
+                    value = viewModel.driversLicenceNumber,
+                    onValueChange = {
+                            driversLicenceNumber -> viewModel.updateDriversLicenceNumber(driversLicenceNumber)
+                    }
+                )
+
                 PrimaryButtonComponent(
                     route = { viewModel.submit() },
                     value = stringResource(id = R.string.profileSettings_btn)
