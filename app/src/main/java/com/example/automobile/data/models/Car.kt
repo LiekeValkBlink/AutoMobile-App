@@ -107,8 +107,32 @@ data class SearchedCars(
     var amountOfPassengers: Int,
 )
 
-data class FoundCars(
+data class ResponseCall(
     val success: Boolean,
-    val data: List<SearchedCars>
+    val data: List<AvailableCar>
 )
 
+@JsonClass(generateAdapter = true)
+data class ReservedCar(
+    @Json(name = "licencePlate")
+    var licencePlate: String,
+    @Json(name = "carBrand")
+    var carBrand: String,
+    @Json(name = "carPriceAmount")
+    var carPriceAmount: Double,
+    @Json(name = "carAvailable")
+    var carAvailable: Boolean,
+    @Json(name = "carLocation")
+    var carLocation: String,
+    @Json(name = "automatic")
+    var automatic: Boolean,
+    @Json(name = "amountOfPassengers")
+    var amountOfPassengers: Int,
+    @Json(name = "id")
+    val id: Int,
+)
+
+data class ReservedResponse(
+    val success: Boolean,
+    val data: List<ReservedCar>
+)

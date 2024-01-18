@@ -4,10 +4,12 @@ import com.example.automobile.BuildConfig
 import com.example.automobile.data.interceptors.auth.AuthInterceptor
 import com.example.automobile.data.services.AccountService
 import com.example.automobile.data.services.AuthenticationService
+import com.example.automobile.data.services.CarDetailsService
 import com.example.automobile.data.services.CarService
 import com.example.automobile.data.services.HomeScreenService
 import com.example.automobile.data.services.ProfileService
 import com.example.automobile.data.services.RegistrationService
+import com.example.automobile.data.services.ReservationService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -49,10 +51,13 @@ object ApiClient {
         .build()
 
     // Create Retrofit2 services based on service interfaces
+
     val registrationService: RegistrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
     val authenticationService: AuthenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
-    val accountService: AccountService = retrofit.create(AccountService::class.java)
-    val profileService: ProfileService = retrofit.create(ProfileService::class.java)
-    val carService: CarService = retrofit.create(CarService::class.java)
-    val homeScreenService: HomeScreenService = retrofit.create(HomeScreenService::class.java)
+    val accountService = retrofit.create(AccountService::class.java)
+    val profileService = retrofit.create(ProfileService::class.java)
+    val carService = retrofit.create(CarService::class.java)
+    val homeScreenService = retrofit.create(HomeScreenService::class.java)
+    val carDetailsService = retrofit.create(CarDetailsService::class.java)
+    val reservationService = retrofit.create(ReservationService::class.java)
 }

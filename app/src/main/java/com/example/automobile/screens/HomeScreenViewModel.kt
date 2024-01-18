@@ -1,7 +1,7 @@
 package com.example.automobile.screens
 
-import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -9,9 +9,6 @@ import com.example.automobile.data.models.AvailableCar
 import com.example.automobile.data.repositories.HomeScreenRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import androidx.lifecycle.MutableLiveData
-import com.example.automobile.data.models.FoundCars
-import kotlinx.coroutines.withContext
 
 
 class HomeScreenViewModel : ViewModel() {

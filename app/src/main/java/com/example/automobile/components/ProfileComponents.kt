@@ -10,9 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,10 +18,10 @@ import com.example.automobile.ui.theme.White
 import com.example.automobile.ui.theme.fontFamily
 
 @Composable
-fun ProfileComponent(profileImage: Painter, username: String, email: String) {
+fun ProfileComponent(profileImage: Any, username: String, email: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
-            painter = profileImage,
+            painter = profileImage as Painter,
             contentDescription = "Profile image",
             modifier = Modifier.size(60.dp)
         )

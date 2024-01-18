@@ -1,13 +1,19 @@
 package com.example.automobile.data.repositories
 
+import android.content.Context
+import android.net.Uri
 import com.example.automobile.data.ApiClient
 import com.example.automobile.data.models.AccountWithProfile
 import com.example.automobile.data.models.Profile
+import java.io.File
+import java.io.FileOutputStream
+
 
 /**
  * ProfileRepository connects profile endpoint calls to Retrofit2
  */
 object ProfileRepository {
+
     suspend fun getProfile(): AccountWithProfile? {
         val account = AccountRepository.getAccount() ?: return null
 
@@ -38,4 +44,19 @@ object ProfileRepository {
 
         return result?.success ?: false
     }
+
+    fun saveImageToInternalStorage(context: Context, uri: Uri): Uri? {
+        return try {
+            val inputStream = context.contentResolver.openInputStream(uri)
+            val fileName = "profile_picture.jpg"
+            val file = File(context.filesDir, fileName)
+            val outputStream = FileOutputStream(file)
+            inputStream?.copyTo(outputStream)
+            Uri.fromFile(file)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
 }

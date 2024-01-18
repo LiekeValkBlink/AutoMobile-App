@@ -4,7 +4,7 @@ import org.gradle.internal.impldep.com.jcraft.jsch.ConfigRepository.defaultConfi
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.10"
     kotlin("kapt")
 }
 
@@ -90,6 +90,7 @@ dependencies {
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
     implementation("androidx.appcompat:appcompat:1.6.1")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -106,6 +107,7 @@ dependencies {
     implementation("com.auth0.android:jwtdecode:2.0.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -124,13 +126,19 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.maps.android:maps-compose:4.3.0")
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("commons-validator:commons-validator:1.8.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-core:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
 
-
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 
 }

@@ -2,7 +2,7 @@ package com.example.automobile.data.repositories
 
 import com.example.automobile.data.ApiClient
 import com.example.automobile.data.models.AvailableCar
-import com.example.automobile.data.models.FoundCars
+
 
 
 object HomeScreenRepository {

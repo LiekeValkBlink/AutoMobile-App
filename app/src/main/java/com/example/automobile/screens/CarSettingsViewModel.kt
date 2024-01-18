@@ -112,7 +112,7 @@ class CarSettingsViewModel(val carId: Int? = null) : ViewModel() {
         getData()
     }
 
-    private fun getData() {
+    fun getData() {
         loading = true
 
         if (carId == null || carId < 0) {

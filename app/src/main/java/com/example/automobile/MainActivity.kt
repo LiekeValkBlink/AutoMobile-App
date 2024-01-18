@@ -1,11 +1,12 @@
 package com.example.automobile
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.automobile.app.AutoMobileApp
-import com.example.automobile.data.ApiClient
 import com.example.automobile.data.repositories.LocalStorageRepository
 import java.lang.ref.WeakReference
 
@@ -18,10 +19,18 @@ class MainActivity : ComponentActivity() {
          * This should always be done before any interaction with LocalStorageRepository can occur.
          */
         LocalStorageRepository.context = WeakReference(this)
-
         installSplashScreen()
         setContent {
             AutoMobileApp()
         }
     }
+
+
+
 }
+
+
+
+
+
+

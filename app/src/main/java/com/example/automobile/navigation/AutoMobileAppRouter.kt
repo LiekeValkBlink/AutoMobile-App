@@ -8,6 +8,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.automobile.screens.CarDetailsScreen
+import com.example.automobile.screens.CarDetailsViewModel
 import com.example.automobile.screens.CarSettingsScreen
 import com.example.automobile.screens.CarSettingsViewModel
 import com.example.automobile.screens.FavoritesScreen
@@ -18,11 +20,12 @@ import com.example.automobile.screens.LoginScreen
 import com.example.automobile.screens.HomeScreenViewModel
 
 import com.example.automobile.screens.LoginViewModel
-import com.example.automobile.screens.NotificationsScreen
 import com.example.automobile.screens.ProfileScreen
 import com.example.automobile.screens.ProfileSettingsScreen
 import com.example.automobile.screens.ProfileSettingsViewModel
 import com.example.automobile.screens.ProfileViewModel
+import com.example.automobile.screens.ReservationScreen
+import com.example.automobile.screens.ReservationViewModel
 import com.example.automobile.screens.SignUpScreen
 import com.example.automobile.screens.SignUpViewModel
 import com.example.automobile.screens.StartScreen
@@ -75,9 +78,10 @@ fun Navigation(navController: NavHostController) {
                 navController = navController,
             )
         }
-        composable(route = "notifications_screen") {
-            NotificationsScreen(
-                navController = navController
+        composable(route = "reservation_screen") {
+            ReservationScreen(
+                navController = navController,
+                viewModel = ReservationViewModel()
             )
         }
         composable(route = "profile_screen") {
@@ -108,6 +112,17 @@ fun Navigation(navController: NavHostController) {
                     viewModel = CarSettingsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
                 )
         }
+
+        composable(
+            route = "car_details_screen/{carId}",
+            arguments = listOf(navArgument("carId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            CarDetailsScreen(
+                navController = navController,
+                viewModel = CarDetailsViewModel(backStackEntry.arguments?.getInt("carId") ?: -1)
+            )
+        }
+
         composable(route = "add_postal_screen"){
             AddNewCarLocation(navController = navController,viewModel = AddPostalViewModel())
         }
