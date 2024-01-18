@@ -51,8 +51,9 @@ object ApiClient {
         .build()
 
     // Create Retrofit2 services based on service interfaces
-    val registrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
-    val authenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
+
+    val registrationService: RegistrationService = retrofitNonAuthenticated.create(RegistrationService::class.java)
+    val authenticationService: AuthenticationService = retrofitNonAuthenticated.create(AuthenticationService::class.java)
     val accountService = retrofit.create(AccountService::class.java)
     val profileService = retrofit.create(ProfileService::class.java)
     val carService = retrofit.create(CarService::class.java)

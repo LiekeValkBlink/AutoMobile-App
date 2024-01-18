@@ -7,6 +7,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -19,7 +20,7 @@ val json = Json {
 
 private const val BASE_URL = "http://10.0.2.2:8082"
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+    .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()
 interface CarsApiService {
@@ -34,7 +35,7 @@ interface CarsApiService {
 
     @Headers("Content-Type: application/json")
     @POST("carlocation/{id}")
-     suspend fun savePostal(@Path("id") id: Int, @Body postal: CarLocation) : Response<SaveCarLocationResponse>
+    suspend fun savePostal(@Path("id") id: Int, @Body postal: CarLocation) : Response<SaveCarLocationResponse>
 
 }
 

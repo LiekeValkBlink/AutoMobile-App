@@ -1,7 +1,6 @@
 package com.example.automobile.data.models
 
 import kotlinx.serialization.Serializable
-//dit gaat fout ??
 
 @Serializable
 data class CarLocation(
@@ -9,7 +8,10 @@ data class CarLocation(
     val postal: String,
     val latitude: Double,
     val longitude: Double,
-    val number: String?
+    val number: String?,
+//    val street: String,
+//    val city: String,
+//    val province: String
 )
 
 @Serializable

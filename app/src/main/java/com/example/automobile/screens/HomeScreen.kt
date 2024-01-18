@@ -78,12 +78,14 @@ fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel) {
                         onSearch = { viewModel.searchCars(searchText) }
                     )
 
-                    Spacer(modifier = Modifier.size(18.dp))
-
                     SearchButtonComponent(
                         value = stringResource(id = R.string.home_search),
                         onClick = { viewModel.searchCars(searchText)}
 
+                    )
+                    PrimaryButtonComponent(
+                        value = "Search postal",
+                        route = { navController.navigate(route = "add_postal_screen") }
                     )
                 }
 

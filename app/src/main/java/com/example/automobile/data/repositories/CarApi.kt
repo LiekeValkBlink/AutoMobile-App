@@ -1,4 +1,3 @@
-package com.example.automobile.data.repositories
 
 
 import com.example.automobile.data.models.CarLocation
@@ -11,7 +10,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 
-interface CarLocationRepository {
+interface CarApi {
     suspend fun getCarLocations() : List<CarLocation>
 
     @Headers("Content-Type: application/json")
@@ -19,7 +18,7 @@ interface CarLocationRepository {
     suspend fun savePostal(@Path("id") id: Int, @Body postal: CarLocation) : Response<SaveCarLocationResponse>
 }
 
-class NetworkCarLocationRepository(): CarLocationRepository{
+class NetworkCarLocationRepository(): CarApi{
     override suspend fun getCarLocations(): List<CarLocation> {
         return CarsApi.retrofitService.getCarLocations()
     }

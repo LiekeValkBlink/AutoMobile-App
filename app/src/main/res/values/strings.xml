@@ -47,7 +47,7 @@
     <string name="profileSettings_email_label">E-mailaddress</string>
     <string name="profileSettings_email_placeholder">johndoe@email.com</string>
     <string name="profileSettings_dateOfBirth_label">Date of birth</string>
-    <string name="profileSettings_dateOfBirth_placeholder">01-01-2022</string>
+    <string name="profileSettings_dateOfBirth_placeholder">2022-01-01</string>
     <string name="profileSettings_DriversLicenceNumber_label">Drivers licence number</string>
     <string name="profileSettings_DriversLicenceNumber_placeholder">1234567890</string>
     <string name="profileSettings_btn">Save changes</string>

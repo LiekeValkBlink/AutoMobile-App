@@ -35,10 +35,8 @@ import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.components.PrimaryButtonComponent
 import com.example.automobile.components.SecondaryButtonComponent
 import com.example.automobile.components.TextInputFieldComponent
-import com.example.automobile.components.TopNavigationBar
 import com.example.automobile.data.models.CarLocation
 import com.example.automobile.data.services.CarsApi
-import com.example.automobile.ui.theme.BackgroundColor
 import com.example.automobile.ui.theme.Red
 import kotlinx.coroutines.launch
 

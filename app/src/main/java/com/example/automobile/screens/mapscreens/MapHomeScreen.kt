@@ -71,7 +71,7 @@ fun HomeMapBody(
     val currentLocation = Location(51.6466733, 4.6023077)
     val centerLocation = com.example.automobile.app.Location(51.6466733, 4.6023077)
     val randomList = generateDummyData(6, 15, centerLocation)
-    val locationList = filterLocationsByDistance(currentLocation, randomList, 5.0)
+    val locationList = filterLocationsByDistance(currentLocation, itemList, 5.0)
 
 
     val car = carlist[0]
@@ -91,7 +91,7 @@ fun HomeMapBody(
             ) {
                 val carMarker = LatLng(car.latitude, car.longitude)
                 val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(carMarker, 15f)
+                    position = CameraPosition.fromLatLngZoom(carMarker, 12f)
                 }
                 GoogleMap(
                     cameraPositionState = cameraPositionState,
