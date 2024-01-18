@@ -126,3 +126,39 @@ fun SearchButtonComponent(
         )
     }
 }
+
+@Composable
+fun ProfilePictureButtonComponent(
+    value: String,
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+
+    ) {
+    Spacer(modifier = Modifier.size(32.dp))
+
+    Button(
+        enabled = enabled,
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(BackgroundColor)
+            .height(height = 60.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = PrimaryColor,
+            contentColor = White,
+            disabledContainerColor = InputBackgroundColor,
+            disabledContentColor = LightGrey),
+
+
+        ) {
+        Text(
+            text = value,
+            textAlign = TextAlign.Center,
+            fontFamily = fontFamily,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 6.dp)
+        )
+    }
+}
